@@ -1,26 +1,198 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/* ============================================================ */
+/*  COLOR SYSTEM — Light & Dark Mode via CSS custom properties   */
+/* ============================================================ */
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-wtf-orange: #FF6B00;
+  --color-wtf-black: #000000;
+  --color-wtf-white: #FFFFFF;
+  --color-wtf-cream: #FDFCF8;
+  
+  --shadow-zine: 4px 4px 0px 0px var(--border-color, #000000);
+  --shadow-zine-lg: 8px 8px 0px 0px var(--border-color, #000000);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* ----- Light mode (default) ----- */
+:root {
+  --page-bg: #FDFCF8;
+  --page-dot: #d1d1d1;
+  --text-primary: #000000;
+  --text-secondary: #4B5563;
+  --text-muted: #9CA3AF;
+  --surface: #FFFFFF;
+  --surface-alt: #FDFCF8;
+  --border-color: #000000;
+  --border-subtle: #E5E7EB;
+  --card-hover-shadow: 12px 12px 0px #000;
+  --tag-bg: transparent;
+  --tag-text: #000000;
+  --tag-border: #000000;
+  --cream-bg: #FDFCF8;
+}
+
+/* ----- Dark mode ----- */
+.dark {
+  --page-bg: #0F0F0F;
+  --page-dot: #2A2A2A;
+  --text-primary: #F5F5F5;
+  --text-secondary: #D1D5DB;
+  --text-muted: #6B7280;
+  --surface: #1A1A1A;
+  --surface-alt: #141414;
+  --border-color: #E5E7EB;
+  --border-subtle: #333333;
+  --card-hover-shadow: 12px 12px 0px #333;
+  --tag-bg: transparent;
+  --tag-text: #F5F5F5;
+  --tag-border: #D1D5DB;
+  --cream-bg: #141414;
+
+  /* Override Tailwind color tokens in dark mode */
+  --color-wtf-black: #F5F5F5;
+  --color-wtf-white: #1A1A1A;
+  --color-wtf-cream: #141414;
+  --color-wtf-orange: #FF8533;
+}
+
+/* ---- Global body ---- */
+body {
+  background-color: var(--page-bg);
+  background-image: radial-gradient(var(--page-dot) 1px, transparent 1px);
+  background-size: 24px 24px;
+  color: var(--text-primary);
+  overflow-x: hidden;
+  font-family: inherit;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* ---- Zine component layer ---- */
+@layer components {
+  .zine-border {
+    border: 3px solid var(--border-color);
+  }
+  .zine-button {
+    transition: transform 0.1s ease;
+  }
+  .zine-button:active {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0px 0px var(--border-color);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* ---- Dark mode overrides for common Tailwind utilities ---- */
+
+/* Backgrounds */
+.dark .bg-wtf-black {
+  background-color: #F5F5F5;
+  color: #0F0F0F;
+}
+.dark .bg-wtf-white {
+  background-color: #1A1A1A;
+}
+.dark .bg-wtf-cream {
+  background-color: #141414;
+}
+
+/* Borders */
+.dark .border-wtf-black {
+  border-color: #555555;
+}
+.dark .border-wtf-white {
+  border-color: #555555;
+}
+
+/* Text colors */
+.dark .text-wtf-black {
+  color: #F5F5F5;
+}
+.dark .text-wtf-white {
+  color: #0F0F0F;
+}
+
+/* Shadow overrides */
+.dark .shadow-zine {
+  box-shadow: 4px 4px 0px 0px #333333;
+}
+.dark .shadow-zine-lg {
+  box-shadow: 8px 8px 0px 0px #333333;
+}
+.dark .shadow-\[2px_2px_0px_\#000\] {
+  box-shadow: 2px 2px 0px #333333;
+}
+.dark .shadow-\[4px_4px_0px_\#000\] {
+  box-shadow: 4px 4px 0px #333333;
+}
+.dark .shadow-\[8px_8px_0px_\#000\] {
+  box-shadow: 8px 8px 0px #333333;
+}
+.dark .shadow-\[12px_12px_0px_\#000\] {
+  box-shadow: 12px 12px 0px #333333;
+}
+.dark .shadow-\[16px_16px_0px_\#000\] {
+  box-shadow: 16px 16px 0px #333333;
+}
+.dark .shadow-\[4px_4px_0px_\#F97316\] {
+  box-shadow: 4px 4px 0px #FF8533;
+}
+
+/* Hover shadow overrides in dark */
+.dark .hover\:shadow-\[12px_12px_0px_\#000\]:hover {
+  box-shadow: 12px 12px 0px #333333;
+}
+.dark .hover\:shadow-\[16px_16px_0px_\#000\]:hover {
+  box-shadow: 16px 16px 0px #333333;
+}
+.dark .hover\:shadow-\[4px_4px_0px_\#000\]:hover {
+  box-shadow: 4px 4px 0px #333333;
+}
+.dark .hover\:shadow-zine-lg:hover {
+  box-shadow: 8px 8px 0px 0px #333333;
+}
+
+/* Text color utilities in dark */
+.dark .text-gray-700 {
+  color: #D1D5DB;
+}
+.dark .text-gray-600 {
+  color: #9CA3AF;
+}
+.dark .text-gray-500 {
+  color: #9CA3AF;
+}
+
+/* General background overrides */
+.dark .bg-gray-100 {
+  background-color: #2A2A2A;
+}
+.dark .bg-gray-600 {
+  background-color: #555555;
+}
+.dark .hover\:bg-gray-100:hover {
+  background-color: #2A2A2A;
+}
+
+/* Border color overrides */
+.dark .border-gray-300 {
+  border-color: #444444;
+}
+.dark .border-dashed {
+  border-color: #444444;
+}
+
+/* Opacity text stays readable */
+.dark .opacity-50 {
+  opacity: 0.65;
+}
+.dark .opacity-70 {
+  opacity: 0.8;
+}
+.dark .opacity-80 {
+  opacity: 0.9;
+}
+
+/* Smooth transition for all color changes */
+.dark * {
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
 }

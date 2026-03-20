@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>WTF Podcast | Echoes Platform</title>
+<!-- Tailwind CSS v3 CDN -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Google Fonts: Space Grotesk -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Space Grotesk', 'sans-serif'],
+          },
+          colors: {
+            wtfOrange: '#FF6B00',
+            wtfBlack: '#000000',
+            wtfWhite: '#FFFFFF',
+            wtfCream: '#FDFCF8',
+          },
+          boxShadow: {
+            'zine': '4px 4px 0px 0px #000000',
+            'zine-lg': '8px 8px 0px 0px #000000',
+          }
+        }
+      }
+    }
+  </script>
+<style data-purpose="global-layout">
+    body {
+      background-color: #fdfcf8;
+      background-image: radial-gradient(#d1d1d1 1px, transparent 1px);
+      background-size: 24px 24px;
+      color: #000000;
+      overflow-x: hidden;
+    }
+    .zine-border {
+      border: 3px solid #000000;
+    }
+    .zine-button {
+      transition: transform 0.1s ease;
+    }
+    .zine-button:active {
+      transform: translate(2px, 2px);
+      box-shadow: 2px 2px 0px 0px #000000;
+    }
+  </style>
+</head>
+<body class="font-sans">
+<!-- BEGIN: Navbar -->
+<nav class="sticky top-0 z-50 bg-wtfCream border-b-4 border-black px-6 py-4">
+<div class="max-w-7xl mx-auto flex justify-between items-center">
+<div class="text-3xl font-bold tracking-tighter" data-purpose="brand-logo">
+        ECHOES<span class="text-wtfOrange">.</span>
+</div>
+<div class="hidden md:flex space-x-8 font-medium uppercase tracking-widest text-sm">
+<a class="hover:text-wtfOrange transition-colors" href="#">Lessons</a>
+<a class="hover:text-wtfOrange transition-colors" href="#">Mindmaps</a>
+<a class="hover:text-wtfOrange transition-colors" href="#">Transcripts</a>
+</div>
+<button class="zine-border bg-wtfOrange px-6 py-2 font-bold uppercase tracking-widest shadow-zine zine-button hover:bg-black hover:text-white transition-all">
+        Subscribe
+      </button>
+</div>
+</nav>
+<!-- END: Navbar -->
+<!-- BEGIN: Hero Section -->
+<section class="max-w-7xl mx-auto px-6 py-12 md:py-20 flex flex-col md:flex-row items-center gap-12">
+<div class="flex-1 order-2 md:order-1">
+<div class="inline-block bg-black text-white px-3 py-1 text-xs font-bold mb-4 tracking-widest uppercase">
+        Podcast Series
+      </div>
+<h1 class="text-6xl md:text-8xl font-black leading-none mb-6 uppercase">
+        WTF <br/><span class="text-wtfOrange">Podcast</span>
+</h1>
+<p class="text-xl md:text-2xl font-medium max-w-xl mb-10 leading-relaxed opacity-90">
+        Exploring the raw, unfiltered journeys of creators, engineers, and visionaries. Hosted by Nikhil Kamath.
+      </p>
+<div class="flex flex-wrap gap-4">
+<button class="zine-border bg-black text-white px-8 py-4 font-bold uppercase tracking-widest shadow-zine-lg zine-button">
+          Explore Learnings
+        </button>
+<button class="zine-border bg-white text-black px-8 py-4 font-bold uppercase tracking-widest shadow-zine-lg zine-button">
+          Follow Show
+        </button>
+</div>
+</div>
+<div class="flex-1 order-1 md:order-2 flex justify-center">
+<div class="relative">
+<!-- Zine-style frame for the portrait -->
+<div class="zine-border p-2 bg-white shadow-zine-lg rotate-2">
+<img alt="Nikhil Kamath Portrait" class="w-[350px] md:w-[450px] grayscale-0 hover:grayscale transition-all duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBY4EHthYSZRBk_WFtdxTp97tahAseh3BmODBJNkD8DBSJtn2IhSskmdR-r1T_nI-pgLt6bA-bRYqf38up9QR4C7-kdyNCLXedpSvEqJbIeRM3AJvtM1YIJoOVOO5K_BCS4t7kmf8GKX0L2Hjy1AcG-JQVjzgeipq90z1FkYgloirizWTht86PqbkpFeF6cI34_MkpzFcwupSjskTSkVlLCIa6RIC3qGz4-GydQo1NRRrTrHhteHC6ALE84KhDS9VdvoYkLEwgjAUs"/>
+</div>
+<div class="absolute -bottom-4 -right-4 zine-border bg-wtfOrange p-4 font-black text-2xl -rotate-3">
+          NIKHIL KAMATH
+        </div>
+</div>
+</div>
+</section>
+<!-- END: Hero Section -->
+<!-- BEGIN: Episode Explorer Header -->
+<section class="max-w-7xl mx-auto px-6 pt-20 pb-8">
+<div class="flex flex-col md:flex-row md:items-end justify-between border-b-4 border-black pb-4 gap-6">
+<div>
+<h2 class="text-4xl font-black uppercase tracking-tighter">Episodes (12)</h2>
+<div class="flex flex-wrap gap-3 mt-6">
+<button class="zine-border bg-black text-white px-6 py-1 font-bold rounded-full text-sm">ALL</button>
+<button class="zine-border bg-white hover:bg-gray-100 px-6 py-1 font-bold rounded-full text-sm">ENGINEERING</button>
+<button class="zine-border bg-white hover:bg-gray-100 px-6 py-1 font-bold rounded-full text-sm">BUSINESS</button>
+<button class="zine-border bg-white hover:bg-gray-100 px-6 py-1 font-bold rounded-full text-sm">PSYCHOLOGY</button>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<span class="text-xs font-bold uppercase opacity-50">Sort By: Newest</span>
+<button class="zine-border p-2 bg-white shadow-zine zine-button">
+<svg class="h-6 w-6" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"></path>
+</svg>
+</button>
+</div>
+</div>
+</section>
+<!-- END: Episode Explorer Header -->
+<!-- BEGIN: Episode Grid -->
+<section class="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-2 gap-8">
+<!-- Episode Card 01 -->
+<article class="zine-border bg-white p-8 shadow-zine-lg flex flex-col justify-between" data-purpose="episode-card">
+<div>
+<div class="flex justify-between items-start mb-6">
+<div class="bg-black text-white text-3xl font-black px-4 py-2">01</div>
+<div class="bg-[#00D1FF] zine-border px-3 py-1 text-xs font-bold uppercase tracking-widest">New Release</div>
+</div>
+<p class="text-xs font-bold opacity-60 mb-2 uppercase tracking-widest">Oct 24, 2023 • 45 Mins</p>
+<h3 class="text-2xl font-black uppercase mb-4 leading-tight">Building in Public: The Good, The Bad, and The Brutal</h3>
+<p class="text-gray-700 leading-relaxed mb-8">In this inaugural episode, we talk to the founders of India's fastest growing dev-tool startup about the vulnerability of building in the open and why community is their biggest moat.</p>
+</div>
+<div class="flex gap-4 pt-6 border-t-2 border-dashed border-gray-300">
+<button class="zine-border bg-white px-4 py-2 font-bold text-xs uppercase shadow-zine zine-button">Read Transcript</button>
+<button class="zine-border bg-wtfOrange px-4 py-2 font-bold text-xs uppercase shadow-zine zine-button">Learning Resources</button>
+</div>
+</article>
+<!-- Episode Card 02 -->
+<article class="zine-border bg-white p-8 shadow-zine-lg flex flex-col justify-between" data-purpose="episode-card">
+<div>
+<div class="flex justify-between items-start mb-6">
+<div class="bg-black text-white text-3xl font-black px-4 py-2">02</div>
+</div>
+<p class="text-xs font-bold opacity-60 mb-2 uppercase tracking-widest">Oct 17, 2023 • 52 Mins</p>
+<h3 class="text-2xl font-black uppercase mb-4 leading-tight">Is the Engineering Degree Dead?</h3>
+<p class="text-gray-700 leading-relaxed mb-8">Debating the relevance of formal education in 2024 with a panel of self-taught engineers who are now leading teams at top global tech firms.</p>
+</div>
+<div class="flex gap-4 pt-6 border-t-2 border-dashed border-gray-300">
+<button class="zine-border bg-white px-4 py-2 font-bold text-xs uppercase shadow-zine zine-button">Read Transcript</button>
+<button class="zine-border bg-wtfOrange px-4 py-2 font-bold text-xs uppercase shadow-zine zine-button">Learning Resources</button>
+</div>
+</article>
+<!-- Episode Card 03 -->
+<article class="zine-border bg-white p-8 shadow-zine-lg flex flex-col justify-between" data-purpose="episode-card">
+<div>
+<div class="flex justify-between items-start mb-6">
+<div class="bg-black text-white text-3xl font-black px-4 py-2">03</div>
+</div>
+<p class="text-xs font-bold opacity-60 mb-2 uppercase tracking-widest">Oct 10, 2023 • 38 Mins</p>
+<h3 class="text-2xl font-black uppercase mb-4 leading-tight">The Psychology of Creation</h3>
+<p class="text-gray-700 leading-relaxed mb-8">Why do we build? Exploring the intrinsic motivation versus the hustle culture that dominates the current ecosystem.</p>
+</div>
+<div class="flex gap-4 pt-6 border-t-2 border-dashed border-gray-300">
+<button class="zine-border bg-white px-4 py-2 font-bold text-xs uppercase shadow-zine zine-button">Read Transcript</button>
+<button class="zine-border bg-wtfOrange px-4 py-2 font-bold text-xs uppercase shadow-zine zine-button">Learning Resources</button>
+</div>
+</article>
+<!-- Episode Card 04 -->
+<article class="zine-border bg-white p-8 shadow-zine-lg flex flex-col justify-between" data-purpose="episode-card">
+<div>
+<div class="flex justify-between items-start mb-6">
+<div class="bg-black text-white text-3xl font-black px-4 py-2">04</div>
+</div>
+<p class="text-xs font-bold opacity-60 mb-2 uppercase tracking-widest">Oct 03, 2023 • 41 Mins</p>
+<h3 class="text-2xl font-black uppercase mb-4 leading-tight">The AI Coding Revolution</h3>
+<p class="text-gray-700 leading-relaxed mb-8">Will AI take our jobs or just make us 10x more productive? We dive deep with engineers who are integrating LLMs into their daily workflows.</p>
+</div>
+<div class="flex gap-4 pt-6 border-t-2 border-dashed border-gray-300">
+<button class="zine-border bg-white px-4 py-2 font-bold text-xs uppercase shadow-zine zine-button">Read Transcript</button>
+<button class="zine-border bg-wtfOrange px-4 py-2 font-bold text-xs uppercase shadow-zine zine-button">Learning Resources</button>
+</div>
+</article>
+</section>
+<div class="max-w-7xl mx-auto px-6 mb-20 text-center">
+<button class="zine-border bg-black text-white px-12 py-4 font-bold uppercase tracking-widest shadow-zine-lg zine-button">
+      Load More Episodes
+    </button>
+</div>
+<!-- END: Episode Grid -->
+<!-- BEGIN: About the Creator -->
+<section class="bg-black text-white py-24">
+<div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row gap-16 items-center">
+<div class="flex-1">
+<h2 class="text-5xl font-black uppercase mb-8 leading-none tracking-tighter italic">About the <br/><span class="text-wtfOrange">Creator.</span></h2>
+<p class="text-lg leading-relaxed mb-6 opacity-80">
+          Nikhil Kamath, co-founder of Zerodha and True Beacon, started the WTF Podcast as a medium to bridge the gap between India's most successful minds and the next generation of builders.
+        </p>
+<p class="text-lg leading-relaxed mb-10 opacity-80">
+          The vision is simple: raw conversations, zero fluff, and actionable insights that aren't taught in textbooks. This is an unapologetically Indian exploration of global excellence.
+        </p>
+<div class="border-t-2 border-wtfOrange pt-8">
+<p class="font-bold uppercase tracking-widest text-sm mb-6">Recent Guests</p>
+<div class="flex flex-wrap gap-6">
+<!-- Avatars Grid -->
+<div class="group relative">
+<img alt="Guest" class="zine-border rounded-full w-16 h-16 grayscale group-hover:grayscale-0 transition-all border-white" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDUQ8SButAT6N6h6-qmYMPqBHb7g0bFuXTKi2KvIxXV1l8cwNfPTY-CAiM6JPIajnkVi9dLaYpdJ1eHPdoBAh19wP3jXwJ09_d4qviEymza33vLD8pnSs7Y83m3aQg1-KvLfhhuDEKn1SxZDZFmEQ_bnPx9gj8L9edXlEtREAytfe2lAVBt3ez0yv0gDZxsqUhL5KxmZNzwryVxbdCckjZsOySj71uyr7WafbKNiAdFwxHvW6VDIcwzp9uTcrv1753zpudKlSMDWL0"/>
+<span class="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-white text-black text-[10px] font-bold px-1 hidden group-hover:block">Kiran M.</span>
+</div>
+<div class="group relative">
+<img alt="Guest" class="zine-border rounded-full w-16 h-16 grayscale group-hover:grayscale-0 transition-all border-white" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCzytWixQeCzgK3wT7FMmHEIUdGs7xl9YqiMq0ZcU3AqUsGKJSKq4y4gpLPEVw6cyBoCLi6pmfAtJ4Qrsd1vv5JWmlteol2x5HmrG7-h7x8JX9F3T2V-8W9ahQp2DAf8sgEATz1--z4UyPPpuqw0d91tuuG3uQVE03G-mkU8aayKWj4M1DsBu2hy3RWskb5oqmURSxvxqgCNB4kwLPfNyKFIgXfb96HeJF_ffULoq_cXuui8jq3GZvnyDP6-vQjUbnn59LOIOVJ1X0"/>
+<span class="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-white text-black text-[10px] font-bold px-1 hidden group-hover:block">Rajiv B.</span>
+</div>
+<div class="group relative">
+<img alt="Guest" class="zine-border rounded-full w-16 h-16 grayscale group-hover:grayscale-0 transition-all border-white" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAHGcBP7zKkng_NF71mJCxc6rFigfaHd9uZm3RDqsaN4fL8p0PJSE4pVx-CNv8f2Sz9ds0KnzjSAVn-74L9KwNzNHTp3RnLVxIsz4VGnRJetoVf3YzwD0HIJDAhiZAgg2taybLM1AFGAeDHQpCYmsJSkXyY5nU864bYg0j4S9g-MaQeTtft216E4yx5h8lX-UUifk9ONVsLEUdkhLlmOcgwSC8HBcOfsQC2mK9sTFu6o8LnZQ-w7wiYzHphNCQT3r8Uum08hjIr_UY"/>
+<span class="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-white text-black text-[10px] font-bold px-1 hidden group-hover:block">Sunil V.</span>
+</div>
+<div class="group relative">
+<img alt="Guest" class="zine-border rounded-full w-16 h-16 grayscale group-hover:grayscale-0 transition-all border-white" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBFewt9PRvnEpreYi6DNEmORQcy1LfSEYL6OinxTfQsLmY6t40d5XjX69XhqnfCT0d6Fq1uyvCLJjF1bhNKSUVJB9Rfx_0OKPWA03gQ7vxYno13a5vM1NownQ0PBK7sht7cu70NxtZekfkHklaI459mW0ysB7YmP1c0AnR-o2HopQOgrAtQux0Guey5syMZ6kq4DYP-W2qGxz9Lj2yrDjuVoYJdmJg9lQhci01fAYHSrzsNHI2nMJ57RKJHpDiEhze5MmlhWyPuyuI"/>
+<span class="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-white text-black text-[10px] font-bold px-1 hidden group-hover:block">Nandan N.</span>
+</div>
+</div>
+</div>
+</div>
+<div class="flex-1 w-full">
+<div class="zine-border bg-wtfOrange p-10 shadow-zine rotate-1">
+<h4 class="text-black font-black text-2xl mb-4 uppercase">The WTF Vision</h4>
+<ul class="space-y-4 text-black font-bold">
+<li class="flex items-center gap-3">
+<span class="bg-black text-white px-2 py-0.5">01</span> No sugar-coating business reality.
+            </li>
+<li class="flex items-center gap-3">
+<span class="bg-black text-white px-2 py-0.5">02</span> Democratizing high-level mentorship.
+            </li>
+<li class="flex items-center gap-3">
+<span class="bg-black text-white px-2 py-0.5">03</span> Building a community of doers.
+            </li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<!-- END: About the Creator -->
+<!-- BEGIN: Footer -->
+<footer class="bg-wtfCream border-t-4 border-black pt-20 pb-10">
+<div class="max-w-7xl mx-auto px-6">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-20">
+<div class="md:col-span-2">
+<h2 class="text-7xl font-black mb-6">WTF<span class="text-wtfOrange">.</span></h2>
+<p class="max-w-md font-medium text-lg leading-snug">
+            Part of the Echoes platform. A digital archive for the curious, the ambitious, and the visionaries of Bharat.
+          </p>
+</div>
+<div>
+<h5 class="font-black uppercase tracking-widest text-sm mb-6 underline decoration-wtfOrange decoration-4">Network</h5>
+<ul class="space-y-3 font-bold text-sm">
+<li><a class="hover:text-wtfOrange" href="#">Zerodha</a></li>
+<li><a class="hover:text-wtfOrange" href="#">True Beacon</a></li>
+<li><a class="hover:text-wtfOrange" href="#">Rainmatter</a></li>
+</ul>
+</div>
+<div>
+<h5 class="font-black uppercase tracking-widest text-sm mb-6 underline decoration-wtfOrange decoration-4">Social</h5>
+<ul class="space-y-3 font-bold text-sm">
+<li><a class="hover:text-wtfOrange" href="#">YouTube</a></li>
+<li><a class="hover:text-wtfOrange" href="#">Spotify</a></li>
+<li><a class="hover:text-wtfOrange" href="#">Twitter / X</a></li>
+<li><a class="hover:text-wtfOrange" href="#">Instagram</a></li>
+</ul>
+</div>
+</div>
+<div class="border-t-2 border-black pt-10 flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-black uppercase tracking-widest">
+<p>© 2024 WTF Podcast. All rights reserved.</p>
+<p>Built with ❤️ for the Indian Ecosystem</p>
+<div class="flex gap-6">
+<a href="#">Privacy</a>
+<a href="#">Terms</a>
+</div>
+</div>
+</div>
+</footer>
+<!-- END: Footer -->
+</body></html>
