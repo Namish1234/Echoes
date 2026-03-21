@@ -191,6 +191,13 @@ export default function EchoesLanding() {
             </article>
           </Link>
 
+          {/* Coming Soon Placeholder */}
+          <article className="border-4 border-dashed border-wtf-black bg-transparent p-8 flex flex-col items-center justify-center text-center opacity-50 min-h-[400px]">
+             <span className="text-4xl mb-4">📡</span>
+             <h3 className="text-2xl font-black uppercase mb-2">New Channel</h3>
+             <p className="font-medium text-sm tracking-widest uppercase">Transmitting Soon</p>
+          </article>
+
         </div>
       </section>
     </div>
