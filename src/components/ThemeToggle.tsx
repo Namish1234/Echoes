@@ -8,17 +8,15 @@ export default function ThemeToggle() {
 
   useEffect(() => {
     setMounted(true);
-    // Check localStorage or system preference
+    // Only apply dark if user explicitly chose it — never follow system preference
     const stored = localStorage.getItem('echoes-theme');
     if (stored === 'dark') {
       setIsDark(true);
       document.documentElement.classList.add('dark');
-    } else if (stored === 'light') {
+    } else {
+      // Default is always light
       setIsDark(false);
       document.documentElement.classList.remove('dark');
-    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      setIsDark(true);
-      document.documentElement.classList.add('dark');
     }
   }, []);
 
