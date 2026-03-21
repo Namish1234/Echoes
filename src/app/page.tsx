@@ -38,24 +38,24 @@ export default function EchoesLanding() {
           
           <div className="p-10 md:p-16 flex flex-col justify-start hover:bg-wtf-cream dark:hover:bg-wtf-cream transition-colors duration-300 group">
             <span className="text-6xl font-black text-wtf-orange mb-6 block">01</span>
-            <h3 className="text-2xl font-black uppercase mb-4 tracking-tight group-hover:text-wtf-black transition-colors">Unaltered Narratives</h3>
-            <p className="font-medium text-lg opacity-80 leading-relaxed text-wtf-black dark:text-gray-300 dark:group-hover:text-wtf-black transition-colors">
+            <h3 className="text-2xl font-black uppercase mb-4 tracking-tight group-hover:text-wtf-black dark:group-hover:text-white transition-colors">Unaltered Narratives</h3>
+            <p className="font-semibold text-lg leading-relaxed text-wtf-black dark:text-gray-300 dark:group-hover:text-gray-200 transition-colors">
               We believe in raw conversations. No fluff, no PR spins. We document the unfiltered realities of building, succeeding, and failing in massive arenas.
             </p>
           </div>
 
           <div className="p-10 md:p-16 flex flex-col justify-start hover:bg-wtf-cream dark:hover:bg-wtf-cream transition-colors duration-300 group">
             <span className="text-6xl font-black text-wtf-orange mb-6 block">02</span>
-            <h3 className="text-2xl font-black uppercase mb-4 tracking-tight group-hover:text-wtf-black transition-colors">Deep Intellectual Dives</h3>
-            <p className="font-medium text-lg opacity-80 leading-relaxed text-wtf-black dark:text-gray-300 dark:group-hover:text-wtf-black transition-colors">
+            <h3 className="text-2xl font-black uppercase mb-4 tracking-tight group-hover:text-wtf-black dark:group-hover:text-white transition-colors">Deep Intellectual Dives</h3>
+            <p className="font-semibold text-lg leading-relaxed text-wtf-black dark:text-gray-300 dark:group-hover:text-gray-200 transition-colors">
               Through transcripts, precise summaries, and visual mindmaps, we extract actionable intelligence from hours of discourse, saving you time without sacrificing depth.
             </p>
           </div>
 
           <div className="p-10 md:p-16 flex flex-col justify-start hover:bg-wtf-cream dark:hover:bg-wtf-cream transition-colors duration-300 group">
             <span className="text-6xl font-black text-wtf-orange mb-6 block">03</span>
-            <h3 className="text-2xl font-black uppercase mb-4 tracking-tight group-hover:text-wtf-black transition-colors">Focus on Visionaries</h3>
-            <p className="font-medium text-lg opacity-80 leading-relaxed text-wtf-black dark:text-gray-300 dark:group-hover:text-wtf-black transition-colors">
+            <h3 className="text-2xl font-black uppercase mb-4 tracking-tight group-hover:text-wtf-black dark:group-hover:text-white transition-colors">Focus on Visionaries</h3>
+            <p className="font-semibold text-lg leading-relaxed text-wtf-black dark:text-gray-300 dark:group-hover:text-gray-200 transition-colors">
               Our catalogs focus strictly on builders. Scientists, engineers, politicians, and founders driving the macro-economic and technological shifts of the next century.
             </p>
           </div>

@@ -24,13 +24,13 @@ const ArchiveBook = ({ title, slug, episodesCount, colorClass }: ArchiveBookProp
       <div className="absolute z-10 w-20 h-8 rounded-full bg-[#3B82F6] border-4 border-wtf-black opacity-0 group-hover:opacity-100 transition-all duration-700 ease-out bottom-4 right-4 group-hover:translate-x-24 group-hover:translate-y-16 rotate-0 group-hover:-rotate-[15deg]"></div>
 
       {/* Scattered Pages (2 multi-directional episodes) */}
-      <div className="absolute z-20 inset-0 bg-wtf-cream dark:bg-[#1a1a1a] border-4 border-wtf-black dark:border-[#555] shadow-[2px_2px_0px_#000000] dark:shadow-[2px_2px_0px_#333333] transition-transform duration-500 ease-[cubic-bezier(0.175,0.885,0.32,1.275)] origin-bottom-right flex flex-col p-4 opacity-0 group-hover:opacity-100 group-hover:-rotate-[6deg] group-hover:-translate-x-12 group-hover:-translate-y-1">
+      <div className="absolute z-20 inset-0 bg-wtf-cream border-4 border-wtf-black dark:border-[#555] shadow-[2px_2px_0px_#000000] dark:shadow-[2px_2px_0px_#333333] transition-transform duration-500 ease-[cubic-bezier(0.175,0.885,0.32,1.275)] origin-bottom-right flex flex-col p-4 opacity-0 group-hover:opacity-100 group-hover:-rotate-[6deg] group-hover:-translate-x-12 group-hover:-translate-y-1">
          <div className="w-full h-32 bg-gray-200 border-2 border-wtf-black mb-4 flex items-center justify-center font-bold text-2xl text-wtf-black uppercase opacity-50">Log 01</div>
          <div className="h-4 bg-wtf-black w-3/4 mb-3"></div>
          <div className="h-4 bg-wtf-black w-1/2 mb-3"></div>
          <div className="h-4 bg-wtf-black w-5/6"></div>
       </div>
-      <div className="absolute z-20 inset-0 bg-wtf-white dark:bg-[#0f0f0f] border-4 border-wtf-black dark:border-[#555] shadow-[2px_2px_0px_#000000] dark:shadow-[2px_2px_0px_#333333] transition-transform duration-500 ease-[cubic-bezier(0.175,0.885,0.32,1.275)] origin-bottom-left flex flex-col p-4 opacity-0 group-hover:opacity-100 group-hover:rotate-[6deg] group-hover:translate-x-12 group-hover:-translate-y-1">
+      <div className="absolute z-20 inset-0 bg-wtf-white border-4 border-wtf-black dark:border-[#555] shadow-[2px_2px_0px_#000000] dark:shadow-[2px_2px_0px_#333333] transition-transform duration-500 ease-[cubic-bezier(0.175,0.885,0.32,1.275)] origin-bottom-left flex flex-col p-4 opacity-0 group-hover:opacity-100 group-hover:rotate-[6deg] group-hover:translate-x-12 group-hover:-translate-y-1">
          <div className="w-full h-32 bg-gray-200 border-2 border-wtf-black mb-4 flex items-center justify-center font-bold text-2xl text-wtf-black uppercase opacity-50">Log 02</div>
          <div className="h-4 bg-wtf-black w-3/4 mb-3"></div>
          <div className="h-4 bg-wtf-black w-1/2 mb-3"></div>
