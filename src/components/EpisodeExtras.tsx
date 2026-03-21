@@ -41,27 +41,27 @@ export default function EpisodeExtras({ mindmapNodes, centralTopic, highlights, 
         className="fixed inset-0 bg-black/60 z-40 backdrop-blur-sm"
         onClick={() => setActiveTab('none')}
       />
-      <div className="fixed top-0 right-0 h-full w-full max-w-2xl bg-white dark:bg-[#0f0f0f] z-50 border-l-4 border-wtf-orange shadow-[-12px_0px_24px_rgba(0,0,0,0.3)] flex flex-col overflow-hidden">
+      <div className="fixed top-0 right-0 h-full w-full max-w-2xl bg-white dark:bg-[#0f0f0f] z-50 border-l-4 border-wtf-orange shadow-[-12px_0px_24px_rgba(0,0,0,0.3)] flex flex-col overflow-hidden text-wtf-black dark:text-white">
         
         {/* Header */}
         <div className="p-5 border-b-4 border-gray-200 dark:border-[#333] flex justify-between items-center bg-gray-50 dark:bg-[#1a1a1a]">
           <div className="flex gap-3">
             <button 
               onClick={() => setActiveTab('mindmap')}
-              className={`font-black uppercase tracking-widest text-sm px-4 py-2 zine-border transition-colors cursor-pointer ${activeTab === 'mindmap' ? 'bg-wtf-orange text-black' : 'bg-transparent'}`}
+              className={`font-black uppercase tracking-widest text-sm px-4 py-2 zine-border transition-colors cursor-pointer ${activeTab === 'mindmap' ? 'bg-wtf-orange text-black' : 'bg-transparent text-wtf-black dark:text-white'}`}
             >
               🧠 Mindmap
             </button>
             <button 
               onClick={() => setActiveTab('cards')}
-              className={`font-black uppercase tracking-widest text-sm px-4 py-2 zine-border transition-colors cursor-pointer ${activeTab === 'cards' ? 'bg-wtf-orange text-black' : 'bg-transparent'}`}
+              className={`font-black uppercase tracking-widest text-sm px-4 py-2 zine-border transition-colors cursor-pointer ${activeTab === 'cards' ? 'bg-wtf-orange text-black' : 'bg-transparent text-wtf-black dark:text-white'}`}
             >
               🎴 Key Lessons
             </button>
           </div>
           <button 
             onClick={() => setActiveTab('none')}
-            className="w-9 h-9 flex items-center justify-center zine-border bg-white dark:bg-[#0f0f0f] text-xl font-black hover:bg-red-500 hover:text-white transition-colors cursor-pointer"
+            className="w-9 h-9 flex items-center justify-center zine-border bg-white dark:bg-[#0f0f0f] text-xl font-black hover:bg-red-500 hover:text-white transition-colors cursor-pointer text-wtf-black dark:text-white"
           >
             ×
           </button>
