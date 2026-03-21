@@ -37,8 +37,8 @@ export const podcasts: Podcast[] = [
     title: "The Builder's Log",
     host: "Echoes Core",
     description: "Raw technical dialogues dissecting application architecture, zero-to-one product building, and engineering culture.",
-    coverColor: "bg-wtf-cream",
-    textColor: "text-wtf-black",
+    coverColor: "bg-[#22C55E]",
+    textColor: "text-white",
     tags: ["Tech & AI", "Creators", "Startups & VC"]
   },
   {
@@ -46,8 +46,8 @@ export const podcasts: Podcast[] = [
     title: "Mind & Matter",
     host: "Dr. Aryan Sharma",
     description: "Deconstructing the human condition through synthetic biology, cognitive science, and performance models.",
-    coverColor: "bg-wtf-white",
-    textColor: "text-wtf-black",
+    coverColor: "bg-[#8B5CF6]",
+    textColor: "text-white",
     tags: ["Health & Mind", "Science", "Society & Law"]
   },
   {
@@ -55,8 +55,8 @@ export const podcasts: Podcast[] = [
     title: "Creator Capital",
     host: "Network Archives",
     description: "Analyzing the modern business of audience building, media empires, and the vast decentralization of attention.",
-    coverColor: "bg-wtf-cream",
-    textColor: "text-wtf-black",
+    coverColor: "bg-[#EAB308]",
+    textColor: "text-black",
     tags: ["Creators", "Economics"]
   }
 ];
@@ -243,6 +243,7 @@ export interface MindmapNodeData {
 export interface Episode {
   id: string;
   number: string;
+  podcastId?: string;
   series?: string;
   isNew?: boolean;
   date: string;
@@ -251,13 +252,13 @@ export interface Episode {
   guest: string;
   description: string;
   tags: string[];
-  invisibleTags: string[];
-  transcript: string;
+  invisibleTags?: string[];
+  transcript?: string;
   parsedTranscript?: TranscriptLine[];
   summary: string;
-  mindmapUrl: string;
+  mindmapUrl?: string;
   mindmapNodes?: MindmapNodeData[];
-  highlights: string[];
+  highlights?: string[];
   keyLessons?: string[];
   audioSrc?: string;
 }
@@ -767,6 +768,45 @@ export const episodes: Episode[] = [
     summary: "An updated deep-dive into the venture capital ecosystem, AI's impact on startup valuations, and where the smartest money is flowing in 2025.",
     mindmapUrl: defaultMindmap,
     highlights: ["AI-native startups are the new default.", "The best VCs bet on markets, not just teams."]
+  },
+  {
+    id: 'bl-01',
+    series: 'Builder\'s Log',
+    number: '1',
+    podcastId: 'builders-log',
+    date: 'March 18, 2026',
+    duration: '1 hr 15 min',
+    title: 'Architecting for the Unknown',
+    guest: 'Sarah Mei',
+    description: 'A deep dive into building systems that can bend without breaking. How early technical decisions compound over time.',
+    tags: ['Tech & AI', 'Startups & VC'],
+    summary: 'We discuss the philosophy of agile architecture, the myth of the "rewrite", and how to design software that embraces changing requirements.',
+  },
+  {
+    id: 'mm-01',
+    series: 'Mind & Matter',
+    number: '1',
+    podcastId: 'mind-matter',
+    date: 'March 12, 2026',
+    duration: '2 hr 5 min',
+    title: 'The Neuroscience of Focus',
+    guest: 'Dr. Andrew Huberman',
+    description: 'Understanding the biological mechanisms behind sustained attention, dopamine regulation, and flow states.',
+    tags: ['Health & Mind', 'Science'],
+    summary: 'A masterclass on optimizing the physical brain for deep work, covering light exposure, sleep protocols, and cognitive endurance.',
+  },
+  {
+    id: 'cc-01',
+    series: 'Creator Capital',
+    number: '1',
+    podcastId: 'creator-capital',
+    date: 'March 05, 2026',
+    duration: '58 min',
+    title: 'Leverage and Audience',
+    guest: 'Naval Ravikant',
+    description: 'Why audience building is the ultimate form of modern leverage, and how content scales infinitely.',
+    tags: ['Creators', 'Economics'],
+    summary: 'We explore the economics of infinite leverage where code and media allow a single creator to reach millions with zero marginal cost of reproduction.',
   }
 ];
 

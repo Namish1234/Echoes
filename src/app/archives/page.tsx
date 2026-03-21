@@ -38,7 +38,7 @@ const ArchiveBook = ({ title, slug, episodesCount, colorClass }: ArchiveBookProp
       </div>
 
       {/* Main Book Cover */}
-      <div className={`absolute z-40 inset-0 ${colorClass} border-4 border-wtf-black dark:border-[#555] flex flex-col p-8 shadow-[8px_8px_0px_#000] dark:shadow-[8px_8px_0px_rgba(255,255,255,0.15)] group-hover:-translate-y-6 group-hover:shadow-[16px_24px_0px_#000] dark:group-hover:shadow-[16px_24px_0px_rgba(255,255,255,0.15)] transition-all duration-500 ease-[cubic-bezier(0.175,0.885,0.32,1.275)]`}>
+      <div className={`absolute z-40 inset-0 ${colorClass} border-4 border-wtf-black dark:border-[#555] flex flex-col p-8 shadow-[8px_8px_0px_#000] dark:shadow-[8px_8px_0px_#333] group-hover:-translate-y-6 group-hover:shadow-[16px_24px_0px_#000] dark:group-hover:shadow-[16px_24px_0px_#333] transition-all duration-500 ease-[cubic-bezier(0.175,0.885,0.32,1.275)]`}>
         <div className="flex justify-between items-start">
            <span className="font-black border-2 border-wtf-black px-2 py-1 text-xs uppercase bg-wtf-white text-wtf-black shadow-[2px_2px_0px_#000]">Ref</span>
            <span className="font-bold text-sm uppercase px-2 py-1 bg-wtf-black text-wtf-white">{episodesCount} Logs</span>

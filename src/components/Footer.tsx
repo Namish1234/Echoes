@@ -17,6 +17,9 @@ export default function Footer() {
               <li><Link className="hover:text-wtf-orange" href="/podcasts">Full Catalog</Link></li>
               <li><Link className="hover:text-wtf-orange" href="/wtf">WTF Podcast</Link></li>
               <li><Link className="hover:text-wtf-orange" href="/figuring-out">Figuring Out</Link></li>
+              <li><Link className="hover:text-wtf-orange" href="/builders-log">Builder's Log</Link></li>
+              <li><Link className="hover:text-wtf-orange" href="/mind-matter">Mind & Matter</Link></li>
+              <li><Link className="hover:text-wtf-orange" href="/creator-capital">Creator Capital</Link></li>
               <li><Link className="hover:text-wtf-orange" href="/archives">Archives</Link></li>
               <li><Link className="hover:text-wtf-orange" href="/lexicon">The Lexicon</Link></li>
             </ul>

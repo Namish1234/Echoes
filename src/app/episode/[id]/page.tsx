@@ -2,7 +2,6 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { episodes, Episode, TranscriptLine } from '@/lib/data';
 import EpisodeExtras from '@/components/EpisodeExtras';
-import AudioPlayer from '@/components/AudioPlayer';
 
 // Helper to parse semantic highlights: [tech: ...], [phil: ...], [biz: ...]
 const renderTranscriptContent = (content: string) => {
@@ -176,7 +175,7 @@ export default async function EpisodeDetail({ params }: { params: Promise<{ id: 
             ))
           ) : (
             <div className="prose prose-xl max-w-none text-wtf-black dark:text-[#E5E7EB] border-l-4 border-wtf-orange pl-8 ml-4">
-              <p>{episode.transcript}</p>
+              <p>{episode.transcript || ''}</p>
               <p className="opacity-40 italic mt-12">[Structured transcript not available for this episode]</p>
             </div>
           )}
@@ -187,17 +186,11 @@ export default async function EpisodeDetail({ params }: { params: Promise<{ id: 
       <EpisodeExtras 
         mindmapNodes={episode.mindmapNodes}
         centralTopic={episode.title}
-        highlights={episode.highlights} 
+        highlights={episode.highlights || []} 
         keyLessons={episode.keyLessons}
       />
 
-      {/* ── SYNCED AUDIO PLAYER ── */}
-      {episode.audioSrc && episode.parsedTranscript && (
-        <AudioPlayer 
-          audioSrc={episode.audioSrc}
-          transcript={episode.parsedTranscript}
-        />
-      )}
     </div>
+
   );
 }

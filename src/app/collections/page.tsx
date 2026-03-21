@@ -60,7 +60,7 @@ export default function AllCollectionsPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {ALL_COLLECTIONS.map((col) => (
-              <Link href={`/collections/${col.slug}`} key={col.slug} className="group border-4 border-wtf-black bg-wtf-white shadow-[6px_6px_0px_#000] hover:-translate-y-2 hover:shadow-[12px_12px_0px_#000] transition-all flex flex-col">
+              <Link href={`/collections/${col.slug}`} key={col.slug} className="group border-4 border-wtf-black bg-wtf-white shadow-[6px_6px_0px_#000] dark:shadow-[6px_6px_0px_#333] hover:-translate-y-2 hover:shadow-[12px_12px_0px_#000] dark:hover:shadow-[12px_12px_0px_#333] transition-all flex flex-col">
                 
                 {/* Color Header */}
                 <div className={`${col.color} border-b-4 border-wtf-black p-6 flex justify-between items-start`}>

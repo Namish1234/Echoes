@@ -122,12 +122,74 @@ export default function EchoesLanding() {
             </article>
           </Link>
 
-          {/* Coming Soon Placeholder */}
-          <article className="border-4 border-dashed border-wtf-black bg-transparent p-8 flex flex-col items-center justify-center text-center opacity-50 min-h-[400px]">
-             <span className="text-4xl mb-4">📡</span>
-             <h3 className="text-2xl font-black uppercase mb-2">New Channel</h3>
-             <p className="font-medium text-sm tracking-widest uppercase">Transmitting Soon</p>
-          </article>
+          {/* Builder's Log Card */}
+          <Link href="/builders-log" className="group block">
+            <article className="zine-border bg-wtf-white shadow-zine-lg hover:shadow-[12px_12px_0px_#000] hover:-translate-y-1 transition-all duration-300 flex flex-col h-full overflow-hidden">
+              <div className="bg-[#22C55E] text-white p-8 flex items-center justify-center relative overflow-hidden h-48">
+                <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'linear-gradient(to right, #FFF 1px, transparent 1px), linear-gradient(to bottom, #FFF 1px, transparent 1px)', backgroundSize: '20px 20px' }}></div>
+                <h3 className="relative z-10 text-5xl font-black uppercase tracking-tighter text-center">Builder's<br/><span className="text-black">Log</span></h3>
+              </div>
+              <div className="p-8 flex-grow flex flex-col">
+                <div className="flex gap-2 mb-4">
+                  <span className="border-2 border-wtf-black px-2 py-0.5 text-[10px] font-bold uppercase">Tech & AI</span>
+                  <span className="border-2 border-wtf-black px-2 py-0.5 text-[10px] font-bold uppercase">Engineering</span>
+                </div>
+                <p className="font-medium text-lg opacity-90 leading-relaxed mb-8 flex-grow">
+                  Hosted by Echoes Core. Raw technical dialogues dissecting application architecture, zero-to-one product building, and engineering culture.
+                </p>
+                <div className="flex justify-between items-center border-t-2 border-dashed border-wtf-black pt-4">
+                  <span className="font-black uppercase text-sm tracking-widest">1 Episode</span>
+                  <span className="font-black text-[#22C55E] group-hover:text-wtf-black transition-colors">EXPLORE →</span>
+                </div>
+              </div>
+            </article>
+          </Link>
+
+          {/* Mind & Matter Card */}
+          <Link href="/mind-matter" className="group block">
+            <article className="zine-border bg-wtf-white shadow-zine-lg hover:shadow-[12px_12px_0px_#000] hover:-translate-y-1 transition-all duration-300 flex flex-col h-full overflow-hidden">
+              <div className="bg-[#8B5CF6] text-white p-8 flex items-center justify-center relative overflow-hidden h-48">
+                <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'linear-gradient(to right, #FFF 1px, transparent 1px), linear-gradient(to bottom, #FFF 1px, transparent 1px)', backgroundSize: '20px 20px' }}></div>
+                <h3 className="relative z-10 text-5xl font-black uppercase tracking-tighter text-center">Mind &<br/><span className="text-black">Matter</span></h3>
+              </div>
+              <div className="p-8 flex-grow flex flex-col">
+                <div className="flex gap-2 mb-4">
+                  <span className="border-2 border-wtf-black px-2 py-0.5 text-[10px] font-bold uppercase">Health & Mind</span>
+                  <span className="border-2 border-wtf-black px-2 py-0.5 text-[10px] font-bold uppercase">Science</span>
+                </div>
+                <p className="font-medium text-lg opacity-90 leading-relaxed mb-8 flex-grow">
+                  Hosted by Dr. Aryan Sharma. Deconstructing the human condition through synthetic biology, cognitive science, and performance models.
+                </p>
+                <div className="flex justify-between items-center border-t-2 border-dashed border-wtf-black pt-4">
+                  <span className="font-black uppercase text-sm tracking-widest">1 Episode</span>
+                  <span className="font-black text-[#8B5CF6] group-hover:text-wtf-black transition-colors">EXPLORE →</span>
+                </div>
+              </div>
+            </article>
+          </Link>
+
+          {/* Creator Capital Card */}
+          <Link href="/creator-capital" className="group block">
+            <article className="zine-border bg-wtf-white shadow-zine-lg hover:shadow-[12px_12px_0px_#000] hover:-translate-y-1 transition-all duration-300 flex flex-col h-full overflow-hidden">
+              <div className="bg-[#EAB308] text-black p-8 flex items-center justify-center relative overflow-hidden h-48">
+                <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'linear-gradient(to right, #000 1px, transparent 1px), linear-gradient(to bottom, #000 1px, transparent 1px)', backgroundSize: '20px 20px' }}></div>
+                <h3 className="relative z-10 text-5xl font-black uppercase tracking-tighter text-center">Creator<br/><span className="text-white">Capital</span></h3>
+              </div>
+              <div className="p-8 flex-grow flex flex-col">
+                <div className="flex gap-2 mb-4">
+                  <span className="border-2 border-wtf-black px-2 py-0.5 text-[10px] font-bold uppercase">Creators</span>
+                  <span className="border-2 border-wtf-black px-2 py-0.5 text-[10px] font-bold uppercase">Economics</span>
+                </div>
+                <p className="font-medium text-lg opacity-90 leading-relaxed mb-8 flex-grow">
+                  Hosted by Network Archives. Analyzing the modern business of audience building, media empires, and the vast decentralization of attention.
+                </p>
+                <div className="flex justify-between items-center border-t-2 border-dashed border-wtf-black pt-4">
+                  <span className="font-black uppercase text-sm tracking-widest">1 Episode</span>
+                  <span className="font-black text-[#EAB308] group-hover:text-wtf-black transition-colors">EXPLORE →</span>
+                </div>
+              </div>
+            </article>
+          </Link>
 
         </div>
       </section>

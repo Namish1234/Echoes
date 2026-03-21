@@ -32,7 +32,7 @@ export default function PodcastsPage() {
       {/* Podcasts List */}
       <section className="max-w-7xl mx-auto px-6 py-24">
         <div className="flex items-center gap-4 mb-16">
-          <h2 className="text-2xl font-black uppercase tracking-tighter text-wtf-black whitespace-nowrap">{podcasts.filter(p => p.id === 'wtf-podcast' || p.id === 'figuring-out').length} Active Shows</h2>
+          <h2 className="text-2xl font-black uppercase tracking-tighter text-wtf-black whitespace-nowrap">{podcasts.length} Active Shows</h2>
           <div className="flex-1 h-1 bg-wtf-black"></div>
         </div>
 
@@ -85,6 +85,156 @@ export default function PodcastsPage() {
                 <div className="flex justify-between items-center border-t-2 border-dashed border-wtf-black pt-4">
                   <span className="font-black uppercase text-sm tracking-widest">484+ Episodes</span>
                   <span className="font-black text-[#3B82F6] group-hover:text-wtf-black transition-colors text-lg">EXPLORE →</span>
+                </div>
+              </div>
+            </article>
+          </Link>
+
+          {/* Builder's Log */}
+          <Link href="/builders-log?from=podcasts" className="group">
+            <article className="zine-border bg-wtf-white shadow-zine-lg hover:shadow-[12px_12px_0px_#000] dark:hover:shadow-[12px_12px_0px_#333] hover:-translate-y-1 transition-all flex flex-col md:flex-row overflow-hidden">
+              <div className="bg-[#22C55E] text-white p-10 md:p-16 flex items-center justify-center relative overflow-hidden w-full md:w-[400px] shrink-0">
+                <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'linear-gradient(to right, #FFF 1px, transparent 1px), linear-gradient(to bottom, #FFF 1px, transparent 1px)', backgroundSize: '20px 20px' }}></div>
+                <h3 className="relative z-10 text-6xl font-black uppercase tracking-tighter text-center">Builder's<br/><span className="text-black">Log</span></h3>
+              </div>
+              <div className="p-8 md:p-12 flex flex-col flex-1 justify-center">
+                <div className="flex gap-2 mb-4 flex-wrap">
+                  <span className="border-2 border-wtf-black px-2 py-0.5 text-[10px] font-bold uppercase">Tech & AI</span>
+                  <span className="border-2 border-wtf-black px-2 py-0.5 text-[10px] font-bold uppercase">Startups</span>
+                  <span className="border-2 border-wtf-black px-2 py-0.5 text-[10px] font-bold uppercase">Engineering</span>
+                </div>
+                <h4 className="text-3xl font-black uppercase tracking-tight mb-3">The Builder's Log</h4>
+                <p className="font-medium text-lg opacity-80 leading-relaxed mb-6">
+                  Hosted by <span className="font-black">Echoes Core</span>. Raw technical dialogues dissecting application architecture, zero-to-one product building, and engineering culture.
+                </p>
+                <div className="flex justify-between items-center border-t-2 border-dashed border-wtf-black pt-4">
+                  <span className="font-black uppercase text-sm tracking-widest">1 Episode</span>
+                  <span className="font-black text-[#22C55E] group-hover:text-wtf-black transition-colors text-lg">EXPLORE →</span>
+                </div>
+              </div>
+            </article>
+          </Link>
+
+          {/* Mind & Matter */}
+          <Link href="/mind-matter?from=podcasts" className="group">
+            <article className="zine-border bg-wtf-white shadow-zine-lg hover:shadow-[12px_12px_0px_#000] dark:hover:shadow-[12px_12px_0px_#333] hover:-translate-y-1 transition-all flex flex-col md:flex-row overflow-hidden">
+              <div className="bg-[#8B5CF6] text-white p-10 md:p-16 flex items-center justify-center relative overflow-hidden w-full md:w-[400px] shrink-0">
+                <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'linear-gradient(to right, #FFF 1px, transparent 1px), linear-gradient(to bottom, #FFF 1px, transparent 1px)', backgroundSize: '20px 20px' }}></div>
+                <h3 className="relative z-10 text-6xl font-black uppercase tracking-tighter text-center">Mind &<br/><span className="text-black">Matter</span></h3>
+              </div>
+              <div className="p-8 md:p-12 flex flex-col flex-1 justify-center">
+                <div className="flex gap-2 mb-4 flex-wrap">
+                  <span className="border-2 border-wtf-black px-2 py-0.5 text-[10px] font-bold uppercase">Health & Mind</span>
+                  <span className="border-2 border-wtf-black px-2 py-0.5 text-[10px] font-bold uppercase">Science</span>
+                  <span className="border-2 border-wtf-black px-2 py-0.5 text-[10px] font-bold uppercase">Biology</span>
+                </div>
+                <h4 className="text-3xl font-black uppercase tracking-tight mb-3">Mind & Matter</h4>
+                <p className="font-medium text-lg opacity-80 leading-relaxed mb-6">
+                  Hosted by <span className="font-black">Dr. Aryan Sharma</span>. Deconstructing the human condition through synthetic biology, cognitive science, and performance models.
+                </p>
+                <div className="flex justify-between items-center border-t-2 border-dashed border-wtf-black pt-4">
+                  <span className="font-black uppercase text-sm tracking-widest">1 Episode</span>
+                  <span className="font-black text-[#8B5CF6] group-hover:text-wtf-black transition-colors text-lg">EXPLORE →</span>
+                </div>
+              </div>
+            </article>
+          </Link>
+
+          {/* Creator Capital */}
+          <Link href="/creator-capital?from=podcasts" className="group">
+            <article className="zine-border bg-wtf-white shadow-zine-lg hover:shadow-[12px_12px_0px_#000] dark:hover:shadow-[12px_12px_0px_#333] hover:-translate-y-1 transition-all flex flex-col md:flex-row overflow-hidden">
+              <div className="bg-[#EAB308] text-black p-10 md:p-16 flex items-center justify-center relative overflow-hidden w-full md:w-[400px] shrink-0">
+                <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'linear-gradient(to right, #000 1px, transparent 1px), linear-gradient(to bottom, #000 1px, transparent 1px)', backgroundSize: '20px 20px' }}></div>
+                <h3 className="relative z-10 text-6xl font-black uppercase tracking-tighter text-center">Creator<br/><span className="text-white">Capital</span></h3>
+              </div>
+              <div className="p-8 md:p-12 flex flex-col flex-1 justify-center">
+                <div className="flex gap-2 mb-4 flex-wrap">
+                  <span className="border-2 border-wtf-black px-2 py-0.5 text-[10px] font-bold uppercase">Creators</span>
+                  <span className="border-2 border-wtf-black px-2 py-0.5 text-[10px] font-bold uppercase">Economics</span>
+                  <span className="border-2 border-wtf-black px-2 py-0.5 text-[10px] font-bold uppercase">Media</span>
+                </div>
+                <h4 className="text-3xl font-black uppercase tracking-tight mb-3">Creator Capital</h4>
+                <p className="font-medium text-lg opacity-80 leading-relaxed mb-6">
+                  Hosted by <span className="font-black">Network Archives</span>. Analyzing the modern business of audience building, media empires, and the vast decentralization of attention.
+                </p>
+                <div className="flex justify-between items-center border-t-2 border-dashed border-wtf-black pt-4">
+                  <span className="font-black uppercase text-sm tracking-widest">1 Episode</span>
+                  <span className="font-black text-[#EAB308] group-hover:text-wtf-black transition-colors text-lg">EXPLORE →</span>
+                </div>
+              </div>
+            </article>
+          </Link>
+
+          {/* Builder's Log */}
+          <Link href="/builders-log?from=podcasts" className="group">
+            <article className="zine-border bg-wtf-white shadow-zine-lg hover:shadow-[12px_12px_0px_#000] dark:hover:shadow-[12px_12px_0px_#333] hover:-translate-y-1 transition-all flex flex-col md:flex-row overflow-hidden">
+              <div className="bg-[#22C55E] text-white p-10 md:p-16 flex items-center justify-center relative overflow-hidden w-full md:w-[400px] shrink-0">
+                <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'linear-gradient(to right, #FFF 1px, transparent 1px), linear-gradient(to bottom, #FFF 1px, transparent 1px)', backgroundSize: '20px 20px' }}></div>
+                <h3 className="relative z-10 text-6xl font-black uppercase tracking-tighter text-center">Builder's<br/><span className="text-black">Log</span></h3>
+              </div>
+              <div className="p-8 md:p-12 flex flex-col flex-1 justify-center">
+                <div className="flex gap-2 mb-4 flex-wrap">
+                  <span className="border-2 border-wtf-black px-2 py-0.5 text-[10px] font-bold uppercase">Tech & AI</span>
+                  <span className="border-2 border-wtf-black px-2 py-0.5 text-[10px] font-bold uppercase">Startups</span>
+                  <span className="border-2 border-wtf-black px-2 py-0.5 text-[10px] font-bold uppercase">Engineering</span>
+                </div>
+                <h4 className="text-3xl font-black uppercase tracking-tight mb-3">The Builder's Log</h4>
+                <p className="font-medium text-lg opacity-80 leading-relaxed mb-6">
+                  Hosted by <span className="font-black">Echoes Core</span>. Raw technical dialogues dissecting application architecture, zero-to-one product building, and engineering culture.
+                </p>
+                <div className="flex justify-between items-center border-t-2 border-dashed border-wtf-black pt-4">
+                  <span className="font-black uppercase text-sm tracking-widest">1 Episode</span>
+                  <span className="font-black text-[#22C55E] group-hover:text-wtf-black transition-colors text-lg">EXPLORE →</span>
+                </div>
+              </div>
+            </article>
+          </Link>
+
+          {/* Mind & Matter */}
+          <Link href="/mind-matter?from=podcasts" className="group">
+            <article className="zine-border bg-wtf-white shadow-zine-lg hover:shadow-[12px_12px_0px_#000] dark:hover:shadow-[12px_12px_0px_#333] hover:-translate-y-1 transition-all flex flex-col md:flex-row overflow-hidden">
+              <div className="bg-[#8B5CF6] text-white p-10 md:p-16 flex items-center justify-center relative overflow-hidden w-full md:w-[400px] shrink-0">
+                <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'linear-gradient(to right, #FFF 1px, transparent 1px), linear-gradient(to bottom, #FFF 1px, transparent 1px)', backgroundSize: '20px 20px' }}></div>
+                <h3 className="relative z-10 text-6xl font-black uppercase tracking-tighter text-center">Mind &<br/><span className="text-black">Matter</span></h3>
+              </div>
+              <div className="p-8 md:p-12 flex flex-col flex-1 justify-center">
+                <div className="flex gap-2 mb-4 flex-wrap">
+                  <span className="border-2 border-wtf-black px-2 py-0.5 text-[10px] font-bold uppercase">Health & Mind</span>
+                  <span className="border-2 border-wtf-black px-2 py-0.5 text-[10px] font-bold uppercase">Science</span>
+                  <span className="border-2 border-wtf-black px-2 py-0.5 text-[10px] font-bold uppercase">Biology</span>
+                </div>
+                <h4 className="text-3xl font-black uppercase tracking-tight mb-3">Mind & Matter</h4>
+                <p className="font-medium text-lg opacity-80 leading-relaxed mb-6">
+                  Hosted by <span className="font-black">Dr. Aryan Sharma</span>. Deconstructing the human condition through synthetic biology, cognitive science, and performance models.
+                </p>
+                <div className="flex justify-between items-center border-t-2 border-dashed border-wtf-black pt-4">
+                  <span className="font-black uppercase text-sm tracking-widest">1 Episode</span>
+                  <span className="font-black text-[#8B5CF6] group-hover:text-wtf-black transition-colors text-lg">EXPLORE →</span>
+                </div>
+              </div>
+            </article>
+          </Link>
+
+          {/* Creator Capital */}
+          <Link href="/creator-capital?from=podcasts" className="group">
+            <article className="zine-border bg-wtf-white shadow-zine-lg hover:shadow-[12px_12px_0px_#000] dark:hover:shadow-[12px_12px_0px_#333] hover:-translate-y-1 transition-all flex flex-col md:flex-row overflow-hidden">
+              <div className="bg-[#EAB308] text-black p-10 md:p-16 flex items-center justify-center relative overflow-hidden w-full md:w-[400px] shrink-0">
+                <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'linear-gradient(to right, #000 1px, transparent 1px), linear-gradient(to bottom, #000 1px, transparent 1px)', backgroundSize: '20px 20px' }}></div>
+                <h3 className="relative z-10 text-6xl font-black uppercase tracking-tighter text-center">Creator<br/><span className="text-white">Capital</span></h3>
+              </div>
+              <div className="p-8 md:p-12 flex flex-col flex-1 justify-center">
+                <div className="flex gap-2 mb-4 flex-wrap">
+                  <span className="border-2 border-wtf-black px-2 py-0.5 text-[10px] font-bold uppercase">Creators</span>
+                  <span className="border-2 border-wtf-black px-2 py-0.5 text-[10px] font-bold uppercase">Economics</span>
+                  <span className="border-2 border-wtf-black px-2 py-0.5 text-[10px] font-bold uppercase">Media</span>
+                </div>
+                <h4 className="text-3xl font-black uppercase tracking-tight mb-3">Creator Capital</h4>
+                <p className="font-medium text-lg opacity-80 leading-relaxed mb-6">
+                  Hosted by <span className="font-black">Network Archives</span>. Analyzing the modern business of audience building, media empires, and the vast decentralization of attention.
+                </p>
+                <div className="flex justify-between items-center border-t-2 border-dashed border-wtf-black pt-4">
+                  <span className="font-black uppercase text-sm tracking-widest">1 Episode</span>
+                  <span className="font-black text-[#EAB308] group-hover:text-wtf-black transition-colors text-lg">EXPLORE →</span>
                 </div>
               </div>
             </article>
