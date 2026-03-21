@@ -41,10 +41,10 @@ export default function EpisodeExtras({ mindmapNodes, centralTopic, highlights, 
         className="fixed inset-0 bg-black/60 z-40 backdrop-blur-sm"
         onClick={() => setActiveTab('none')}
       />
-      <div className="fixed top-0 right-0 h-full w-full max-w-2xl bg-white dark:bg-[#0f0f0f] z-50 border-l-4 border-wtf-orange shadow-[-12px_0px_24px_rgba(0,0,0,0.3)] flex flex-col overflow-hidden text-wtf-black dark:text-white">
+      <div className="fixed top-0 right-0 h-full w-full max-w-2xl bg-wtf-white dark:bg-[#0f0f0f] z-50 border-l-4 border-wtf-orange shadow-[-12px_0px_24px_rgba(0,0,0,0.3)] flex flex-col overflow-hidden text-wtf-black dark:text-white">
         
         {/* Header */}
-        <div className="p-5 border-b-4 border-gray-200 dark:border-[#333] flex justify-between items-center bg-gray-50 dark:bg-[#1a1a1a]">
+        <div className="p-5 border-b-4 border-wtf-black dark:border-[#333] flex justify-between items-center bg-wtf-white dark:bg-[#1a1a1a]">
           <div className="flex gap-3">
             <button 
               onClick={() => setActiveTab('mindmap')}
@@ -61,7 +61,7 @@ export default function EpisodeExtras({ mindmapNodes, centralTopic, highlights, 
           </div>
           <button 
             onClick={() => setActiveTab('none')}
-            className="w-9 h-9 flex items-center justify-center zine-border bg-white dark:bg-[#0f0f0f] text-xl font-black hover:bg-red-500 hover:text-white transition-colors cursor-pointer text-wtf-black dark:text-white"
+            className="w-9 h-9 flex items-center justify-center zine-border bg-wtf-white dark:bg-[#0f0f0f] text-xl font-black hover:bg-red-500 hover:text-white transition-colors cursor-pointer text-wtf-black dark:text-white"
           >
             ×
           </button>
@@ -89,7 +89,7 @@ export default function EpisodeExtras({ mindmapNodes, centralTopic, highlights, 
               <h2 className="text-3xl font-black uppercase text-wtf-black dark:text-white">Key Takeaways</h2>
               <div className="flex flex-col gap-5">
                 {lessons.map((lesson, index) => (
-                  <div key={index} className="bg-gray-50 dark:bg-[#1a1a1a] p-5 rounded-lg border border-gray-200 dark:border-[#444] shadow-sm dark:shadow-[4px_4px_0px_#333] relative">
+                  <div key={index} className="bg-wtf-white dark:bg-[#1a1a1a] p-5 rounded-lg border-2 border-wtf-black dark:border-[#444] shadow-[4px_4px_0px_#000000] dark:shadow-[4px_4px_0px_#333333] relative">
                     <div className="absolute -top-3 -left-3 w-8 h-8 bg-wtf-orange text-black font-black flex items-center justify-center zine-border text-sm shadow-[2px_2px_0px_rgba(0,0,0,0.2)]">
                       {index + 1}
                     </div>

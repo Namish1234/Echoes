@@ -108,7 +108,7 @@ export default function InteractiveMindmap({ centralTopic, nodes }: InteractiveM
       {/* Draggable Canvas */}
       <div
         ref={containerRef}
-        className="relative w-full h-[500px] zine-border bg-[#FAFAF8] dark:bg-[#111] overflow-hidden select-none"
+        className="relative w-full h-[500px] zine-border border-4 border-wtf-black bg-wtf-white dark:bg-[#111] overflow-hidden select-none"
         style={{ cursor: isDragging ? 'grabbing' : 'grab' }}
         onPointerDown={handlePointerDown}
         onPointerMove={handlePointerMove}
