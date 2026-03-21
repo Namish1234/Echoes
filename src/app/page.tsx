@@ -33,29 +33,29 @@ export default function EchoesLanding() {
       </section>
 
       {/* Philosophy / Values Section */}
-      <section className="w-full border-b-4 border-wtf-black bg-wtf-white">
+      <section className="w-full border-b-4 border-wtf-black bg-wtf-white" style={{ color: '#000000' }}>
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 divide-y-4 md:divide-y-0 md:divide-x-4 divide-wtf-black">
           
-          <div className="p-10 md:p-16 flex flex-col justify-start hover:bg-wtf-cream dark:hover:bg-wtf-cream transition-colors duration-300 group">
+          <div className="p-10 md:p-16 flex flex-col justify-start">
             <span className="text-6xl font-black text-wtf-orange mb-6 block">01</span>
-            <h3 className="text-2xl font-black uppercase mb-4 tracking-tight group-hover:text-wtf-black dark:group-hover:text-white transition-colors">Unaltered Narratives</h3>
-            <p className="font-semibold text-lg leading-relaxed text-wtf-black dark:text-gray-300 dark:group-hover:text-gray-200 transition-colors">
+            <h3 className="text-2xl font-black uppercase mb-4 tracking-tight text-wtf-black transition-colors">Unaltered Narratives</h3>
+            <p className="font-medium text-lg leading-relaxed text-wtf-black transition-colors">
               We believe in raw conversations. No fluff, no PR spins. We document the unfiltered realities of building, succeeding, and failing in massive arenas.
             </p>
           </div>
 
-          <div className="p-10 md:p-16 flex flex-col justify-start hover:bg-wtf-cream dark:hover:bg-wtf-cream transition-colors duration-300 group">
+          <div className="p-10 md:p-16 flex flex-col justify-start">
             <span className="text-6xl font-black text-wtf-orange mb-6 block">02</span>
-            <h3 className="text-2xl font-black uppercase mb-4 tracking-tight group-hover:text-wtf-black dark:group-hover:text-white transition-colors">Deep Intellectual Dives</h3>
-            <p className="font-semibold text-lg leading-relaxed text-wtf-black dark:text-gray-300 dark:group-hover:text-gray-200 transition-colors">
+            <h3 className="text-2xl font-black uppercase mb-4 tracking-tight text-wtf-black transition-colors">Deep Intellectual Dives</h3>
+            <p className="font-medium text-lg leading-relaxed text-wtf-black transition-colors">
               Through transcripts, precise summaries, and visual mindmaps, we extract actionable intelligence from hours of discourse, saving you time without sacrificing depth.
             </p>
           </div>
 
-          <div className="p-10 md:p-16 flex flex-col justify-start hover:bg-wtf-cream dark:hover:bg-wtf-cream transition-colors duration-300 group">
+          <div className="p-10 md:p-16 flex flex-col justify-start">
             <span className="text-6xl font-black text-wtf-orange mb-6 block">03</span>
-            <h3 className="text-2xl font-black uppercase mb-4 tracking-tight group-hover:text-wtf-black dark:group-hover:text-white transition-colors">Focus on Visionaries</h3>
-            <p className="font-semibold text-lg leading-relaxed text-wtf-black dark:text-gray-300 dark:group-hover:text-gray-200 transition-colors">
+            <h3 className="text-2xl font-black uppercase mb-4 tracking-tight text-wtf-black transition-colors">Focus on Visionaries</h3>
+            <p className="font-medium text-lg leading-relaxed text-wtf-black transition-colors">
               Our catalogs focus strictly on builders. Scientists, engineers, politicians, and founders driving the macro-economic and technological shifts of the next century.
             </p>
           </div>
