@@ -146,7 +146,7 @@ function OnboardingForm() {
     try {
       await updateProfile({
         displayName,
-        email: userProfile?.email || user.email,
+        email: userProfile?.email || user?.email || '',
         interests,
         frequency,
         discoverySource: discovery,
