@@ -3,6 +3,7 @@ import { Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { Providers } from "@/components/Providers";
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -10,8 +11,8 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "WTF Podcast | Echoes Platform",
-  description: "Exploring the raw, unfiltered journeys of creators, engineers, and visionaries. Hosted by Nikhil Kamath.",
+  title: "Echoes Platform | A Digital Archive for Visionaries",
+  description: "Exploring the raw, unfiltered journeys of creators, engineers, and visionaries. A digital archive for the curious, the ambitious, and the visionaries of Bharat.",
 };
 
 export default function RootLayout({
@@ -38,9 +39,11 @@ export default function RootLayout({
         />
       </head>
       <body className={`${spaceGrotesk.className} antialiased min-h-screen flex flex-col`} suppressHydrationWarning>
-        <Navbar />
-        <main className="flex-grow">{children}</main>
-        <Footer />
+        <Providers>
+          <Navbar />
+          <main className="flex-grow">{children}</main>
+          <Footer />
+        </Providers>
       </body>
     </html>
   );

@@ -21,7 +21,7 @@ export default function AllCollectionsPage() {
       
       {/* Header */}
       <section className="border-b-4 border-wtf-black relative overflow-hidden bg-wtf-cream py-24">
-        <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'linear-gradient(to right, #000 1px, transparent 1px), linear-gradient(to bottom, #000 1px, transparent 1px)', backgroundSize: '40px 40px' }}></div>
+        <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'linear-gradient(to right, var(--grid-line) 1px, transparent 1px), linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px)', backgroundSize: '40px 40px' }}></div>
         
         {/* Random small scattered shapes */}
         <div className="absolute z-0 w-3 h-3 bg-wtf-orange border border-wtf-black top-16 right-[18%] rotate-[30deg] hidden md:block" style={{ clipPath: 'polygon(50% 0%, 0% 100%, 100% 100%)' }}></div>
@@ -50,7 +50,7 @@ export default function AllCollectionsPage() {
 
       {/* Full Collections Grid */}
       <section className="w-full py-24 relative">
-        <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'linear-gradient(to right, #000 1px, transparent 1px), linear-gradient(to bottom, #000 1px, transparent 1px)', backgroundSize: '24px 24px' }}></div>
+        <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'linear-gradient(to right, var(--grid-line) 1px, transparent 1px), linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px)', backgroundSize: '24px 24px' }}></div>
 
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           <div className="flex items-center gap-4 mb-16">

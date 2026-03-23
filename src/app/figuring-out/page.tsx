@@ -1,9 +1,10 @@
 'use client';
 
-import { useState, useRef, useEffect, useCallback, Suspense } from 'react';
+import { useState, Suspense, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { figuringOutEpisodes } from '@/lib/data';
+import Pagination from '@/components/Pagination';
 
 const ALL_CATEGORIES = ["ALL", "GEOPOLITICS", "BUSINESS", "LEADERSHIP", "ENTERTAINMENT", "PSYCHOLOGY", "TECHNOLOGY", "MENTAL HEALTH", "STARTUPS", "SELF-IMPROVEMENT"];
 
@@ -24,7 +25,6 @@ function FiguringOutPage() {
   const [activeCategory, setActiveCategory] = useState("ALL");
   const [searchQuery, setSearchQuery] = useState("");
   const [visibleCount, setVisibleCount] = useState(4);
-  const observerTarget = useRef<HTMLDivElement>(null);
 
   const filteredEpisodes = figuringOutEpisodes.filter((ep) => {
     const matchCategory = activeCategory === "ALL" || ep.tags.includes(activeCategory);
@@ -37,38 +37,27 @@ function FiguringOutPage() {
 
     return matchCategory && matchSearch;
   });
+  // --- Pagination Logic ---
+  const ITEMS_PER_PAGE = 20;
+  const [currentPage, setCurrentPage] = useState(1);
+  const totalPages = Math.ceil(filteredEpisodes.length / ITEMS_PER_PAGE);
 
-  const visibleEpisodes = filteredEpisodes.slice(0, visibleCount);
-  const hasMore = visibleEpisodes.length < filteredEpisodes.length;
-
-  const handleObserver = useCallback((entries: IntersectionObserverEntry[]) => {
-    const target = entries[0];
-    if (target.isIntersecting && hasMore) {
-      setVisibleCount(prev => prev + 4);
-    }
-  }, [hasMore]);
-
+  // Reset pagination when search or category changes
   useEffect(() => {
-    const observer = new IntersectionObserver(handleObserver, { threshold: 0.1 });
-    const currentTarget = observerTarget.current;
-    
-    if (currentTarget) {
-      observer.observe(currentTarget);
-    }
-    
-    return () => {
-      if (currentTarget) {
-        observer.unobserve(currentTarget);
-      }
-    };
-  }, [handleObserver]);
+    setCurrentPage(1);
+  }, [searchQuery, activeCategory]);
+
+  const paginatedEpisodes = filteredEpisodes.slice(
+    (currentPage - 1) * ITEMS_PER_PAGE,
+    currentPage * ITEMS_PER_PAGE
+  );
 
   return (
     <div className="w-full">
       {/* Hero Section */}
       <section className="max-w-7xl mx-auto px-6 py-12 md:py-24">
         <div className="zine-border bg-wtf-white shadow-zine-lg p-8 md:p-16 relative overflow-hidden">
-          <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'linear-gradient(to right, #000 1px, transparent 1px), linear-gradient(to bottom, #000 1px, transparent 1px)', backgroundSize: '40px 40px' }}></div>
+          <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'linear-gradient(to right, var(--grid-line) 1px, transparent 1px), linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px)', backgroundSize: '40px 40px' }}></div>
           
           {/* Small random shapes */}
           <div className="absolute z-[5] w-3 h-3 bg-[#3B82F6] border border-wtf-black top-12 right-[20%] rotate-[30deg] hidden md:block" style={{ clipPath: 'polygon(50% 0%, 0% 100%, 100% 100%)' }}></div>
@@ -132,7 +121,7 @@ function FiguringOutPage() {
                 {ALL_CATEGORIES.map(category => (
                   <button 
                     key={category}
-                    onClick={() => { setActiveCategory(category); setVisibleCount(4); }}
+                    onClick={() => { setActiveCategory(category); }}
                     className={`zine-border px-6 py-1 font-bold rounded-full text-sm transition-colors ${
                       activeCategory === category 
                         ? 'bg-[#3B82F6] text-wtf-white border-[#3B82F6]' 
@@ -150,7 +139,7 @@ function FiguringOutPage() {
                   type="text" 
                   placeholder="Search episodes, guests..." 
                   value={searchQuery}
-                  onChange={(e) => { setSearchQuery(e.target.value); setVisibleCount(4); }}
+                  onChange={(e) => { setSearchQuery(e.target.value); }}
                   className="zine-border pl-4 pr-10 py-2 w-full md:w-72 font-bold outline-none focus:ring-2 focus:ring-[#3B82F6] bg-wtf-white"
                 />
                 <svg className="absolute right-3 top-3 h-5 w-5 text-wtf-black opacity-50 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -163,9 +152,10 @@ function FiguringOutPage() {
       </section>
 
       {/* Episode Grid */}
-      <section className="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-2 gap-8">
-        {visibleEpisodes.length > 0 ? (
-          visibleEpisodes.map(ep => (
+      <section className="max-w-7xl mx-auto px-6 py-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+          {paginatedEpisodes.length > 0 ? (
+            paginatedEpisodes.map(ep => (
             <Link key={ep.id} href={`/episode/${ep.id}`} className="zine-border bg-wtf-white shadow-zine p-6 flex flex-col hover:-translate-y-1 hover:shadow-zine-lg transition-all cursor-pointer">
               <div className="border-b-2 border-wtf-black pb-4 mb-4">
                 <div className="flex justify-between items-start gap-3 mb-3">
@@ -199,16 +189,16 @@ function FiguringOutPage() {
             </button>
           </div>
         )}
-      </section>
+        </div>
 
-      {/* Infinite Scroll Target */}
-      <div ref={observerTarget} className="w-full h-20 -mt-10 mb-20 flex items-center justify-center">
-        {hasMore && (
-           <span className="font-bold text-wtf-black uppercase tracking-widest animate-pulse zine-border px-8 py-3 bg-wtf-white shadow-zine inline-block">
-             Loading episodes...
-           </span>
+        {paginatedEpisodes.length > 0 && (
+          <Pagination 
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPageChange={setCurrentPage}
+          />
         )}
-      </div>
+      </section>
 
       {/* About the Creator */}
       <section className="bg-wtf-black text-wtf-white py-24 border-t-4 border-wtf-black">

@@ -7,7 +7,7 @@ export default function PodcastsPage() {
       
       {/* Hero */}
       <section className="border-b-4 border-wtf-black relative overflow-hidden bg-wtf-cream">
-        <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'linear-gradient(to right, #000 1px, transparent 1px), linear-gradient(to bottom, #000 1px, transparent 1px)', backgroundSize: '40px 40px' }}></div>
+        <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'linear-gradient(to right, var(--grid-line) 1px, transparent 1px), linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px)', backgroundSize: '40px 40px' }}></div>
         
         {/* Random scattered shapes */}
         <div className="absolute z-0 w-3 h-3 bg-wtf-orange border border-wtf-black top-16 right-[20%] rotate-[35deg] hidden md:block" style={{ clipPath: 'polygon(50% 0%, 0% 100%, 100% 100%)' }}></div>
@@ -42,7 +42,7 @@ export default function PodcastsPage() {
           <Link href="/wtf?from=podcasts" className="group">
             <article className="zine-border bg-wtf-white shadow-zine-lg hover:shadow-[12px_12px_0px_#000] hover:-translate-y-1 transition-all flex flex-col md:flex-row overflow-hidden">
               <div className="bg-wtf-black text-wtf-white p-10 md:p-16 flex items-center justify-center relative overflow-hidden w-full md:w-[400px] shrink-0">
-                <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'linear-gradient(to right, #FFF 1px, transparent 1px), linear-gradient(to bottom, #FFF 1px, transparent 1px)', backgroundSize: '20px 20px' }}></div>
+                <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'linear-gradient(to right, var(--grid-line-inv) 1px, transparent 1px), linear-gradient(to bottom, var(--grid-line-inv) 1px, transparent 1px)', backgroundSize: '20px 20px' }}></div>
                 <h3 className="relative z-10 text-6xl font-black uppercase tracking-tighter text-center">WTF<br/><span className="text-wtf-orange">Podcast</span></h3>
               </div>
               <div className="p-8 md:p-12 flex flex-col flex-1 justify-center">
@@ -68,7 +68,7 @@ export default function PodcastsPage() {
           <Link href="/figuring-out?from=podcasts" className="group">
             <article className="zine-border bg-wtf-white shadow-zine-lg hover:shadow-[12px_12px_0px_#000] hover:-translate-y-1 transition-all flex flex-col md:flex-row overflow-hidden">
               <div className="bg-[#3B82F6] text-wtf-white p-10 md:p-16 flex items-center justify-center relative overflow-hidden w-full md:w-[400px] shrink-0">
-                <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'linear-gradient(to right, #FFF 1px, transparent 1px), linear-gradient(to bottom, #FFF 1px, transparent 1px)', backgroundSize: '20px 20px' }}></div>
+                <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'linear-gradient(to right, var(--grid-line-inv) 1px, transparent 1px), linear-gradient(to bottom, var(--grid-line-inv) 1px, transparent 1px)', backgroundSize: '20px 20px' }}></div>
                 <h3 className="relative z-10 text-6xl font-black uppercase tracking-tighter text-center">Figuring<br/><span className="text-wtf-black">Out</span></h3>
               </div>
               <div className="p-8 md:p-12 flex flex-col flex-1 justify-center">
@@ -94,7 +94,7 @@ export default function PodcastsPage() {
           <Link href="/builders-log?from=podcasts" className="group">
             <article className="zine-border bg-wtf-white shadow-zine-lg hover:shadow-[12px_12px_0px_#000] dark:hover:shadow-[12px_12px_0px_#333] hover:-translate-y-1 transition-all flex flex-col md:flex-row overflow-hidden">
               <div className="bg-[#22C55E] text-white p-10 md:p-16 flex items-center justify-center relative overflow-hidden w-full md:w-[400px] shrink-0">
-                <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'linear-gradient(to right, #FFF 1px, transparent 1px), linear-gradient(to bottom, #FFF 1px, transparent 1px)', backgroundSize: '20px 20px' }}></div>
+                <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'linear-gradient(to right, var(--grid-line-inv) 1px, transparent 1px), linear-gradient(to bottom, var(--grid-line-inv) 1px, transparent 1px)', backgroundSize: '20px 20px' }}></div>
                 <h3 className="relative z-10 text-6xl font-black uppercase tracking-tighter text-center">Builder's<br/><span className="text-black">Log</span></h3>
               </div>
               <div className="p-8 md:p-12 flex flex-col flex-1 justify-center">
@@ -119,7 +119,7 @@ export default function PodcastsPage() {
           <Link href="/mind-matter?from=podcasts" className="group">
             <article className="zine-border bg-wtf-white shadow-zine-lg hover:shadow-[12px_12px_0px_#000] dark:hover:shadow-[12px_12px_0px_#333] hover:-translate-y-1 transition-all flex flex-col md:flex-row overflow-hidden">
               <div className="bg-[#8B5CF6] text-white p-10 md:p-16 flex items-center justify-center relative overflow-hidden w-full md:w-[400px] shrink-0">
-                <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'linear-gradient(to right, #FFF 1px, transparent 1px), linear-gradient(to bottom, #FFF 1px, transparent 1px)', backgroundSize: '20px 20px' }}></div>
+                <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'linear-gradient(to right, var(--grid-line-inv) 1px, transparent 1px), linear-gradient(to bottom, var(--grid-line-inv) 1px, transparent 1px)', backgroundSize: '20px 20px' }}></div>
                 <h3 className="relative z-10 text-6xl font-black uppercase tracking-tighter text-center">Mind &<br/><span className="text-black">Matter</span></h3>
               </div>
               <div className="p-8 md:p-12 flex flex-col flex-1 justify-center">
@@ -144,7 +144,7 @@ export default function PodcastsPage() {
           <Link href="/creator-capital?from=podcasts" className="group">
             <article className="zine-border bg-wtf-white shadow-zine-lg hover:shadow-[12px_12px_0px_#000] dark:hover:shadow-[12px_12px_0px_#333] hover:-translate-y-1 transition-all flex flex-col md:flex-row overflow-hidden">
               <div className="bg-[#EAB308] text-black p-10 md:p-16 flex items-center justify-center relative overflow-hidden w-full md:w-[400px] shrink-0">
-                <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'linear-gradient(to right, #000 1px, transparent 1px), linear-gradient(to bottom, #000 1px, transparent 1px)', backgroundSize: '20px 20px' }}></div>
+                <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'linear-gradient(to right, var(--grid-line) 1px, transparent 1px), linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px)', backgroundSize: '20px 20px' }}></div>
                 <h3 className="relative z-10 text-6xl font-black uppercase tracking-tighter text-center">Creator<br/><span className="text-white">Capital</span></h3>
               </div>
               <div className="p-8 md:p-12 flex flex-col flex-1 justify-center">
@@ -169,7 +169,7 @@ export default function PodcastsPage() {
           <Link href="/builders-log?from=podcasts" className="group">
             <article className="zine-border bg-wtf-white shadow-zine-lg hover:shadow-[12px_12px_0px_#000] dark:hover:shadow-[12px_12px_0px_#333] hover:-translate-y-1 transition-all flex flex-col md:flex-row overflow-hidden">
               <div className="bg-[#22C55E] text-white p-10 md:p-16 flex items-center justify-center relative overflow-hidden w-full md:w-[400px] shrink-0">
-                <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'linear-gradient(to right, #FFF 1px, transparent 1px), linear-gradient(to bottom, #FFF 1px, transparent 1px)', backgroundSize: '20px 20px' }}></div>
+                <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'linear-gradient(to right, var(--grid-line-inv) 1px, transparent 1px), linear-gradient(to bottom, var(--grid-line-inv) 1px, transparent 1px)', backgroundSize: '20px 20px' }}></div>
                 <h3 className="relative z-10 text-6xl font-black uppercase tracking-tighter text-center">Builder's<br/><span className="text-black">Log</span></h3>
               </div>
               <div className="p-8 md:p-12 flex flex-col flex-1 justify-center">
@@ -194,7 +194,7 @@ export default function PodcastsPage() {
           <Link href="/mind-matter?from=podcasts" className="group">
             <article className="zine-border bg-wtf-white shadow-zine-lg hover:shadow-[12px_12px_0px_#000] dark:hover:shadow-[12px_12px_0px_#333] hover:-translate-y-1 transition-all flex flex-col md:flex-row overflow-hidden">
               <div className="bg-[#8B5CF6] text-white p-10 md:p-16 flex items-center justify-center relative overflow-hidden w-full md:w-[400px] shrink-0">
-                <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'linear-gradient(to right, #FFF 1px, transparent 1px), linear-gradient(to bottom, #FFF 1px, transparent 1px)', backgroundSize: '20px 20px' }}></div>
+                <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'linear-gradient(to right, var(--grid-line-inv) 1px, transparent 1px), linear-gradient(to bottom, var(--grid-line-inv) 1px, transparent 1px)', backgroundSize: '20px 20px' }}></div>
                 <h3 className="relative z-10 text-6xl font-black uppercase tracking-tighter text-center">Mind &<br/><span className="text-black">Matter</span></h3>
               </div>
               <div className="p-8 md:p-12 flex flex-col flex-1 justify-center">
@@ -219,7 +219,7 @@ export default function PodcastsPage() {
           <Link href="/creator-capital?from=podcasts" className="group">
             <article className="zine-border bg-wtf-white shadow-zine-lg hover:shadow-[12px_12px_0px_#000] dark:hover:shadow-[12px_12px_0px_#333] hover:-translate-y-1 transition-all flex flex-col md:flex-row overflow-hidden">
               <div className="bg-[#EAB308] text-black p-10 md:p-16 flex items-center justify-center relative overflow-hidden w-full md:w-[400px] shrink-0">
-                <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'linear-gradient(to right, #000 1px, transparent 1px), linear-gradient(to bottom, #000 1px, transparent 1px)', backgroundSize: '20px 20px' }}></div>
+                <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'linear-gradient(to right, var(--grid-line) 1px, transparent 1px), linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px)', backgroundSize: '20px 20px' }}></div>
                 <h3 className="relative z-10 text-6xl font-black uppercase tracking-tighter text-center">Creator<br/><span className="text-white">Capital</span></h3>
               </div>
               <div className="p-8 md:p-12 flex flex-col flex-1 justify-center">

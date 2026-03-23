@@ -1,6 +1,7 @@
 "use client";
 import Link from 'next/link';
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { episodes, podcasts } from '@/lib/data';
 
 interface ArchiveBookProps {
@@ -15,22 +16,22 @@ const ArchiveBook = ({ title, slug, episodesCount, colorClass }: ArchiveBookProp
     <Link href={`/collections/${slug}`} className="relative group w-full max-w-[280px] h-[380px] mx-auto cursor-pointer block mt-12 mb-16 focus:outline-none">
       
       {/* Decorative Scattering Shapes */}
-      <div className="absolute z-10 w-16 h-16 bg-[#3B82F6] border-4 border-wtf-black opacity-0 group-hover:opacity-100 transition-all duration-700 ease-out top-1/4 right-0 group-hover:translate-x-32 group-hover:-translate-y-12 rotate-0 group-hover:rotate-[45deg]" style={{ clipPath: 'polygon(50% 0%, 0% 100%, 100% 100%)' }}></div>
-      <div className="absolute z-10 w-16 h-16 bg-wtf-orange rounded-full border-4 border-wtf-black opacity-0 group-hover:opacity-100 transition-all duration-700 ease-out bottom-1/4 -left-4 group-hover:-translate-x-20 group-hover:translate-y-12 rotate-0 group-hover:-rotate-[20deg]"></div>
-      <div className="absolute z-10 w-12 h-12 bg-wtf-white border-4 border-wtf-black opacity-0 group-hover:opacity-100 transition-all duration-700 ease-out top-0 left-10 group-hover:-translate-y-20 group-hover:-translate-x-12 rotate-0 group-hover:rotate-[135deg] flex items-center justify-center">
+      <div className="archive-transition-shape absolute z-10 w-16 h-16 bg-[#3B82F6] border-4 border-wtf-black opacity-0 group-hover:opacity-100 transition-all duration-700 ease-out top-1/4 right-0 group-hover:translate-x-32 group-hover:-translate-y-12 rotate-0 group-hover:rotate-[45deg]" style={{ clipPath: 'polygon(50% 0%, 0% 100%, 100% 100%)' }}></div>
+      <div className="archive-transition-shape absolute z-10 w-16 h-16 bg-wtf-orange rounded-full border-4 border-wtf-black opacity-0 group-hover:opacity-100 transition-all duration-700 ease-out bottom-1/4 -left-4 group-hover:-translate-x-20 group-hover:translate-y-12 rotate-0 group-hover:-rotate-[20deg]"></div>
+      <div className="archive-transition-shape absolute z-10 w-12 h-12 bg-wtf-white border-4 border-wtf-black opacity-0 group-hover:opacity-100 transition-all duration-700 ease-out top-0 left-10 group-hover:-translate-y-20 group-hover:-translate-x-12 rotate-0 group-hover:rotate-[135deg] flex items-center justify-center">
          <div className="w-full h-1.5 bg-wtf-black absolute"></div>
          <div className="h-full w-1.5 bg-wtf-black absolute"></div>
       </div>
-      <div className="absolute z-10 w-20 h-8 rounded-full bg-[#3B82F6] border-4 border-wtf-black opacity-0 group-hover:opacity-100 transition-all duration-700 ease-out bottom-4 right-4 group-hover:translate-x-24 group-hover:translate-y-16 rotate-0 group-hover:-rotate-[15deg]"></div>
+      <div className="archive-transition-shape absolute z-10 w-20 h-8 rounded-full bg-[#3B82F6] border-4 border-wtf-black opacity-0 group-hover:opacity-100 transition-all duration-700 ease-out bottom-4 right-4 group-hover:translate-x-24 group-hover:translate-y-16 rotate-0 group-hover:-rotate-[15deg]"></div>
 
       {/* Scattered Pages (2 multi-directional episodes) */}
-      <div className="absolute z-20 inset-0 bg-wtf-cream border-4 border-wtf-black dark:border-[#555] shadow-[2px_2px_0px_#000000] dark:shadow-[2px_2px_0px_#333333] transition-transform duration-500 ease-[cubic-bezier(0.175,0.885,0.32,1.275)] origin-bottom-right flex flex-col p-4 opacity-0 group-hover:opacity-100 group-hover:-rotate-[6deg] group-hover:-translate-x-12 group-hover:-translate-y-1">
+      <div className="archive-transition-page absolute z-20 inset-0 bg-wtf-cream border-4 border-wtf-black dark:border-[#555] shadow-[2px_2px_0px_#000000] dark:shadow-[2px_2px_0px_#333333] transition-transform duration-500 ease-[cubic-bezier(0.175,0.885,0.32,1.275)] origin-bottom-right flex flex-col p-4 opacity-0 group-hover:opacity-100 group-hover:-rotate-[6deg] group-hover:-translate-x-12 group-hover:-translate-y-1">
          <div className="w-full h-32 bg-gray-200 border-2 border-wtf-black mb-4 flex items-center justify-center font-bold text-2xl text-wtf-black uppercase opacity-50">Log 01</div>
          <div className="h-4 bg-wtf-black w-3/4 mb-3"></div>
          <div className="h-4 bg-wtf-black w-1/2 mb-3"></div>
          <div className="h-4 bg-wtf-black w-5/6"></div>
       </div>
-      <div className="absolute z-20 inset-0 bg-wtf-white border-4 border-wtf-black dark:border-[#555] shadow-[2px_2px_0px_#000000] dark:shadow-[2px_2px_0px_#333333] transition-transform duration-500 ease-[cubic-bezier(0.175,0.885,0.32,1.275)] origin-bottom-left flex flex-col p-4 opacity-0 group-hover:opacity-100 group-hover:rotate-[6deg] group-hover:translate-x-12 group-hover:-translate-y-1">
+      <div className="archive-transition-page absolute z-20 inset-0 bg-wtf-white border-4 border-wtf-black dark:border-[#555] shadow-[2px_2px_0px_#000000] dark:shadow-[2px_2px_0px_#333333] transition-transform duration-500 ease-[cubic-bezier(0.175,0.885,0.32,1.275)] origin-bottom-left flex flex-col p-4 opacity-0 group-hover:opacity-100 group-hover:rotate-[6deg] group-hover:translate-x-12 group-hover:-translate-y-1">
          <div className="w-full h-32 bg-gray-200 border-2 border-wtf-black mb-4 flex items-center justify-center font-bold text-2xl text-wtf-black uppercase opacity-50">Log 02</div>
          <div className="h-4 bg-wtf-black w-3/4 mb-3"></div>
          <div className="h-4 bg-wtf-black w-1/2 mb-3"></div>
@@ -38,7 +39,7 @@ const ArchiveBook = ({ title, slug, episodesCount, colorClass }: ArchiveBookProp
       </div>
 
       {/* Main Book Cover */}
-      <div className={`absolute z-40 inset-0 ${colorClass} border-4 border-wtf-black dark:border-[#555] flex flex-col p-8 shadow-[8px_8px_0px_#000000] dark:shadow-[8px_8px_0px_#333333] group-hover:-translate-y-6 group-hover:shadow-[16px_24px_0px_#000000] dark:group-hover:shadow-[16px_24px_0px_#333333] transition-all duration-500 ease-[cubic-bezier(0.175,0.885,0.32,1.275)]`}>
+      <div className={`archive-transition-cover absolute z-40 inset-0 ${colorClass} border-4 border-wtf-black dark:border-[#555] flex flex-col p-8 shadow-[8px_8px_0px_#000000] dark:shadow-[8px_8px_0px_#333333] group-hover:-translate-y-6 group-hover:shadow-[16px_24px_0px_#000000] dark:group-hover:shadow-[16px_24px_0px_#333333] transition-all duration-500 ease-[cubic-bezier(0.175,0.885,0.32,1.275)]`}>
         <div className="flex justify-between items-start">
            <span className="font-black border-2 border-wtf-black px-2 py-1 text-xs uppercase bg-wtf-white text-wtf-black shadow-[2px_2px_0px_#000]">Ref</span>
            <span className="font-bold text-sm uppercase px-2 py-1 bg-wtf-black text-wtf-white">{episodesCount} Logs</span>
@@ -162,12 +163,22 @@ function EpisodeShuffler() {
 
 
 export default function ArchivesPage() {
+  const router = useRouter();
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      router.push(`/search?q=${encodeURIComponent(searchQuery)}`);
+    }
+  };
+
   return (
     <div className="w-full bg-wtf-white min-h-screen">
       
       {/* Header Section */}
       <section className="border-b-4 border-wtf-black relative overflow-hidden bg-wtf-cream">
-        <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'linear-gradient(to right, #000 1px, transparent 1px), linear-gradient(to bottom, #000 1px, transparent 1px)', backgroundSize: '40px 40px' }}></div>
+        <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'linear-gradient(to right, var(--grid-line) 1px, transparent 1px), linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px)', backgroundSize: '40px 40px' }}></div>
         
         {/* Smaller Scattered Background Elements */}
         <div className="absolute z-0 w-5 h-5 bg-[#3B82F6] border-2 border-wtf-black bottom-24 right-[25%] rotate-[70deg] hidden md:block" style={{ clipPath: 'polygon(50% 0%, 0% 100%, 100% 100%)' }}></div>
@@ -192,7 +203,7 @@ export default function ArchivesPage() {
       {/* Collections Section */}
       <section className="w-full py-32 border-b-4 border-wtf-black relative overflow-visible">
         {/* Light Subtler Grid - now full width */}
-        <div className="absolute inset-0 opacity-5" style={{ backgroundImage: 'linear-gradient(to right, #000 1px, transparent 1px), linear-gradient(to bottom, #000 1px, transparent 1px)', backgroundSize: '24px 24px' }}></div>
+        <div className="absolute inset-0 opacity-5" style={{ backgroundImage: 'linear-gradient(to right, var(--grid-line) 1px, transparent 1px), linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px)', backgroundSize: '24px 24px' }}></div>
         
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           <div className="flex flex-col items-center mb-16">
@@ -231,16 +242,18 @@ export default function ArchivesPage() {
           <h2 className="text-5xl md:text-7xl font-black uppercase tracking-tighter text-wtf-black mb-6 leading-none">Search The Transcripts</h2>
           <p className="text-xl md:text-2xl font-medium text-wtf-black mb-12 opacity-90">Deep query 1,402,391 spoken words across the entire Echoes network.</p>
           
-          <div className="relative flex flex-col md:flex-row shadow-[12px_12px_0px_#000]">
+          <form onSubmit={handleSearch} className="relative flex flex-col md:flex-row shadow-[12px_12px_0px_#000]">
             <input 
               type="text" 
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="E.g., Artificial General Intelligence..." 
               className="w-full border-4 md:border-r-0 border-wtf-black px-6 py-6 font-bold text-xl md:text-2xl focus:outline-none bg-wtf-white placeholder:text-gray-400"
             />
-            <button className="bg-wtf-orange border-4 border-t-0 md:border-t-4 border-wtf-black px-12 py-6 md:py-0 font-black tracking-widest uppercase hover:bg-wtf-black hover:text-wtf-white transition-colors text-xl whitespace-nowrap">
+            <button type="submit" className="bg-wtf-orange border-4 border-t-0 md:border-t-4 border-wtf-black px-12 py-6 md:py-0 font-black tracking-widest uppercase hover:bg-wtf-black hover:text-wtf-white transition-colors text-xl whitespace-nowrap">
               Search
             </button>
-          </div>
+          </form>
         </div>
       </section>
 

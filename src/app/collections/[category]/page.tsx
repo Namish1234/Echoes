@@ -26,7 +26,7 @@ export default async function CollectionPage({ params }: { params: Promise<{ cat
       {/* Header */}
       <section className="border-b-4 border-wtf-black relative overflow-hidden bg-wtf-white py-24">
         {/* Aesthetic grid overlay */}
-        <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'linear-gradient(to right, #000 1px, transparent 1px), linear-gradient(to bottom, #000 1px, transparent 1px)', backgroundSize: '40px 40px' }}></div>
+        <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'linear-gradient(to right, var(--grid-line) 1px, transparent 1px), linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px)', backgroundSize: '40px 40px' }}></div>
         
         {/* Random small scattered shapes */}
         <div className="absolute z-0 w-3 h-3 bg-wtf-orange border border-wtf-black top-20 right-[15%] rotate-[25deg] hidden md:block" style={{ clipPath: 'polygon(50% 0%, 0% 100%, 100% 100%)' }}></div>

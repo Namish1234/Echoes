@@ -59,7 +59,7 @@ function CreatorCapitalPage() {
     <div className="w-full">
       <section className="max-w-7xl mx-auto px-6 py-12 md:py-24">
         <div className="zine-border bg-wtf-white shadow-zine-lg p-8 md:p-16 relative overflow-hidden">
-          <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'linear-gradient(to right, #000 1px, transparent 1px), linear-gradient(to bottom, #000 1px, transparent 1px)', backgroundSize: '40px 40px' }}></div>
+          <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'linear-gradient(to right, var(--grid-line) 1px, transparent 1px), linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px)', backgroundSize: '40px 40px' }}></div>
 
           <div className="absolute z-[5] w-3 h-3 bg-[#EAB308] border border-wtf-black top-12 right-[20%] rotate-[30deg] hidden md:block" style={{ clipPath: 'polygon(50% 0%, 0% 100%, 100% 100%)' }}></div>
           <div className="absolute z-[5] w-4 h-4 bg-wtf-orange border border-wtf-black bottom-20 left-[15%] rotate-[55deg] hidden md:block"></div>

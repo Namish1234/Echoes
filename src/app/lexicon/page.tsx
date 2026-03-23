@@ -38,7 +38,7 @@ export default function LexiconPage() {
       {/* Header */}
       <section className="border-b-4 border-wtf-white relative overflow-hidden py-24">
         {/* Tilted grid */}
-        <div className="absolute inset-[-50%] w-[200%] h-[200%] opacity-[0.04] rotate-[8deg]" style={{ backgroundImage: 'linear-gradient(to right, #FFF 1px, transparent 1px), linear-gradient(to bottom, #FFF 1px, transparent 1px)', backgroundSize: '32px 32px' }}></div>
+        <div className="absolute inset-[-50%] w-[200%] h-[200%] opacity-[0.04] rotate-[8deg]" style={{ backgroundImage: 'linear-gradient(to right, var(--grid-line-inv) 1px, transparent 1px), linear-gradient(to bottom, var(--grid-line-inv) 1px, transparent 1px)', backgroundSize: '32px 32px' }}></div>
         
         {/* Random small scattered shapes */}
         <div className="absolute z-0 w-3 h-3 bg-wtf-orange border border-wtf-white top-20 right-[22%] rotate-[55deg] hidden md:block" style={{ clipPath: 'polygon(50% 0%, 0% 100%, 100% 100%)' }}></div>

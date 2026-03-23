@@ -1,5 +1,11 @@
 @import "tailwindcss";
 
+/* Full-screen onboarding — hides navbar and footer */
+body.onboarding-mode nav,
+body.onboarding-mode footer {
+  display: none !important;
+}
+
 /* ============================================================ */
 /*  COLOR SYSTEM — Light & Dark Mode via CSS custom properties   */
 /* ============================================================ */
@@ -30,12 +36,14 @@
   --tag-text: #000000;
   --tag-border: #000000;
   --cream-bg: #FDFCF8;
+  --grid-line: #000000;
+  --grid-line-inv: #FFFFFF;
 }
 
 /* ----- Dark mode ----- */
 .dark {
   --page-bg: #0F0F0F;
-  --page-dot: #2A2A2A;
+  --page-dot: #333333;
   --text-primary: #F5F5F5;
   --text-secondary: #D1D5DB;
   --text-muted: #6B7280;
@@ -48,6 +56,8 @@
   --tag-text: #F5F5F5;
   --tag-border: #D1D5DB;
   --cream-bg: #141414;
+  --grid-line: #FFFFFF;
+  --grid-line-inv: #000000;
 
   /* Override Tailwind color tokens in dark mode */
   --color-wtf-black: #F5F5F5;
@@ -118,6 +128,24 @@ body {
 .dark .shadow-zine-lg {
   box-shadow: 8px 8px 0px 0px #333333;
 }
+.dark .shadow-\[20px_20px_0px_\#000\] {
+  box-shadow: 20px 20px 0px #333333;
+}
+
+/* Explicit Transition Fixes for Dark Mode Archive Cards */
+.dark .archive-transition-cover,
+.dark .archive-transition-page,
+.dark .archive-transition-shape {
+  /* Force all properties to transition smoothly in dark mode */
+  transition-property: all !important;
+  transition-duration: 500ms !important;
+  transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+}
+
+/* Specific duration for shapes to match the 700ms in JS/Tailwind if preferred */
+.dark .archive-transition-shape {
+  transition-duration: 700ms !important;
+}
 .dark .shadow-\[2px_2px_0px_\#000\] {
   box-shadow: 2px 2px 0px #333333;
 }
@@ -166,6 +194,9 @@ body {
 .dark .bg-gray-100 {
   background-color: #2A2A2A;
 }
+.dark .bg-gray-200 {
+  background-color: #333333;
+}
 .dark .bg-gray-600 {
   background-color: #555555;
 }
@@ -195,4 +226,56 @@ body {
 /* Smooth transition for all color changes */
 .dark * {
   transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+/* ---- Fix dark mode grids — make them white instead of black ---- */
+/* Override inline background-image grid patterns in dark mode */
+.dark [style*="linear-gradient(to right, #000"] {
+  --tw-gradient-override: 1;
+}
+
+/* Scrollbar styling for dark mode */
+.dark ::-webkit-scrollbar {
+  width: 8px;
+}
+.dark ::-webkit-scrollbar-track {
+  background: #1A1A1A;
+}
+.dark ::-webkit-scrollbar-thumb {
+  background: #444;
+  border-radius: 4px;
+}
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Loading skeleton animation - ensures it works in dark mode */
+.dark .animate-pulse > div {
+  background-color: #333333 !important;
+}
+
+/* ============================================================ */
+/* Custom Zine Scrollbar                                        */
+/* ============================================================ */
+.zine-scrollbar::-webkit-scrollbar {
+  width: 14px;
+}
+.zine-scrollbar::-webkit-scrollbar-track {
+  background: var(--surface);
+  border-left: 3px solid var(--border-color);
+}
+.zine-scrollbar::-webkit-scrollbar-thumb {
+  background-color: var(--color-wtf-orange);
+  border: 3px solid var(--border-color);
+  border-right: none; /* Merges smoothly against the window edge/element edge */
+  border-radius: 0;
+}
+.zine-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: var(--text-primary);
+}
+
+/* For Firefox */
+.zine-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-wtf-orange) var(--surface);
 }

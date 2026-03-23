@@ -5,7 +5,7 @@ export default function AboutPage() {
     <div className="w-full bg-wtf-cream min-h-screen">
       {/* Hero Section */}
       <section className="border-b-4 border-wtf-black relative overflow-hidden bg-wtf-cream">
-        <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'linear-gradient(to right, #000 1px, transparent 1px), linear-gradient(to bottom, #000 1px, transparent 1px)', backgroundSize: '40px 40px' }}></div>
+        <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'linear-gradient(to right, var(--grid-line) 1px, transparent 1px), linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px)', backgroundSize: '40px 40px' }}></div>
         <div className="max-w-7xl mx-auto px-6 py-24 relative z-10 flex flex-col md:flex-row items-center gap-12">
           <div className="flex-1">
             <div className="inline-block border-2 border-wtf-black text-wtf-black px-4 py-1 text-xs font-bold mb-6 tracking-widest uppercase bg-wtf-white shadow-[4px_4px_0px_#000]">
@@ -20,7 +20,7 @@ export default function AboutPage() {
           </div>
           <div className="flex-1 border-4 border-wtf-black p-4 bg-wtf-white shadow-zine-lg rotate-1 hidden md:block">
             <div className="bg-wtf-black w-full h-[300px] flex justify-center items-center relative overflow-hidden">
-               <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'linear-gradient(to right, #FFF 1px, transparent 1px), linear-gradient(to bottom, #FFF 1px, transparent 1px)', backgroundSize: '20px 20px' }}></div>
+               <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'linear-gradient(to right, var(--grid-line-inv) 1px, transparent 1px), linear-gradient(to bottom, var(--grid-line-inv) 1px, transparent 1px)', backgroundSize: '20px 20px' }}></div>
                <span className="text-wtf-white font-black text-4xl uppercase absolute z-10 text-center">Curating<br/>The Future</span>
             </div>
           </div>
