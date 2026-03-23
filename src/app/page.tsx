@@ -5,21 +5,13 @@ import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import dynamic from 'next/dynamic';
 
-// Dynamic imports for code splitting — only load the page the user needs
+// Dynamic imports for code splitting
 const LandingPage = dynamic(() => import('@/components/LandingPage'), {
-  loading: () => (
-    <div className="min-h-screen flex items-center justify-center">
-      <div className="text-2xl font-black uppercase tracking-widest animate-pulse">Loading...</div>
-    </div>
-  ),
+  loading: () => null,
 });
 
 const FeedPage = dynamic(() => import('@/components/FeedPage'), {
-  loading: () => (
-    <div className="min-h-screen flex items-center justify-center">
-      <div className="text-2xl font-black uppercase tracking-widest animate-pulse">Loading your feed...</div>
-    </div>
-  ),
+  loading: () => null,
 });
 
 export default function HomePage() {
@@ -34,13 +26,7 @@ export default function HomePage() {
   }, [user, userProfile, isLoading, router]);
 
   if (isLoading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-2xl font-black uppercase tracking-widest animate-pulse">
-          ECHOES<span className="text-wtf-orange">.</span>
-        </div>
-      </div>
-    );
+    return null; // The global PixelPreloader handles the initial loading aesthetic
   }
 
   // Logged-in user with completed onboarding → show curated feed
