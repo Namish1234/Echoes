@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Providers } from "@/components/Providers";
+import PixelPreloader from "@/components/PixelPreloader";
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -39,6 +40,7 @@ export default function RootLayout({
         />
       </head>
       <body className={`${spaceGrotesk.className} antialiased min-h-screen flex flex-col`} suppressHydrationWarning>
+        <PixelPreloader />
         <Providers>
           <Navbar />
           <main className="flex-grow">{children}</main>

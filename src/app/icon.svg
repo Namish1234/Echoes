@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <style>
+    text {
+      font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      font-weight: 700;
+      font-size: 80px;
+      letter-spacing: -4px;
+    }
+    .letter { fill: #000000; }
+    .dot { fill: #FF6B00; }
+    @media (prefers-color-scheme: dark) {
+      .letter { fill: #F5F5F5; }
+      .dot { fill: #FF8533; }
+    }
+  </style>
+  <text x="50" y="76" text-anchor="middle">
+    <tspan class="letter">E</tspan><tspan class="dot">.</tspan>
+  </text>
+</svg>
