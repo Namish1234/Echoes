@@ -4,6 +4,7 @@ import { useAuth } from '@/lib/AuthContext';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import dynamic from 'next/dynamic';
+import VerifyEmailPrompt from '@/components/VerifyEmailPrompt';
 
 // Dynamic imports for code splitting
 const LandingPage = dynamic(() => import('@/components/LandingPage'), {
@@ -26,11 +27,14 @@ export default function HomePage() {
   }, [user, userProfile, isLoading, router]);
 
   if (isLoading) {
-    return null; // The global PixelPreloader handles the initial loading aesthetic
+    return <div className="min-h-screen" />; // Prevents the sidebar/footer from shrinking while loading
   }
 
   // Logged-in user with completed onboarding → show curated feed
   if (user && userProfile?.onboardingComplete) {
+    if (!user.emailVerified) {
+      return <VerifyEmailPrompt />;
+    }
     return <FeedPage />;
   }
 

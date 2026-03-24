@@ -4,7 +4,8 @@ import { createContext, useContext, useEffect, useState, ReactNode } from 'react
 import {
   User,
   onAuthStateChanged,
-  signInWithPopup,
+  signInWithRedirect,
+  getRedirectResult,
   signOut as firebaseSignOut,
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
@@ -85,6 +86,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   // Listen to auth state changes
   useEffect(() => {
+    // 1. Handle Redirect Result from Google Sign In
+    getRedirectResult(auth).catch((error) => {
+      console.error('Google sign-in redirect error:', error);
+    });
+
     const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
       setUser(firebaseUser);
       if (firebaseUser) {
@@ -178,7 +184,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const signInWithGoogle = async () => {
     try {
-      await signInWithPopup(auth, googleProvider);
+      await signInWithRedirect(auth, googleProvider);
       // Auth state listener above handles the rest
     } catch (error) {
       console.error('Google sign-in error:', error);

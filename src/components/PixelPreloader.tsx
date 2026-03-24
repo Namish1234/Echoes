@@ -5,7 +5,6 @@ import { useEffect, useState } from 'react';
 export default function PixelPreloader() {
   const [isLoading, setIsLoading] = useState(true);
   const [isReadyToHide, setIsReadyToHide] = useState(false);
-  const [progress, setProgress] = useState(0);
 
   useEffect(() => {
     // Check if we should skip the preloader for development speed
@@ -15,64 +14,18 @@ export default function PixelPreloader() {
       return;
     }
 
-    // Check initial state
-    let isSiteLoaded = document.readyState === 'complete';
+    // primitive timeout mechanism (bulletproof against JS thread blocking)
+    const duration = 2000; // 2 seconds minimum display
     
-    const handleLoad = () => {
-      isSiteLoaded = true;
-    };
-    
-    // Fallback timer if load event somehow misses
-    const safetyLoadTimer = setTimeout(handleLoad, 8000); // 8 second hard limit forcing a load sequence
-    
-    window.addEventListener('load', handleLoad);
-
-    const duration = 1800; // minimum duration 1.8 seconds
-    const interval = 40;
-    const steps = Math.ceil(duration / interval);
-    let currentStep = 0;
-
-    const progressTimer = setInterval(() => {
-      currentStep++;
-      
-      const timeFraction = Math.min(1, currentStep / steps);
-      let targetProgress;
-
-      if (isSiteLoaded) {
-        // If site is loaded, progress reflects time remaining to hit the 1.8s minimum
-        targetProgress = Math.min(100, timeFraction * 100);
-      } else {
-        // If site is still loading, cap realistic progress at 90% (eases in safely over the minimum time limit)
-        targetProgress = Math.min(90, timeFraction * 90);
-      }
-      
-      // Organic stutter easing
-      if (Math.random() > 0.1 || targetProgress === 100) {
-         setProgress((prev) => {
-           let jump = (targetProgress - prev) * 0.3;
-           if (targetProgress > prev && jump < 0.5) jump = 0.5; // push it forward if trailing
-           return Math.min(100, prev + jump);
-         });
-      }
-
-      // 100% completion condition: both minimum time exceeded and real site load achieved
-      if (currentStep >= steps && isSiteLoaded) {
-        setProgress(100);
-        clearInterval(progressTimer);
-        clearTimeout(safetyLoadTimer);
-        setIsReadyToHide(true);
-        setTimeout(() => {
+    const preloaderTimer = setTimeout(() => {
+       setIsReadyToHide(true);
+       setTimeout(() => {
           setIsLoading(false);
           sessionStorage.setItem('echoes-preloaded', 'true');
-        }, 800); // fade out duration
-      }
-    }, interval);
+       }, 800); // fade out duration
+    }, duration);
 
-    return () => {
-      clearInterval(progressTimer);
-      clearTimeout(safetyLoadTimer);
-      window.removeEventListener('load', handleLoad);
-    };
+    return () => clearTimeout(preloaderTimer);
   }, []);
 
   if (!isLoading) return null;
@@ -109,11 +62,12 @@ export default function PixelPreloader() {
         <div className="flex flex-col items-center gap-3 w-64 md:w-80">
           {/* Progress Bar */}
           <div className="w-full h-4 zine-border bg-wtf-white relative shadow-[4px_4px_0_#000] dark:shadow-[4px_4px_0_#333] overflow-hidden">
+            {/* Pure CSS Progress Fill targeting width from 0% to 100% */}
             <div 
-              className="absolute top-0 left-0 h-full bg-wtf-orange transition-all duration-75 ease-out"
-              style={{ width: `${progress}%` }}
+              className="absolute top-0 left-0 h-full bg-wtf-orange"
+              style={{ animation: 'fillBar 2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards' }}
             />
-            {/* Inner texture lines on the bar (optional zine touch) */}
+            {/* Inner texture lines on the bar */}
             <div 
               className="absolute inset-0 opacity-20 hidden md:block" 
               style={{ backgroundImage: 'repeating-linear-gradient(45deg, transparent, transparent 10px, #000 10px, #000 20px)' }}
@@ -122,10 +76,20 @@ export default function PixelPreloader() {
           
           <div className="flex justify-between w-full font-mono text-[10px] md:text-xs font-bold tracking-widest uppercase opacity-60">
             <span>SYSTEM INIT</span>
-            <span>{Math.round(progress)}%</span>
+            <span>WAIT...</span>
           </div>
         </div>
       </div>
+      
+      {/* Define the CSS animation globally locally in preloader */}
+      <style dangerouslySetInnerHTML={{__html: `
+        @keyframes fillBar {
+          0% { width: 0%; }
+          40% { width: 45%; }
+          70% { width: 85%; }
+          100% { width: 100%; }
+        }
+      `}} />
     </div>
   );
 }

@@ -418,6 +418,23 @@ export const episodes: Episode[] = [
     highlights: ["AI is a force multiplier for human intelligence, not a replacement.", "Current LLMs do not understand physical reality — a cat has more real-world intelligence.", "Self-supervised learning and JEPA are the path to truly intelligent machines.", "India is uniquely positioned to become a global AI hub.", "The real AI dangers are bias, deepfakes, and surveillance — not sci-fi apocalypse.", "Open-source AI defines the standards of the ecosystem."]
   },
   {
+    id: "ep-wtf-16",
+    number: "16",
+    series: "WTF is",
+    isNew: true,
+    date: "Mar 2024",
+    duration: "2 hr +",
+    title: "What character 'flaws' make the best entrepreneurs?",
+    guest: "Ritesh Agarwal, Ghazal Alagh, Manish Poddar",
+    description: "Nikhil Kamath discusses risk-taking, spotting opportunities, dealing with failure, and the 'flaws' that make great entrepreneurs with Ritesh Agarwal (OYO), Ghazal Alagh (Mamaearth), and Manish Poddar (Rare Rabbit).",
+    tags: ["STARTUPS & VC", "BUSINESS & ECONOMICS"],
+    invisibleTags: ["Entrepreneurship", "RiteshAgarwal", "GHazalAlagh", "ManishPoddar", "OYO", "Mamaearth", "RareRabbit", "NikhilKamath", "WTF"],
+    transcript: "Welcome to this episode where we talk about the flaws that make great founders...",
+    summary: "A breakdown of the entrepreneurial mindset with founders of OYO, Mamaearth, and Rare Rabbit, exploring risk, failure, and unlearning.",
+    mindmapUrl: defaultMindmap,
+    highlights: ["Embracing character flaws as strengths.", "Dealing with intense, public failures.", "Spotting opportunities in chaos."]
+  },
+  {
     id: "ep-01",
     number: "20",
     series: "WTF is",
