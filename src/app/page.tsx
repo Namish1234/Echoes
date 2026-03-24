@@ -22,7 +22,10 @@ export default function HomePage() {
   // Redirect new users to onboarding
   useEffect(() => {
     if (!isLoading && user && userProfile && !userProfile.onboardingComplete) {
-      router.push('/onboarding');
+      // Only redirect if VERIFIED (Google users are automatically verified)
+      if (user.emailVerified) {
+        router.push('/onboarding');
+      }
     }
   }, [user, userProfile, isLoading, router]);
 
@@ -30,12 +33,16 @@ export default function HomePage() {
     return <div className="min-h-screen" />; // Prevents the sidebar/footer from shrinking while loading
   }
 
-  // Logged-in user with completed onboarding → show curated feed
-  if (user && userProfile?.onboardingComplete) {
+  if (user) {
     if (!user.emailVerified) {
       return <VerifyEmailPrompt />;
     }
-    return <FeedPage />;
+    if (userProfile?.onboardingComplete) {
+      return <FeedPage />;
+    }
+    // If they are verified but haven't completed onboarding, the useEffect will redirect them.
+    // Just show a blank screen while redirecting to avoid flashing the LandingPage.
+    return <div className="min-h-screen" />; 
   }
 
   // Not logged in → show landing page

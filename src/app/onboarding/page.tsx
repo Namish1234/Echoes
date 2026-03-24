@@ -135,6 +135,9 @@ function OnboardingForm() {
     if (!isLoading && !user) {
       router.push('/');
     }
+    if (!isLoading && user && !user.emailVerified) {
+      router.push('/');
+    }
     if (!isLoading && userProfile?.onboardingComplete && !isRetake) {
       router.push('/');
     }
