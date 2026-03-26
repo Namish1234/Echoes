@@ -455,6 +455,24 @@ export default function Op01Episode() {
 
       {/* ── KEY LESSONS ── */}
       <section className="w-full max-w-5xl mx-auto px-6 py-16 relative z-10">
+        <div className="text-center mb-16 relative z-10">
+          <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tight inline-block relative text-black bg-[#00E5FF] px-4 py-1 border-4 border-wtf-black shadow-[6px_6px_0px_var(--text-primary)]">
+            <span className="relative z-10">Examine The Data</span>
+          </h2>
+          <p className="font-bold mt-6 max-w-xl mx-auto opacity-80" style={{ color: 'var(--text-primary)' }}>Break down the exact mental tactics and physiological hurdles of Vic&apos;s monumental rehab.</p>
+        </div>
+
+        <div className="flex flex-col gap-12 relative z-10">
+          {extendedLessons.map((lesson, index) => (
+             <LessonCard 
+               key={index}
+               index={index}
+               lessonContext={lesson.context}
+               onClick={() => setActiveModalId(index)}
+               align={lesson.align}
+             />
+          ))}
+        </div>
       </section>
 
       {/* ── DOTTED DIVIDER ── */}
