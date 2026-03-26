@@ -1,190 +1,330 @@
 # How to Add a New Podcast Episode
 
-This guide walks you through adding a new episode to the Echoes website — from transcript to mindmap to audio.
+> **Template Reference:** `src/app/episode/ep-wtf-16/page.tsx`
+> Every new episode page follows this exact structure.
 
 ---
 
-## Quick Overview
+## Quick Checklist
 
-Adding an episode comes down to **3 steps**:
-1. Add episode data to `src/lib/data.ts`
-2. (Optional) Drop an audio file in `public/audio/`
-3. Done — the page auto-generates at `/episode/{id}`
-
----
-
-## Step 1: Prepare Your Transcript
-
-Format your raw transcript into the **structured format** below. This is where the semantic highlighting magic happens.
-
-### Transcript Format
-
-Each line of dialogue is an object with:
-- `speaker` — who's talking
-- `timestamp` — when they say it (MM:SS)
-- `content` — what they say, with optional **highlight tags**
-
-### Highlight Tags
-
-Wrap important phrases in tags to auto-color them:
-
-| Tag | Color | Use For |
-|-----|-------|---------|
-| `[tech: phrase]` | Blue | Technical terms, tools, architectures |
-| `[phil: phrase]` | Purple | Philosophical, ethical, abstract ideas |
-| `[biz: phrase]` | Green | Business strategy, metrics, market terms |
-
-**Example:**
-```
-"We need [tech: Joint Embedding Predictive Architectures] to achieve [phil: true understanding]."
-```
+- [ ] Add episode data to `src/lib/data.ts`
+- [ ] Add guest images to `public/images/guests/`
+- [ ] Extract transcript via `extract_transcripts.py`
+- [ ] Create episode page folder at `src/app/episode/ep-{id}/`
+- [ ] Copy and customise `page.tsx` from `ep-wtf-16`
+- [ ] Create transcript sub-page at `ep-{id}/transcript/page.tsx`
+- [ ] Update Spotify & YouTube links
+- [ ] Test light/dark mode
 
 ---
 
-## Step 2: Prepare Your Mindmap Nodes
+## Step 1: Episode Data (`src/lib/data.ts`)
 
-The mindmap is an interactive 2D canvas with connected concept nodes. Define nodes like:
+Add the new episode object to the `episodes` array. Place newer episodes first.
 
 ```typescript
 {
-  id: "unique-id",           // lowercase, hyphenated
-  label: "Node Label",       // shown on the node
-  category: "tech",          // "core" | "tech" | "phil" | "biz" | "example"
-  children: ["child-id-1"]   // optional: connect to example/sub-nodes
+  id: "ep-{slug}",              // URL slug — will be /episode/ep-{slug}
+  number: "21",                 // Episode number (for display)
+  series: "WTF is",             // or "People by WTF"
+  isNew: true,                  // Show NEW badge (remove after a week)
+  date: "Apr 2024",
+  duration: "1 hr 45 min",
+  title: "Your Episode Title Here",
+  guest: "Guest Name 1, Guest Name 2",
+  description: "A detailed 1-2 sentence description of the episode...",
+  tags: ["STARTUPS & VC", "TECHNOLOGY & AI"],
+  invisibleTags: ["SearchKeyword1", "SearchKeyword2"],
+  transcript: "Brief transcript preview text...",
+  summary: "A 1-sentence summary for the archive card.",
+  mindmapUrl: defaultMindmap,
+  highlights: [
+    "Key insight one.",
+    "Key insight two.",
+    "Key insight three."
+  ],
+  parsedTranscript: []  // Fallback — transcript loaded from JSON at runtime
 }
 ```
 
-**Category colors:**
-- `core` → Orange (main themes)
-- `tech` → Blue (technical concepts)
-- `phil` → Purple (philosophical ideas)
-- `biz` → Green (business concepts)
-- `example` → Gray (real-world examples, link them as children of a parent)
+### Required Fields
+| Field | Purpose |
+|---|---|
+| `id` | URL path: `/episode/{id}` |
+| `title` | Main heading on the episode page |
+| `guest` | Comma-separated guest names |
+| `description` | Paragraph below the title |
+| `tags` | Visible category badges |
+| `highlights` | Shown as tags under "The Perspectives" |
+| `summary` | Used on the archive card |
 
 ---
 
-## Step 3: Add the Episode to `data.ts`
+## Step 2: Guest Images
 
-Open `src/lib/data.ts` and add your episode object to the `episodes` array.
+Place guest photos in `public/images/guests/`.
 
-### Full Template
+**Supported formats:** `.jpg`, `.avif`, `.png`, `.webp`
 
-Copy this and fill in your details:
+**Naming convention:** `FirstName.ext` (e.g., `Ritesh.avif`, `gazal.jpg`)
 
-```typescript
+> **Tip:** Crop to a roughly square aspect ratio. The Polaroid component displays them at a fixed size with `object-cover`.
+
+---
+
+## Step 3: Extract Transcript
+
+### One command:
+```bash
+python extract_transcripts.py "https://youtube.com/watch?v=VIDEO_ID"
+```
+
+**What it does:**
+1. Downloads the YouTube auto-generated transcript (via `youtube-transcript-api`)
+2. Merges short segments for readability
+3. Saves to **both** `transcripts/{VIDEO_ID}.json` **and** `public/transcripts/{VIDEO_ID}.json`
+
+The transcript page (`/episode/ep-{id}/transcript`) automatically loads from `public/transcripts/{VIDEO_ID}.json` at runtime.
+
+**Prerequisites:**
+```bash
+pip install youtube-transcript-api
+```
+
+**Output format:**
+```json
 {
-  id: "ep-XX",                     // Unique ID (used in URL: /episode/ep-XX)
-  number: "1",                     // Episode number
-  series: "People by WTF",         // Series name (or omit for default)
-  isNew: true,                     // Show "NEW" badge? Set false later
-  date: "Jan 15, 2025",            // Display date
-  duration: "1 hr 20 min",         // Episode length
-  title: "YOUR EPISODE TITLE",     // Big bold title
-  guest: "Guest Name",             // Featured guest
-  description: "A short 1-2 sentence summary of the episode for card previews.",
-  tags: ["TECHNOLOGY & AI"],        // Categories shown as badges
-  invisibleTags: ["AI", "ML"],     // Extra tags for search (not displayed)
-  transcript: "Short fallback text for episodes without structured transcripts...",
-  audioSrc: "/audio/ep-XX.mp3",    // Path to audio file (see Step 4)
-
-  // Mindmap nodes (see Step 2 above)
-  mindmapNodes: [
-    { id: "main-theme", label: "Main Theme", category: "core", children: ["example-1"] },
-    { id: "concept-1", label: "Key Concept", category: "tech" },
-    { id: "idea-1", label: "Big Idea", category: "phil" },
-    { id: "strategy-1", label: "Strategy", category: "biz" },
-    { id: "example-1", label: "Real Example", category: "example" },
-  ],
-
-  // Key takeaways shown in the floating sidebar
-  keyLessons: [
-    "First key insight from the episode.",
-    "Second important takeaway.",
-    "Third lesson learned.",
-  ],
-
-  // Structured transcript with semantic highlighting
-  parsedTranscript: [
+  "videoId": "FPV5fAkqyBs",
+  "lineCount": 2793,
+  "transcript": [
     {
-      speaker: "Host Name",
-      timestamp: "00:00",
-      content: "Welcome to the show. Today we're diving into [tech: Machine Learning] and its implications for [biz: the global economy]."
-    },
-    {
-      speaker: "Guest Name",
-      timestamp: "01:15",
-      content: "Thank you. The core question is whether [tech: neural networks] can achieve [phil: genuine understanding] or remain sophisticated pattern matchers."
-    },
-    // ... add more transcript lines
-  ],
-
-  summary: "A full paragraph summary of the episode for the episode detail page.",
-  mindmapUrl: "",                  // Leave empty (we use mindmapNodes now)
-  highlights: [                    // Short bullet highlights (fallback if keyLessons missing)
-    "First highlight.",
-    "Second highlight.",
+      "speaker": "Unknown",
+      "timestamp": "00:00",
+      "content": "Welcome to another episode..."
+    }
   ]
-},
+}
+```
+
+> **Note:** YouTube transcripts have "Unknown" as the speaker. You can manually label speakers in the JSON file if desired.
+
+---
+
+## Step 4: Create the Episode Page
+
+### Folder Structure
+```
+src/app/episode/
+  ep-wtf-16/          ← TEMPLATE (copy this folder)
+    page.tsx           ← Main episode page
+    transcript/
+      page.tsx         ← Deep-dive transcript page
+```
+
+### Copy the template
+```
+1. Copy the entire `ep-wtf-16` folder
+2. Rename to `ep-{your-id}` (must match the `id` in data.ts)
+3. Customise page.tsx with episode-specific content
 ```
 
 ---
 
-## Step 4: Add Audio (Optional)
+## Step 5: Customise `page.tsx`
 
-1. Place your MP3 file in: `public/audio/`
-2. Name it to match the `audioSrc` field: e.g., `ep-XX.mp3`
-3. The sticky audio player at the bottom of the episode page will auto-detect it
-4. When audio plays, the transcript auto-scrolls to the current dialogue line
+Below is every section you need to modify, in order.
 
-**No audio file?** The player shows a non-intrusive "Place audio in /public/audio/" message.
+### 5.1 — Episode ID
+
+```tsx
+const episode = episodes.find(ep => ep.id === 'ep-{YOUR-ID}');
+```
+
+### 5.2 — Guests Array (Polaroid Scrapbook)
+
+```tsx
+const guests = [
+  { name: "Guest Name", role: "Company", rotation: "rotate(-7deg) translateY(12px)", image: "/images/guests/name.jpg" },
+];
+```
+
+#### Handling Different Guest Counts
+
+| Guests | Layout | Rotation Strategy |
+|---|---|---|
+| **1** | Single centred Polaroid | `rotate(-3deg)` |
+| **2** | Side by side, slight overlap | `-5deg`, `+4deg` |
+| **3** | Overlapping trio | `-7deg`, `+3deg`, `-4deg` |
+| **4** (default) | Overlapping quad with `md:-space-x-4` | `-7deg`, `+4deg`, `-4deg`, `+7deg` |
+| **5+** | Wrap to 2 rows, reduce Polaroid size | Alternate `-5deg` to `+5deg`, add `scale-90` to `<Polaroid>` |
+
+**For 5+ guests**, adjust the container:
+```tsx
+<div className="flex flex-row justify-center items-center gap-0 flex-wrap relative z-10 w-full max-w-5xl mx-auto">
+```
+And add `scale-90` or `scale-[0.85]` to each Polaroid wrapper.
+
+### 5.3 — Lessons (Unpack the Lessons)
+
+```tsx
+const extendedLessons = [
+  {
+    context: "One-line summary of the lesson",
+    summary: "2-3 sentence detailed explanation...",
+    align: 'left' as const   // Pattern: left, right, left, right, center
+  },
+];
+```
+
+**Alignment pattern (ladder layout):**
+- 3 lessons: `left`, `right`, `center`
+- 4 lessons: `left`, `right`, `left`, `center`
+- 5 lessons: `left`, `right`, `left`, `right`, `center`
+
+### 5.4 — Episode Breakdown (Stats Cards)
+
+Update the three stat cards: Duration, Themes count, Companies/People count.
+
+### 5.5 — Notable Quote
+
+Pick the most impactful quote from the episode:
+
+```tsx
+<blockquote>Your powerful quote here.</blockquote>
+<p>— Speaker Name, Company</p>
+```
+
+### 5.6 — The Episode in 60 Seconds (Summary)
+
+This is the **magazine-style summary** with inline Polaroid images.
+
+> **CRITICAL:** Do NOT just use generic AI summaries. You must **manually read the deeply extracted transcript JSON** and derive specific, authentic insights and real quotes for these paragraphs. The quality of this section is paramount.
+
+**Structure (based on ep-18):**
+1. **Paragraph 1** — Left-floating image, Guest 1's key point (with quote)
+2. **Paragraph 2** — Right-floating image, Guest 2's key point (with quote)
+3. **Paragraph 3** — Left-floating image, Guest 3's key point
+4. **Paragraph 4** — Right-floating image, Guest 4's key point
+5. **Paragraph 5** — Left-floating image, Host/Additional point
+6. **"The Takeaway" box** — 1-sentence conclusion
+
+**Keyword highlighting colors:**
+| Color | Hex | Use For |
+|---|---|---|
+| Orange | `#FF6B00` | Core traits, key "flaws", abstract concepts |
+| Purple | `#8B5CF6` | Psychological concepts, algorithms, hierarchy |
+| Green | `#22C55E` | Positive outcomes, solutions, authenticity |
+| Blue | `#3B82F6` | Technical terms, achievements, consistency |
+| Pink | `#EC4899` | Virality, vulnerability, emotions |
+
+Apply via:
+```tsx
+<span className="font-extrabold" style={{ color: '#FF6B00' }}>keyword</span>
+```
+
+**For 1-2 guests:** Reduce to 2-3 paragraphs with alternating left/right images.
+**For 3+ guests:** Ensure 1 paragraph per guest, plus host if relevant.
+
+### 5.7 — Recommended Episodes ("If You Liked This")
+
+```tsx
+const recommendedEpisodes = [
+  {
+    id: 'ep-03',
+    title: 'Related Episode Title',
+    guest: 'Guest Name',
+    description: 'Short description...',
+    tags: ['TAG'],
+  },
+  // List 3 related episodes
+];
+```
+
+### 5.8 — Spotify & YouTube Links
+
+```tsx
+<a href="https://open.spotify.com/episode/YOUR_ID" ...>Spotify</a>
+<a href="https://youtu.be/YOUR_VIDEO_ID" ...>YouTube</a>
+```
 
 ---
 
-## Step 5: Verify
+## Step 6: Transcript Sub-Page
+
+Copy from `ep-wtf-16/transcript/page.tsx` and update:
+
+1. Episode ID: `episodes.find(ep => ep.id === 'ep-{YOUR-ID}')`
+2. Fetch URL: `fetch('/transcripts/{YOUR_VIDEO_ID}.json')`
+3. Back link: `<Link href="/episode/ep-{YOUR-ID}">← Back</Link>`
+
+**Built-in features:** Real-time search, line-saving, optional notes, light/dark mode.
+
+---
+
+## Visual Design Reference
+
+### Section Order (top to bottom)
+```
+1. Header (title, tags, date, Spotify/YouTube)
+   ···· dotted divider ····
+2. The Perspectives (highlights + Polaroid scrapbook)
+   ···· dotted divider ····
+3. Unpack the Lessons (ladder layout)
+   ···· dotted divider ····
+4. Episode Breakdown (3 stats cards)
+   ···· dotted divider ····
+5. Notable Quote
+6. The Episode in 60 Seconds (inline images + keyword highlights)
+   ···· dotted divider ····
+7. If You Liked This (3 recommended episodes)
+```
+
+### Dividers (dotted, never solid)
+```tsx
+<div className="w-full max-w-6xl mx-auto px-6 py-2">
+  <div className="border-t-2 border-dashed" style={{ borderColor: 'var(--border-color)', opacity: 0.4 }}></div>
+</div>
+```
+
+### Floating Deep Dive FAB
+Bottom-right `+` button → opens slide-out tray → Transcript link + Mind Map.
+
+### Color System (CSS variables, auto light/dark)
+- `--text-primary`, `--text-secondary`, `--text-muted`
+- `--surface`, `--page-bg`
+- `--border-color`, `--border-subtle`
+- `--color-wtf-orange` = `#FF6B00`
+
+---
+
+## Full Workflow Example
 
 ```bash
-npm run build
+# 1. Extract transcript
+python extract_transcripts.py "https://youtube.com/watch?v=abc123"
+
+# 2. Add guest image to public/images/guests/
+
+# 3. Add episode data to src/lib/data.ts
+
+# 4. Copy template
+# Copy src/app/episode/ep-wtf-16/ → src/app/episode/ep-{new-id}/
+# Update all episode-specific content
+
+# 5. Test
+npm run dev
+# Visit http://localhost:3000/episode/ep-{new-id}
+# Check light mode + dark mode
 ```
 
-Then visit: `http://localhost:3000/episode/ep-XX`
-
-### Checklist
-- [ ] Episode appears on the WTF/Figuring Out podcast page
-- [ ] Clicking the card navigates to `/episode/ep-XX`
-- [ ] Header shows correct title, guest, date, tags
-- [ ] Spotify/YouTube/PDF buttons are visible
-- [ ] Transcript renders with speaker names on the left
-- [ ] Semantic highlights show in correct colors (blue/purple/green)
-- [ ] Floating "Mindmap" button opens the interactive canvas
-- [ ] Floating "Key Lessons" button shows the takeaways
-- [ ] Audio player appears at the bottom (if audio file is present)
-
 ---
 
-## One-Command Workflow (For AI Assistants)
+## Troubleshooting
 
-If you're using an AI assistant (like me!), you can paste your raw transcript and say:
-
-> "Here's the transcript for Episode X with [Guest]. Add it to the website."
-
-The AI will:
-1. Parse the transcript into the structured format
-2. Auto-tag semantic highlights (`[tech:]`, `[phil:]`, `[biz:]`)
-3. Generate mindmap nodes from key concepts
-4. Create key lessons from the main insights
-5. Add the episode to `data.ts`
-6. Verify the build
-
-**All you need to provide:** the raw transcript text and episode metadata (guest, date, duration).
-
----
-
-## Future: Admin Panel
-
-In the future, this workflow will move to an admin panel where:
-- Each podcast is owned by its creator
-- Creators can upload transcripts, mindmaps, and audio through a UI
-- Content is moderated before going live
-- The structured data is stored in a database rather than `data.ts`
-
-For now, `data.ts` is the single source of truth.
+| Issue | Solution |
+|---|---|
+| Polaroids overflow on mobile | Add `flex-wrap`, reduce scale |
+| Transcript shows "Unknown" | Manual — YouTube transcripts don't have speaker labels |
+| Dark mode text invisible | Use `var(--text-primary)` not hardcoded colors |
+| Images not loading | Path must start with `/images/guests/` |
+| extract_transcripts.py fails | Run `pip install youtube-transcript-api` |

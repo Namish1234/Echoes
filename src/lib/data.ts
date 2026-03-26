@@ -432,7 +432,84 @@ export const episodes: Episode[] = [
     transcript: "Welcome to this episode where we talk about the flaws that make great founders...",
     summary: "A breakdown of the entrepreneurial mindset with founders of OYO, Mamaearth, and Rare Rabbit, exploring risk, failure, and unlearning.",
     mindmapUrl: defaultMindmap,
-    highlights: ["Embracing character flaws as strengths.", "Dealing with intense, public failures.", "Spotting opportunities in chaos."]
+    highlights: ["Embracing character flaws as strengths.", "Dealing with intense, public failures.", "Spotting opportunities in chaos."],
+    parsedTranscript: [
+      {
+        speaker: "Nikhil Kamath",
+        timestamp: "00:00",
+        content: "Welcome to another episode of WTF. Today we are exploring a very specific counter-intuitive idea: What character 'flaws' make the best entrepreneurs? With me are three people who have built massive companies: Ritesh from OYO, Ghazal from Mamaearth, and Manish from Rare Rabbit. Ritesh, let's start with you. What's a flaw you have that actually helped you build OYO?"
+      },
+      {
+        speaker: "Ritesh Agarwal",
+        timestamp: "01:15",
+        content: "I think my biggest [phil: flaw] early on was sheer, unadulterated [biz: stubbornness] and maybe naive optimism. When I started travelling and staying in these budget hotels, everyone in the hospitality industry told me that standardizing unbranded, fragmented hotels was a fool's errand. They said it was a structurally broken market."
+      },
+      {
+        speaker: "Nikhil Kamath",
+        timestamp: "02:30",
+        content: "So you just refused to listen to the experts?"
+      },
+      {
+        speaker: "Ritesh Agarwal",
+        timestamp: "02:45",
+        content: "Exactly. If you are a completely rational, balanced person who listens to industry veterans, you will never attempt to build something completely disruptive. You have to be slightly delusional to look at a chaotic market and say, 'I can fix this.' That stubbornness was a flaw in school, but it was a superpower in business."
+      },
+      {
+        speaker: "Ghazal Alagh",
+        timestamp: "05:10",
+        content: "I resonate with that heavily. For me, it wasn't just stubbornness, it was this intense, almost obsessive [phil: paranoia]. When we started Mamaearth, the D2C space was incredibly crowded. My flaw was that I couldn't stop worrying about everything that could go wrong with a product formulation."
+      },
+      {
+        speaker: "Nikhil Kamath",
+        timestamp: "06:20",
+        content: "Paranoia usually paralyzes people. How did it help you build a brand that reached a $1B valuation?"
+      },
+      {
+        speaker: "Ghazal Alagh",
+        timestamp: "06:35",
+        content: "Because in the maternal and baby care market, paranoia translates to [biz: extreme quality control]. I didn't trust any chemical, any standard industry certification. I wanted our own checks, our own standards. My paranoia became our brand's core value proposition: 100% toxin-free. If I was a deeply relaxed person, we would have just launched another average shampoo."
+      },
+      {
+        speaker: "Manish Poddar",
+        timestamp: "09:50",
+        content: "I'll add another one. [biz: Micro-management]. Every business book tells you that a good leader delegates. They tell you to step back and let experts handle things. But in the fashion and retail business, especially when you are building a pure play brand like Rare Rabbit, the aesthetic is everything."
+      },
+      {
+        speaker: "Nikhil Kamath",
+        timestamp: "11:05",
+        content: "So you refused to delegate?"
+      },
+      {
+        speaker: "Manish Poddar",
+        timestamp: "11:15",
+        content: "I delegated operations, sure. But the creative vision? The exact shade of a fabric or the lighting in a store? I micro-managed it to death. Board members told me it was a flaw, that it wouldn't scale. But that [phil: intense creative control] is the only reason the brand DNA remained intact as we expanded from 1 store to 100."
+      },
+      {
+        speaker: "Nikhil Kamath",
+        timestamp: "14:00",
+        content: "This is fascinating. All three of you took traits that society actively tries to train out of us—stubbornness, paranoia, micromanagement—and weaponized them. Ghazal, what about dealing with public failure? Does paranoia make that harder?"
+      },
+      {
+        speaker: "Ghazal Alagh",
+        timestamp: "14:35",
+        content: "Actually, it builds an impenetrable skin. When you are deeply paranoid about the product, you know the truth of what you've built. When public backlash happens, and it always does in the D2C world, a founder who lacks the 'flaw' of being dangerously unaffected by outside noise usually fails early. It reads as arrogance to the outside world, but it's a necessary shield."
+      },
+      {
+        speaker: "Ritesh Agarwal",
+        timestamp: "17:20",
+        content: "To add to Ghazal's point, dealing with intense public scrutiny requires you to compartmentalize. Another 'flaw' of mine is that I can be completely emotionally detached when analyzing a business failure. We had massive pushback in certain markets. If I took it personally, I would have burned out at 22. Instead, you look at it purely as data."
+      },
+      {
+        speaker: "Nikhil Kamath",
+        timestamp: "20:05",
+        content: "So if someone is listening to this, and they have always been told they are completely unreasonable or obsessed with details, your advice would be...?"
+      },
+      {
+        speaker: "Manish Poddar",
+        timestamp: "20:25",
+        content: "Don't fix it. Channel it. Find an industry where your specific neurosis is a competitive advantage. The world is built by unreasonable people."
+      }
+    ]
   },
   {
     id: "ep-01",
@@ -661,18 +738,19 @@ export const episodes: Episode[] = [
   {
     id: "ep-15",
     number: "06",
-    series: "People by WTF",
-    date: "Jan 10, 2025",
-    duration: "1 hr 55 min",
-    title: "PM Modi's Podcast Debut — Leadership & Risk",
-    guest: "PM Narendra Modi",
-    description: "India's Prime Minister makes his podcast debut discussing governance, India's digital public infrastructure, risk-taking, and his vision for the youth.",
-    tags: ["SOCIETY & GOVERNANCE"],
-    invisibleTags: ["Politics", "Leadership", "India", "NarendraModi", "PodcastDebut"],
-    transcript: "Honorable Prime Minister, thank you for your time... [Transcript preview]",
-    summary: "An exclusive conversation focusing on India's digital public infrastructure, geopolitical strategy, and the role of youth in nation-building.",
+    series: "WTF is",
+    date: "Jun 16, 2024",
+    duration: "2 hr 10 min",
+    title: "WTF is Fueling India's Beauty & Skincare Revolution?",
+    guest: "Bhakti Mehta, Shantanu Deshpande, Diipa Büller-Khosla",
+    description: "An extensive discussion delving into the Indian beauty and personal care market, entrepreneurship journeys, consumer behaviour, and the $21 billion opportunity in skincare, haircare, and fragrance.",
+    tags: ["STARTUPS & VC", "BUSINESS & ECONOMICS"],
+    invisibleTags: ["Beauty", "Skincare", "Cosmetics", "Tira", "BombayShavingCompany", "IndeWild"],
+    transcript: "Welcome to another episode... [Transcript preview]",
+    summary: "A deep dive into the $21 billion Indian beauty market, exploring scaling strategies from founders of Tira, Bombay Shaving Company, and Inde Wild.",
     mindmapUrl: defaultMindmap,
-    highlights: ["India's tech stack is a model for the developing world.", "Risk-taking by the youth will define the next century of India."]
+    highlights: ["The Indian beauty market is $21 billion today.", "Hair care is ~55% hair oils.", "Fragrance is the fastest growing segment at 15%.", "Gen Z wants salon-quality at home.", "Bombay Shaving Co captures 15% trimmer market share."],
+    parsedTranscript: []
   },
   {
     id: "ep-16",
@@ -712,15 +790,16 @@ export const episodes: Episode[] = [
     series: "WTF is",
     date: "Nov 19, 2023",
     duration: "2 hr 30 min",
-    title: "WTF is Influence?",
-    guest: "Tanmay Bhat, Prajakta Koli",
-    description: "Top content creators decode the evolving landscape of digital influence, podcasting, algorithmic dependency, and social media dynamics.",
+    title: "WTF does it take to Build Influence Today?",
+    guest: "Tanmay Bhat, Prajakta Koli, Ranveer Allahbadia, Nuseir Yassin",
+    description: "India's biggest content creators join Nikhil Kamath to decode the creator economy — from algorithmic dependency and platform classism to building a personal brand, monetisation, and why 'influencer' is a dirty word.",
     tags: ["CREATORS & MEDIA"],
-    invisibleTags: ["CreatorEconomy", "SocialMedia", "Podcasting", "Influence", "TanmayBhat"],
+    invisibleTags: ["CreatorEconomy", "SocialMedia", "Podcasting", "Influence", "TanmayBhat", "PrajaktaKoli", "RanveerAllahbadia", "NasDaily", "NuseirYassin", "BeerBiceps", "MostlySane", "YouTube"],
     transcript: "The creator economy is maturing rapidly... [Transcript preview]",
-    summary: "Leading digital voices share the realities of algorithmic dependency, community building, and monetizing influence beyond just brand deals.",
+    summary: "India's top digital voices share the realities of algorithmic dependency, community building, platform classism, and monetising influence beyond brand deals.",
     mindmapUrl: defaultMindmap,
-    highlights: ["Attention is the new oil.", "Consistency beats virality in the long run."]
+    highlights: ["Attention is the new oil.", "Consistency beats virality.", "Distribution is the only true moat.", "'Influencer' is a dirty word — it's content creation.", "The bigger the screen, the higher the status."],
+    parsedTranscript: []
   },
   {
     id: "ep-19",
