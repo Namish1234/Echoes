@@ -190,6 +190,29 @@ export default function LandingPage() {
             </article>
           </Link>
 
+          {/* The Opponents Card */}
+          <Link href="/the-opponents" className="group block">
+            <article className="zine-border bg-wtf-white shadow-zine-lg hover:shadow-[12px_12px_0px_#000] dark:hover:shadow-[12px_12px_0px_#333] hover:-translate-y-1 transition-all duration-300 flex flex-col h-full overflow-hidden">
+              <div className="bg-[#00E5FF] text-wtf-black p-8 flex items-center justify-center relative overflow-hidden h-48">
+                <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'linear-gradient(to right, var(--grid-line-inv) 1px, transparent 1px), linear-gradient(to bottom, var(--grid-line-inv) 1px, transparent 1px)', backgroundSize: '20px 20px' }}></div>
+                <h3 className="relative z-10 text-4xl lg:text-5xl font-black uppercase tracking-tighter text-center">The<br/><span className="text-white drop-shadow-sm">Opponents</span></h3>
+              </div>
+              <div className="p-8 flex-grow flex flex-col text-wtf-black">
+                <div className="flex gap-2 mb-4">
+                  <span className="border-2 border-wtf-black px-2 py-0.5 text-[10px] font-bold uppercase">Sports</span>
+                  <span className="border-2 border-wtf-black px-2 py-0.5 text-[10px] font-bold uppercase">Resilience</span>
+                </div>
+                <p className="font-medium text-lg opacity-90 leading-relaxed mb-8 flex-grow">
+                  Inspiring comeback stories, sports resilience, and examining the ultimate competitive mindset. Overcoming the toughest opponent: oneself.
+                </p>
+                <div className="flex justify-between items-center border-t-2 border-dashed border-wtf-black pt-4">
+                  <span className="font-black uppercase text-sm tracking-widest">1 Episode</span>
+                  <span className="font-black text-[#00E5FF] group-hover:text-wtf-black dark:group-hover:text-wtf-white transition-colors">EXPLORE →</span>
+                </div>
+              </div>
+            </article>
+          </Link>
+
           {/* Coming Soon Placeholder */}
           <article className="border-4 border-dashed border-wtf-black bg-transparent p-8 flex flex-col items-center justify-center text-center opacity-50 min-h-[400px]">
              <span className="text-4xl mb-4">📡</span>

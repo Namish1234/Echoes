@@ -1,6 +1,6 @@
 # How to Add a New Podcast Episode
 
-> **Template Reference:** `src/app/episode/ep-wtf-16/page.tsx`
+> **Template Reference:** `src/app/episode/ep-16/page.tsx`
 > Every new episode page follows this exact structure.
 
 ---
@@ -11,7 +11,7 @@
 - [ ] Add guest images to `public/images/guests/`
 - [ ] Extract transcript via `extract_transcripts.py`
 - [ ] Create episode page folder at `src/app/episode/ep-{id}/`
-- [ ] Copy and customise `page.tsx` from `ep-wtf-16`
+- [ ] Copy and customise `page.tsx` from `ep-16`
 - [ ] Create transcript sub-page at `ep-{id}/transcript/page.tsx`
 - [ ] Update Spotify & YouTube links
 - [ ] Test light/dark mode
@@ -24,7 +24,7 @@ Add the new episode object to the `episodes` array. Place newer episodes first.
 
 ```typescript
 {
-  id: "ep-{slug}",              // URL slug — will be /episode/ep-{slug}
+  id: "ep-{number}",            // URL slug — MUST match the episode number, e.g. ep-06 for Episode 06
   number: "21",                 // Episode number (for display)
   series: "WTF is",             // or "People by WTF"
   isNew: true,                  // Show NEW badge (remove after a week)
@@ -115,7 +115,7 @@ pip install youtube-transcript-api
 ### Folder Structure
 ```
 src/app/episode/
-  ep-wtf-16/          ← TEMPLATE (copy this folder)
+  ep-16/              ← TEMPLATE (copy this folder)
     page.tsx           ← Main episode page
     transcript/
       page.tsx         ← Deep-dive transcript page
@@ -123,8 +123,8 @@ src/app/episode/
 
 ### Copy the template
 ```
-1. Copy the entire `ep-wtf-16` folder
-2. Rename to `ep-{your-id}` (must match the `id` in data.ts)
+1. Copy the entire `ep-16` folder
+2. Rename to `ep-{number}` (must match the `number` field in data.ts)
 3. Customise page.tsx with episode-specific content
 ```
 
@@ -251,7 +251,7 @@ const recommendedEpisodes = [
 
 ## Step 6: Transcript Sub-Page
 
-Copy from `ep-wtf-16/transcript/page.tsx` and update:
+Copy from `ep-16/transcript/page.tsx` and update:
 
 1. Episode ID: `episodes.find(ep => ep.id === 'ep-{YOUR-ID}')`
 2. Fetch URL: `fetch('/transcripts/{YOUR_VIDEO_ID}.json')`
@@ -308,12 +308,12 @@ python extract_transcripts.py "https://youtube.com/watch?v=abc123"
 # 3. Add episode data to src/lib/data.ts
 
 # 4. Copy template
-# Copy src/app/episode/ep-wtf-16/ → src/app/episode/ep-{new-id}/
+# Copy src/app/episode/ep-16/ → src/app/episode/ep-{new-number}/
 # Update all episode-specific content
 
 # 5. Test
 npm run dev
-# Visit http://localhost:3000/episode/ep-{new-id}
+# Visit http://localhost:3000/episode/ep-{new-number}
 # Check light mode + dark mode
 ```
 

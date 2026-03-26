@@ -28,6 +28,9 @@ function Home() {
 
   // Filter episodes based on category and search query (including invisible tags)
   const filteredEpisodes = episodes.filter((ep) => {
+    // Exclude other-podcast episodes
+    if (ep.series === "The Opponents") return false;
+
     // Category match
     const matchCategory = activeCategory === "ALL" || ep.tags.includes(activeCategory);
     

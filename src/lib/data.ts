@@ -58,6 +58,41 @@ export const podcasts: Podcast[] = [
     coverColor: "bg-[#EAB308]",
     textColor: "text-black",
     tags: ["Creators", "Economics"]
+  },
+  {
+    id: "the-opponents",
+    title: "The Opponents",
+    host: "Podcast Host",
+    description: "Inspiring comeback stories, sports resilience, and examining the ultimate competitive mindset.",
+    coverColor: "bg-[#00E5FF]",
+    textColor: "text-wtf-black",
+    tags: ["Sports", "Health & Mind", "Resilience"]
+  }
+];
+
+export interface TheOpponentsEpisode {
+  id: string;
+  number: string;
+  isNew?: boolean;
+  date: string;
+  duration: string;
+  title: string;
+  guest: string;
+  description: string;
+  tags: string[];
+}
+
+export const theOpponentsEpisodes: TheOpponentsEpisode[] = [
+  {
+    id: "op-01",
+    number: "01",
+    isNew: true,
+    date: "Aug 2024",
+    duration: "1 hr 10 min",
+    title: "A Devastating Cycling Accident & Extraordinary Comeback Mission",
+    guest: "Vic Williamson",
+    description: "Olympic track cyclist Vic Williamson recounts the catastrophic crash that left her millimeters from paralysis, and her grueling 'zero to hero' rehab journey.",
+    tags: ["SPORTS", "RESILIENCE", "HEALTH & MIND"]
   }
 ];
 
@@ -267,7 +302,21 @@ const defaultMindmap = "https://lh3.googleusercontent.com/aida-public/AB6AXuBY4E
 
 export const episodes: Episode[] = [
   {
-    id: "ep-00",
+    id: "op-01",
+    number: "01",
+    series: "The Opponents",
+    isNew: true,
+    date: "Aug 2024",
+    duration: "1 hr 10 min",
+    title: "A Devastating Cycling Accident & Extraordinary Comeback Mission - Vic Williamson",
+    guest: "Vic Williamson",
+    description: "Olympic track cyclist Vic Williamson recounts the catastrophic crash that left her millimeters from paralysis, and her grueling 'zero to hero' rehab journey.",
+    tags: ["SPORTS", "RESILIENCE"],
+    summary: "Olympic cyclist Vic Williamson recounts her miraculous survival of a velodrome crash that left her with a broken neck, back, and pelvis — and the 752-day mission to return to elite competition.",
+    highlights: ["2mm from paralysis", "Project Silverback", "752 days to return"],
+  },
+  {
+    id: "ep-21",
     number: "21",
     series: "People by WTF",
     isNew: true,
@@ -418,7 +467,7 @@ export const episodes: Episode[] = [
     highlights: ["AI is a force multiplier for human intelligence, not a replacement.", "Current LLMs do not understand physical reality — a cat has more real-world intelligence.", "Self-supervised learning and JEPA are the path to truly intelligent machines.", "India is uniquely positioned to become a global AI hub.", "The real AI dangers are bias, deepfakes, and surveillance — not sci-fi apocalypse.", "Open-source AI defines the standards of the ecosystem."]
   },
   {
-    id: "ep-wtf-16",
+    id: "ep-16",
     number: "16",
     series: "WTF is",
     isNew: true,
@@ -512,7 +561,7 @@ export const episodes: Episode[] = [
     ]
   },
   {
-    id: "ep-01",
+    id: "ep-20",
     number: "20",
     series: "WTF is",
     date: "Jan 28, 2026",
@@ -528,7 +577,7 @@ export const episodes: Episode[] = [
     highlights: ["Age is no barrier to building massive companies.", "Non-dilutive grants are changing the early-stage landscape."]
   },
   {
-    id: "ep-02",
+    id: "ep-19",
     number: "19",
     series: "People by WTF",
     date: "Jan 10, 2026",
@@ -544,7 +593,7 @@ export const episodes: Episode[] = [
     highlights: ["AI governance requires proactive, not reactive, legislation.", "Youth in politics breaks legacy thinking."]
   },
   {
-    id: "ep-03",
+    id: "ep-18",
     number: "18",
     series: "People by WTF",
     date: "Mar 02, 2026",
@@ -560,7 +609,7 @@ export const episodes: Episode[] = [
     highlights: ["Success often stems from deep-seated childhood pain.", "Sovereign AI will be the new nuclear deterrent."]
   },
   {
-    id: "ep-04",
+    id: "ep-17",
     number: "17",
     series: "People by WTF",
     date: "Feb 24, 2026",
@@ -576,8 +625,8 @@ export const episodes: Episode[] = [
     highlights: ["Scaling laws are ruthlessly predictable.", "We are physically unprepared for the cognitive revolution taking place."]
   },
   {
-    id: "ep-05",
-    number: "16",
+    id: "ep-15",
+    number: "15",
     series: "WTF is",
     date: "Dec 20, 2025",
     duration: "1 hr 05 min",
@@ -591,24 +640,9 @@ export const episodes: Episode[] = [
     mindmapUrl: defaultMindmap,
     highlights: ["Cash is not a safe investment.", "Understand the macro cycles to survive the micro volatility."]
   },
+  // ep-06 ("WTF is Beauty? Tira...") removed — consolidated into the richer ep-06 entry below ("WTF is Fueling India's Beauty & Skincare Revolution?")
   {
-    id: "ep-06",
-    number: "15",
-    series: "WTF is",
-    date: "Sep 20, 2025",
-    duration: "2 hr 38 min",
-    title: "WTF is Beauty? Tira, Bombay Shaving Co., & Inde Wild",
-    guest: "Bhakti Modi, Shantanu Deshpande, Diipa Khosla",
-    description: "Industry leaders decode the salon business, influencer marketing, and what it takes to build a global celebrity brand in India's booming beauty market.",
-    tags: ["STARTUPS & VC", "BUSINESS & ECONOMICS"],
-    invisibleTags: ["D2C", "Beauty", "ECommerce", "BrandBuilding", "Tira", "BombayShavingCo"],
-    transcript: "The beauty category in India is exploding... [Transcript preview]",
-    summary: "A masterclass in consumer brand building, influencer leverage, and the massive untapped potential in India's beauty and personal care market.",
-    mindmapUrl: defaultMindmap,
-    highlights: ["Distribution is the only true moat in D2C.", "Influencer marketing has moved from awareness to direct conversion."]
-  },
-  {
-    id: "ep-07",
+    id: "ep-14",
     number: "14",
     series: "People by WTF",
     date: "Aug 23, 2025",
@@ -624,7 +658,7 @@ export const episodes: Episode[] = [
     highlights: ["Culture eats strategy for breakfast, but execution eats both.", "The future of mobility is shared and electric."]
   },
   {
-    id: "ep-08",
+    id: "ep-13",
     number: "13",
     series: "People by WTF",
     date: "Aug 14, 2025",
@@ -640,7 +674,7 @@ export const episodes: Episode[] = [
     highlights: ["AI is a tool to amplify human intent.", "We must democratize access to intelligence."]
   },
   {
-    id: "ep-09",
+    id: "ep-12",
     number: "12",
     series: "People by WTF",
     date: "Aug 01, 2025",
@@ -656,7 +690,7 @@ export const episodes: Episode[] = [
     highlights: ["AI will provide free, world-class healthcare to everyone.", "Reinvent your skill sets every five years."]
   },
   {
-    id: "ep-10",
+    id: "ep-11",
     number: "11",
     series: "People by WTF",
     date: "Jun 07, 2025",
@@ -672,7 +706,7 @@ export const episodes: Episode[] = [
     highlights: ["Great stories can come from anywhere and be loved everywhere.", "Data informs our decisions, but gut instinct creates hits."]
   },
   {
-    id: "ep-11",
+    id: "ep-10",
     number: "10",
     series: "WTF is",
     date: "May 13, 2025",
@@ -688,7 +722,7 @@ export const episodes: Episode[] = [
     highlights: ["Traffic is a symptom of poor urban planning, not just too many cars.", "Smart signals using AI are reducing wait times significantly."]
   },
   {
-    id: "ep-12",
+    id: "ep-09",
     number: "09",
     series: "WTF is",
     date: "Mar 20, 2025",
@@ -704,7 +738,7 @@ export const episodes: Episode[] = [
     highlights: ["Failure is just data gathering.", "Building globally from Day 1 is no longer optional."]
   },
   {
-    id: "ep-13",
+    id: "ep-08",
     number: "08",
     series: "WTF is",
     date: "Mar 02, 2025",
@@ -720,7 +754,7 @@ export const episodes: Episode[] = [
     highlights: ["Premiumization is real across all Indian tier-1 cities.", "Building a supply chain for fresh products is infinitely harder than software."]
   },
   {
-    id: "ep-14",
+    id: "ep-07",
     number: "07",
     series: "WTF is",
     date: "Feb 01, 2025",
@@ -736,7 +770,7 @@ export const episodes: Episode[] = [
     highlights: ["Sleep is the ultimate biohack.", "We must shift medicine from reactive to predictive."]
   },
   {
-    id: "ep-15",
+    id: "ep-06",
     number: "06",
     series: "WTF is",
     date: "Jun 16, 2024",
@@ -753,7 +787,7 @@ export const episodes: Episode[] = [
     parsedTranscript: []
   },
   {
-    id: "ep-16",
+    id: "ep-05",
     number: "05",
     series: "People by WTF",
     date: "Dec 19, 2024",
@@ -769,7 +803,7 @@ export const episodes: Episode[] = [
     highlights: ["Legacy is built on anticipating the future, not resting on the past.", "Empower managers to act like owners."]
   },
   {
-    id: "ep-17",
+    id: "ep-04",
     number: "04",
     series: "People by WTF",
     date: "Feb 13, 2026",
@@ -785,7 +819,7 @@ export const episodes: Episode[] = [
     highlights: ["Humans control the world because we can cooperate flexibly in large numbers.", "AI is the first technology that can create original myths."]
   },
   {
-    id: "ep-18",
+    id: "ep-03",
     number: "03",
     series: "WTF is",
     date: "Nov 19, 2023",
@@ -802,7 +836,7 @@ export const episodes: Episode[] = [
     parsedTranscript: []
   },
   {
-    id: "ep-19",
+    id: "ep-02",
     number: "02",
     series: "WTF is",
     date: "Sep 01, 2023",
@@ -818,7 +852,7 @@ export const episodes: Episode[] = [
     highlights: ["We don't invest in ideas; we invest in execution capability.", "A giant market forgives a lot of operational mistakes."]
   },
   {
-    id: "ep-20",
+    id: "ep-01",
     number: "01",
     series: "People by WTF",
     date: "Nov 30, 2025",
@@ -834,7 +868,7 @@ export const episodes: Episode[] = [
     highlights: ["Overcome the impossible by breaking it down to physics.", "Earth is the cradle of humanity, but you cannot stay in the cradle forever."]
   },
   {
-    id: "ep-21",
+    id: "ep-08b",
     number: "08",
     series: "People by WTF",
     date: "Apr 10, 2025",
@@ -850,7 +884,7 @@ export const episodes: Episode[] = [
     highlights: ["AI will be the most transformative technology since electricity.", "Giving money away effectively requires more rigor than earning it."]
   },
   {
-    id: "ep-22",
+    id: "ep-special",
     number: "Special",
     series: "WTF is",
     date: "Aug 28, 2025",

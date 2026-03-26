@@ -53,7 +53,7 @@ export default async function EpisodeDetail({ params }: { params: Promise<{ id: 
 
   // Fallback missing data to the sample episode data to create a sense of completeness
   if (!episode.parsedTranscript || episode.parsedTranscript.length === 0) {
-    const sampleEpisode = episodes.find(e => e.id === 'ep-00');
+    const sampleEpisode = episodes.find(e => e.id === 'ep-21');
     if (sampleEpisode) {
       episode = {
         ...episode,

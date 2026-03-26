@@ -240,6 +240,31 @@ export default function PodcastsPage() {
             </article>
           </Link>
 
+          {/* The Opponents */}
+          <Link href="/the-opponents?from=podcasts" className="group">
+            <article className="zine-border bg-wtf-white shadow-zine-lg hover:shadow-[12px_12px_0px_#000] dark:hover:shadow-[12px_12px_0px_#333] hover:-translate-y-1 transition-all flex flex-col md:flex-row overflow-hidden">
+              <div className="bg-[#00E5FF] text-wtf-black p-10 md:p-16 flex items-center justify-center relative overflow-hidden w-full md:w-[400px] shrink-0">
+                <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'linear-gradient(to right, var(--grid-line-inv) 1px, transparent 1px), linear-gradient(to bottom, var(--grid-line-inv) 1px, transparent 1px)', backgroundSize: '20px 20px' }}></div>
+                <h3 className="relative z-10 text-5xl lg:text-6xl font-black uppercase tracking-tighter text-center">The<br/><span className="text-white drop-shadow-sm">Opponents</span></h3>
+              </div>
+              <div className="p-8 md:p-12 flex flex-col flex-1 justify-center text-wtf-black">
+                <div className="flex gap-2 mb-4 flex-wrap">
+                  <span className="border-2 border-wtf-black px-2 py-0.5 text-[10px] font-bold uppercase">Sports</span>
+                  <span className="border-2 border-wtf-black px-2 py-0.5 text-[10px] font-bold uppercase">Health & Mind</span>
+                  <span className="border-2 border-wtf-black px-2 py-0.5 text-[10px] font-bold uppercase">Resilience</span>
+                </div>
+                <h4 className="text-3xl font-black uppercase tracking-tight mb-3">The Opponents</h4>
+                <p className="font-medium text-lg opacity-80 leading-relaxed mb-6">
+                  Inspiring comeback stories, sports resilience, and examining the ultimate competitive mindset. Deconstructing the mental training plans that create unbelievable comebacks.
+                </p>
+                <div className="flex justify-between items-center border-t-2 border-dashed border-wtf-black pt-4">
+                  <span className="font-black uppercase text-sm tracking-widest">1 Episode</span>
+                  <span className="font-black text-[#00E5FF] group-hover:text-wtf-black dark:group-hover:text-wtf-white transition-colors text-lg">EXPLORE →</span>
+                </div>
+              </div>
+            </article>
+          </Link>
+
         </div>
 
         {/* More Coming Soon */}
