@@ -55,14 +55,40 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Invalid YouTube URL' }, { status: 400 });
     }
 
-    // 1. Fetch transcript
+    // 1. Fetch transcript with robust language fallbacks
     let transcriptChunks: { text: string }[] = [];
-    try {
-      transcriptChunks = await YoutubeTranscript.fetchTranscript(videoId);
-    } catch (e) {
+    let fetchError: unknown = null;
+    
+    // Fallback queue: exact en -> regional en -> auto-generated en -> no-lang default
+    const langFallbacks = ['en', 'en-US', 'en-GB', 'en-IN', 'en-CA', 'en-AU', 'a.en'];
+    let success = false;
+
+    // Try explicit language codes first
+    for (const lang of langFallbacks) {
+      try {
+        transcriptChunks = await YoutubeTranscript.fetchTranscript(videoId, { lang });
+        success = true;
+        break; // Stop at first successful match
+      } catch (e) {
+        fetchError = e;
+        continue;
+      }
+    }
+
+    // Try bare default if all explicit languages fail
+    if (!success) {
+      try {
+        transcriptChunks = await YoutubeTranscript.fetchTranscript(videoId);
+        success = true;
+      } catch (e) {
+        fetchError = e;
+      }
+    }
+
+    if (!success || transcriptChunks.length === 0) {
       return NextResponse.json({ 
         error: 'Could not fetch transcript. Make sure the video has captions/subtitles enabled.',
-        detail: String(e)
+        detail: String(fetchError)
       }, { status: 422 });
     }
 
