@@ -52,7 +52,7 @@ export default function PublicEpisodePage() {
   return (
     <div className="min-h-screen w-full">
       {/* Hero */}
-      <section className="relative overflow-hidden py-16 md:py-28 border-b-4" style={{ borderColor: 'var(--border-color)' }}>
+      <section className="relative overflow-hidden py-16 md:py-28" style={{ borderBottom: '1px dashed var(--border-color)' }}>
         <div className="absolute inset-0 opacity-[0.04] pointer-events-none" style={{
           backgroundImage: 'linear-gradient(to right, var(--border-color) 1px, transparent 1px), linear-gradient(to bottom, var(--border-color) 1px, transparent 1px)',
           backgroundSize: '40px 40px',
@@ -98,7 +98,7 @@ export default function PublicEpisodePage() {
       ))}
 
       {/* Comments */}
-      <section className="border-t-4" style={{ borderColor: 'var(--border-color)' }}>
+      <section style={{ borderTop: '1px dashed var(--border-color)' }}>
         <CommentSection episodeId={episode.id} accentColor={ac} />
       </section>
     </div>
@@ -200,29 +200,7 @@ function SectionRenderer({ section, accentColor, textOnAccent }: {
       );
 
     case 'mindmap':
-      return (
-        <section className="max-w-4xl mx-auto px-6 py-12">
-          <h2 className="text-3xl font-black uppercase tracking-tighter mb-4" style={{ color: 'var(--text-primary)' }}>
-            Mind Map<span style={{ color: accentColor }}>.</span>
-          </h2>
-          <div className="zine-border p-6" style={{ backgroundColor: 'var(--surface)' }}>
-            <p className="text-center font-black text-lg uppercase mb-6" style={{ color: accentColor }}>{section.centralTopic}</p>
-            <div className="flex flex-wrap gap-3 justify-center">
-              {section.nodes.map(node => {
-                const catColors: Record<string, string> = { core: '#FF6B00', tech: '#3B82F6', phil: '#8B5CF6', biz: '#22C55E', example: '#6B7280' };
-                return (
-                  <div key={node.id} className="zine-border px-4 py-2 text-sm font-bold" style={{ borderColor: catColors[node.category], color: 'var(--text-primary)', borderLeftWidth: '4px' }}>
-                    {node.label}
-                    {node.children && node.children.length > 0 && (
-                      <span className="text-[10px] font-bold ml-2 px-1 rounded-full" style={{ backgroundColor: catColors[node.category], color: '#fff' }}>{node.children.length}</span>
-                    )}
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        </section>
-      );
+      return <MindmapDisplay section={section} accentColor={accentColor} />;
 
     case 'quote':
       return (
@@ -274,6 +252,114 @@ function SectionRenderer({ section, accentColor, textOnAccent }: {
     default:
       return null;
   }
+}
+
+// ── Visual Mindmap Display ──
+
+const CAT_COLORS: Record<string, string> = {
+  core: '#FF6B00', tech: '#3B82F6', phil: '#8B5CF6', biz: '#22C55E', example: '#6B7280',
+};
+
+function MindmapDisplay({ section, accentColor }: { section: { type: 'mindmap'; id: string; centralTopic: string; nodes: { id: string; label: string; category: string; children?: string[] }[] }, accentColor: string }) {
+  const nodes = section.nodes;
+  const W = 680, H = 380;
+  const cx = W / 2, cy = H / 2;
+
+  // Build positions radially
+  const positions: Record<string, { x: number; y: number }> = {};
+  const childIds = new Set(nodes.flatMap(n => n.children || []));
+  const root = nodes.find(n => !childIds.has(n.id)) || nodes[0];
+  if (!root) return null;
+
+  positions[root.id] = { x: cx, y: cy };
+  const rootKids = (root.children || []).filter(c => nodes.find(n => n.id === c));
+  const R = Math.min(W, H) * 0.3;
+  rootKids.forEach((cid, i) => {
+    const angle = -Math.PI / 2 + (i / Math.max(1, rootKids.length)) * 2 * Math.PI;
+    const node = nodes.find(n => n.id === cid);
+    positions[cid] = { x: cx + R * Math.cos(angle), y: cy + R * Math.sin(angle) };
+    if (node) {
+      (node.children || []).forEach((gcid, j) => {
+        const ga = angle + (j - ((node.children || []).length - 1) / 2) * 0.6;
+        positions[gcid] = {
+          x: Math.max(60, Math.min(W - 60, cx + R * 1.7 * Math.cos(ga))),
+          y: Math.max(30, Math.min(H - 30, cy + R * 1.7 * Math.sin(ga))),
+        };
+      });
+    }
+  });
+  // Orphans
+  let oi = 0;
+  nodes.forEach(n => {
+    if (!positions[n.id]) {
+      const a = (oi / Math.max(1, nodes.length)) * 2 * Math.PI;
+      positions[n.id] = { x: cx + R * 1.1 * Math.cos(a), y: cy + R * 1.1 * Math.sin(a) };
+      oi++;
+    }
+  });
+
+  return (
+    <section className="max-w-4xl mx-auto px-6 py-12">
+      <h2 className="text-3xl font-black uppercase tracking-tighter mb-4" style={{ color: 'var(--text-primary)' }}>
+        Mind Map<span style={{ color: accentColor }}>.</span>
+      </h2>
+      <div className="zine-border overflow-hidden relative" style={{ backgroundColor: 'var(--surface)', height: H }}>
+        <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="xMidYMid meet">
+          <defs>
+            <marker id="mm-arrow" markerWidth="6" markerHeight="5" refX="6" refY="2.5" orient="auto">
+              <polygon points="0 0, 6 2.5, 0 5" fill="var(--border-color)" opacity="0.5" />
+            </marker>
+          </defs>
+          {nodes.map(node =>
+            (node.children || []).map(cid => {
+              const f = positions[node.id], t = positions[cid];
+              if (!f || !t) return null;
+              const mx = (f.x + t.x) / 2, my = (f.y + t.y) / 2 - 25;
+              return (
+                <path key={`${node.id}-${cid}`}
+                  d={`M ${f.x} ${f.y} C ${mx} ${my}, ${mx} ${my}, ${t.x} ${t.y}`}
+                  fill="none" stroke={CAT_COLORS[node.category] || '#999'}
+                  strokeWidth={1.5} strokeDasharray="4 3" opacity={0.45}
+                  markerEnd="url(#mm-arrow)"
+                />
+              );
+            })
+          )}
+        </svg>
+        {nodes.map(node => {
+          const pos = positions[node.id];
+          if (!pos) return null;
+          const isRoot = node.id === root.id;
+          const color = CAT_COLORS[node.category] || '#999';
+          return (
+            <div key={node.id} className="absolute flex items-center justify-center"
+              style={{ left: pos.x, top: pos.y, transform: 'translate(-50%,-50%)', zIndex: 10 }}>
+              <div className="px-3 py-1.5 rounded-sm border-2 text-center"
+                style={{
+                  backgroundColor: isRoot ? color : `${color}18`,
+                  borderColor: color,
+                  minWidth: isRoot ? 100 : 72,
+                  maxWidth: 140,
+                  boxShadow: isRoot ? `0 2px 8px ${color}44` : '1px 1px 4px rgba(0,0,0,0.1)',
+                }}>
+                <span className="text-xs font-black leading-tight block" style={{ color: isRoot ? '#fff' : color }}>
+                  {node.label}
+                </span>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+      {/* Legend */}
+      <div className="flex gap-4 flex-wrap mt-3">
+        {Object.entries(CAT_COLORS).map(([k, v]) => (
+          <span key={k} className="flex items-center gap-1 text-[10px] font-bold uppercase tracking-widest" style={{ color: 'var(--text-muted)' }}>
+            <span className="w-2.5 h-2.5 rounded-full inline-block" style={{ backgroundColor: v }} />{k}
+          </span>
+        ))}
+      </div>
+    </section>
+  );
 }
 
 // ── Lesson Card with expand/collapse ──
