@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { YoutubeTranscript } from 'youtube-transcript';
+// @ts-ignore
+import { getSubtitles } from 'youtube-captions-scraper';
 
 /* ── helper: extract YouTube video id from any youtube URL ── */
 function extractVideoId(url: string): string | null {
@@ -58,24 +60,38 @@ export async function POST(req: NextRequest) {
     // 1. Fetch transcript with robust language fallbacks
     let transcriptChunks: { text: string }[] = [];
     let fetchError: unknown = null;
-    
-    // Fallback queue: exact en -> regional en -> auto-generated en -> no-lang default
-    const langFallbacks = ['en', 'en-US', 'en-GB', 'en-IN', 'en-CA', 'en-AU', 'a.en'];
     let success = false;
-
-    // Try explicit language codes first
-    for (const lang of langFallbacks) {
+    
+    // First line of defense: youtube-captions-scraper (often more reliable for edge cases)
+    const scraperFallbackLangs = ['en', 'en-IN', 'en-US', 'en-GB'];
+    for (const lang of scraperFallbackLangs) {
+      if (success) break;
       try {
-        transcriptChunks = await YoutubeTranscript.fetchTranscript(videoId, { lang });
-        success = true;
-        break; // Stop at first successful match
+        const captions = await getSubtitles({ videoID: videoId, lang });
+        // The scraper returns an array of { text, start, dur }. Normalize it.
+        transcriptChunks = captions.map((c: any) => ({ text: c.text }));
+        if (transcriptChunks.length > 0) success = true;
       } catch (e) {
         fetchError = e;
-        continue;
       }
     }
 
-    // Try bare default if all explicit languages fail
+    // Second line of defense: youtube-transcript standard library
+    if (!success) {
+      const ytFallbacks = ['en', 'en-US', 'en-GB', 'en-IN', 'en-CA', 'en-AU', 'a.en'];
+      for (const lang of ytFallbacks) {
+        try {
+          transcriptChunks = await YoutubeTranscript.fetchTranscript(videoId, { lang });
+          success = true;
+          break; // Stop at first successful match
+        } catch (e) {
+          fetchError = e;
+          continue;
+        }
+      }
+    }
+
+    // Bare default if everything else failed
     if (!success) {
       try {
         transcriptChunks = await YoutubeTranscript.fetchTranscript(videoId);
