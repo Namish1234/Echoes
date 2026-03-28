@@ -12,30 +12,32 @@ function extractVideoId(url: string): string | null {
   }
 }
 
-/* ── helper: call Gemini 1.5 Flash (free tier) ── */
-async function callGemini(prompt: string): Promise<string> {
-  const apiKey = process.env.GEMINI_API_KEY;
-  if (!apiKey) throw new Error('GEMINI_API_KEY not set in environment');
+/* ── helper: call Groq (free tier — llama-3.3-70b, no CC required) ── */
+async function callGroq(prompt: string): Promise<string> {
+  const apiKey = process.env.GROQ_API_KEY;
+  if (!apiKey) throw new Error('GROQ_API_KEY not set in environment');
 
-  const response = await fetch(
-    `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`,
-    {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        contents: [{ parts: [{ text: prompt }] }],
-        generationConfig: { temperature: 0.7, maxOutputTokens: 4096 },
-      }),
-    }
-  );
+  const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${apiKey}`,
+    },
+    body: JSON.stringify({
+      model: 'llama-3.3-70b-versatile',
+      messages: [{ role: 'user', content: prompt }],
+      temperature: 0.7,
+      max_tokens: 4096,
+    }),
+  });
 
   if (!response.ok) {
     const err = await response.text();
-    throw new Error(`Gemini API error: ${err}`);
+    throw new Error(`Groq API error: ${err}`);
   }
 
   const data = await response.json();
-  return data.candidates?.[0]?.content?.parts?.[0]?.text || '';
+  return data.choices?.[0]?.message?.content || '';
 }
 
 /* ── POST handler ── */
@@ -122,7 +124,7 @@ ${rawTranscript}
 Return ONLY valid JSON, no markdown fences, no explanation.
 `.trim();
 
-    const geminiResponse = await callGemini(prompt);
+    const geminiResponse = await callGroq(prompt);
 
     // 3. Parse JSON from Gemini response
     let parsed: Record<string, unknown>;
