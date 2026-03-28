@@ -102,7 +102,8 @@ export default function NewPodcastPage() {
       router.push('/creator/dashboard');
     } catch (e) {
       console.error('Error creating podcast:', e);
-      alert('Failed to create podcast. Please try again.');
+      // Display the actual error message so it's easier to debug on Vercel
+      alert(`Failed to create podcast: ${e instanceof Error ? e.message : String(e)}`);
       setIsSubmitting(false);
     }
   };
