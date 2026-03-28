@@ -37,6 +37,9 @@ export interface CreatorEpisode {
   creatorUid: string;
   createdAt: string;
   updatedAt: string;
+  spotifyUrl?: string;
+  youtubeUrl?: string;
+  backgroundTheme?: string;
 }
 
 // ── Section Types (each maps to a draggable block in the editor) ──

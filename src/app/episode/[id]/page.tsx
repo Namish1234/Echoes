@@ -130,17 +130,9 @@ export default async function EpisodeDetail({ params }: { params: Promise<{ id: 
         </div>
       </header>
 
-      {/* Divider */}
-      <div className="w-full border-t-4 border-wtf-black dark:border-[#333]" />
-
-      {/* Highlight Legend */}
-      <div className="max-w-5xl mx-auto px-6 pt-8 pb-4">
-        <div className="flex flex-wrap gap-4 text-xs font-bold uppercase tracking-widest items-center">
-          <span className="opacity-50">Highlights:</span>
-          <span className="bg-blue-500/15 text-blue-600 dark:text-blue-300 border-b-2 border-blue-400 px-2 py-0.5">Technical</span>
-          <span className="bg-purple-500/15 text-purple-600 dark:text-purple-300 border-b-2 border-purple-400 px-2 py-0.5">Philosophical</span>
-          <span className="bg-green-500/15 text-green-600 dark:text-green-300 border-b-2 border-green-400 px-2 py-0.5">Business</span>
-        </div>
+      {/* Subtle divider matching ep-16 style */}
+      <div className="w-full max-w-6xl mx-auto px-6">
+        <div className="border-t-2 border-dashed" style={{ borderColor: 'var(--border-color)', opacity: 0.4 }} />
       </div>
 
       {/* ── TRANSCRIPT ── */}
