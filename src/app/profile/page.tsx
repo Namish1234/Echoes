@@ -218,6 +218,16 @@ export default function ProfilePage() {
 
       {/* Content */}
       <div className="max-w-5xl mx-auto px-6 py-12">
+        {/* Creator CTA */}
+        <div className="mb-12 flex justify-center md:justify-start">
+          <Link
+            href={userProfile.role === 'creator' || userProfile.role === 'admin' ? '/creator/dashboard' : '/become-creator'}
+            className="zine-border bg-wtf-black text-wtf-white px-8 py-4 font-black uppercase tracking-widest text-sm sm:text-base hover:bg-wtf-orange hover:text-wtf-black shadow-[4px_4px_0px_#000] hover:shadow-[6px_6px_0px_#000] hover:-translate-y-1 transition-all inline-block"
+          >
+            {userProfile.role === 'creator' || userProfile.role === 'admin' ? '🚀 Go to My Space' : '🎙️ Create Your Own Podcast'}
+          </Link>
+        </div>
+
         {/* Stats Grid */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
           <div className="zine-border bg-wtf-white p-6 shadow-[4px_4px_0px_#000] text-center">

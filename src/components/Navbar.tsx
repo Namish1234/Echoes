@@ -223,6 +223,24 @@ export default function Navbar() {
                         >
                           Saved Episodes
                         </Link>
+                        {(userProfile.role === 'creator' || userProfile.role === 'admin') && (
+                          <Link
+                            href="/creator/dashboard"
+                            onClick={() => setProfileDropdownOpen(false)}
+                            className="block px-4 py-3 font-bold text-sm uppercase tracking-widest hover:bg-wtf-orange hover:text-wtf-black transition-colors"
+                          >
+                            🚀 My Space
+                          </Link>
+                        )}
+                        {userProfile.role === 'admin' && (
+                          <Link
+                            href="/admin"
+                            onClick={() => setProfileDropdownOpen(false)}
+                            className="block px-4 py-3 font-bold text-sm uppercase tracking-widest hover:bg-red-500 hover:text-white transition-colors"
+                          >
+                            🛡️ Admin Panel
+                          </Link>
+                        )}
                         <button
                           onClick={handleSignOut}
                           className="block w-full text-left px-4 py-3 font-bold text-sm uppercase tracking-widest hover:bg-red-500 hover:text-white transition-colors border-t-2 border-dashed border-wtf-black cursor-pointer"
@@ -392,6 +410,24 @@ export default function Navbar() {
               >
                 Saved Episodes
               </Link>
+              {(userProfile.role === 'creator' || userProfile.role === 'admin') && (
+                <Link
+                  href="/creator/dashboard"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="text-2xl font-black uppercase tracking-tighter hover:text-wtf-orange transition-colors"
+                >
+                  🚀 My Space
+                </Link>
+              )}
+              {userProfile.role === 'admin' && (
+                <Link
+                  href="/admin"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="text-2xl font-black uppercase tracking-tighter text-red-500 hover:text-red-600 transition-colors"
+                >
+                  🛡️ Admin Panel
+                </Link>
+              )}
               <button
                 onClick={handleSignOut}
                 className="zine-border bg-red-500 text-white px-8 py-3 font-bold uppercase tracking-widest text-sm shadow-[4px_4px_0px_#000] hover:-translate-y-0.5 transition-all cursor-pointer mt-4"

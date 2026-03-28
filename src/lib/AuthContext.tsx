@@ -5,6 +5,7 @@ import {
   User,
   onAuthStateChanged,
   signInWithRedirect,
+  signInWithPopup,
   getRedirectResult,
   signOut as firebaseSignOut,
   signInWithEmailAndPassword,
@@ -34,6 +35,7 @@ export interface UserProfile {
   email: string;
   displayName: string;
   photoURL?: string;
+  role: 'user' | 'creator' | 'admin';
   avatarId: string; // Preset avatar ID
   interests: string[]; // Tags selected during onboarding
   frequency: string;
@@ -63,6 +65,7 @@ interface AuthContextType {
   toggleSaveEpisode: (episodeId: string) => Promise<void>;
   markEpisodeViewed: (episodeId: string) => Promise<void>;
   deleteUserAccount: () => Promise<void>;
+  becomeCreator: () => Promise<void>;
   sendVerificationEmail: () => Promise<void>;
   sendReauthMagicLink: () => Promise<void>;
   updateEmailAddress: (newEmail: string, passwordForReauth?: string) => Promise<void>;
@@ -87,8 +90,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   // Listen to auth state changes
   useEffect(() => {
     // 1. Handle Redirect Result from Google Sign In
-    getRedirectResult(auth).catch((error) => {
-      console.error('Google sign-in redirect error:', error);
+    getRedirectResult(auth).then((result) => {
+      if (result) {
+        console.log('[Auth] Google sign-in redirect success:', result.user.email);
+      }
+    }).catch((error) => {
+      console.error('[Auth] Google sign-in redirect error:', error.code, error.message);
     });
 
     const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
@@ -107,6 +114,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
               email: firebaseUser.email || '',
               displayName: firebaseUser.displayName || 'Explorer',
               photoURL: firebaseUser.photoURL || '',
+              role: 'user',
               avatarId: 'av-01',
               interests: [],
               frequency: '',
@@ -135,6 +143,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
             email: firebaseUser.email || '',
             displayName: firebaseUser.displayName || 'Echoes User',
             photoURL: firebaseUser.photoURL || '',
+            role: 'user',
             avatarId: 'av-01',
             interests: [],
             frequency: '',
@@ -184,11 +193,24 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const signInWithGoogle = async () => {
     try {
-      await signInWithRedirect(auth, googleProvider);
-      // Auth state listener above handles the rest
-    } catch (error) {
-      console.error('Google sign-in error:', error);
-      throw error;
+      console.log('[Auth] Initiating Google Sign-In with popup...');
+      const result = await signInWithPopup(auth, googleProvider);
+      console.log('[Auth] Google Sign-In successful:', result.user.email);
+    } catch (error: any) {
+      console.error('[Auth] Google sign-in error:', error.code, error.message);
+      
+      // Fallback to redirect if popup is blocked or fails
+      if (error.code === 'auth/popup-blocked' || error.code === 'auth/cancelled-popup-request') {
+        console.warn('[Auth] Popup blocked/closed, falling back to redirect flow...');
+        try {
+          await signInWithRedirect(auth, googleProvider);
+        } catch (redirectError: any) {
+          console.error('[Auth] Redirect fallback failed:', redirectError.code, redirectError.message);
+          throw redirectError;
+        }
+      } else {
+        throw error;
+      }
     }
   };
 
@@ -333,6 +355,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
   };
 
+  const becomeCreator = async () => {
+    if (!user || !userProfile) return;
+    if (userProfile.role === 'creator' || userProfile.role === 'admin') return;
+    await updateProfile({ role: 'creator' });
+  };
+
   return (
     <AuthContext.Provider
       value={{
@@ -351,6 +379,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         sendReauthMagicLink,
         updateEmailAddress,
         updateUserDisplayName,
+        becomeCreator,
       }}
     >
       {children}

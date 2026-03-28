@@ -13,10 +13,19 @@ const firebaseConfig = {
   measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
 };
 
-// Log config to verify env vars are loaded (remove in production)
+
 if (typeof window !== 'undefined') {
-  console.log('[Firebase] Project ID:', firebaseConfig.projectId);
-  console.log('[Firebase] Auth Domain:', firebaseConfig.authDomain);
+  const missing = [];
+  if (!firebaseConfig.apiKey) missing.push('API_KEY');
+  if (!firebaseConfig.authDomain) missing.push('AUTH_DOMAIN');
+  if (!firebaseConfig.projectId) missing.push('PROJECT_ID');
+
+  if (missing.length > 0) {
+    console.error('[Firebase] CRITICAL: Missing configuration:', missing.join(', '));
+  } else {
+    console.log('[Firebase] Project ID:', firebaseConfig.projectId);
+    console.log('[Firebase] Auth Domain:', firebaseConfig.authDomain);
+  }
 }
 
 // Initialize Firebase only once (prevents duplicate app errors in dev/hot-reload)

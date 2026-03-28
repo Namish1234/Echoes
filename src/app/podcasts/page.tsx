@@ -1,5 +1,8 @@
+'use client';
+
 import Link from 'next/link';
 import { podcasts } from '@/lib/data';
+import CommunityPodcasts from '@/components/CommunityPodcasts';
 
 export default function PodcastsPage() {
   return (
@@ -266,6 +269,9 @@ export default function PodcastsPage() {
           </Link>
 
         </div>
+
+        {/* Community Podcasts */}
+        <CommunityPodcasts />
 
         {/* More Coming Soon */}
         <div className="mt-16 border-4 border-dashed border-wtf-black p-12 text-center opacity-50">
