@@ -26,28 +26,7 @@ const FREQUENCY_OPTIONS = [
   'Rarely — I\'m just starting to explore',
 ];
 
-const DISCOVERY_OPTIONS = [
-  'Social Media (Twitter/X, Instagram)',
-  'YouTube',
-  'A friend recommended Echoes',
-  'Google Search',
-  'Podcast platforms (Spotify, Apple)',
-  'Other',
-];
 
-const LENGTH_OPTIONS = [
-  'Under 1 hour — Quick and focused',
-  '1–2 hours — The sweet spot',
-  '2+ hours — I want the full deep dive',
-  'No preference — Content quality matters more',
-];
-
-const CONTENT_ROLE_OPTIONS = [
-  'Essential for my growth — I learn actively from it',
-  'Nice to have — Background enrichment',
-  'I prefer short-form — But I\'m open to trying',
-  'Still exploring — This is new territory for me',
-];
 
 function ProgressBar({ current, total }: { current: number; total: number }) {
   return (
@@ -99,7 +78,7 @@ function OnboardingForm() {
   const searchParams = useSearchParams();
   const isRetake = searchParams.get('mode') === 'retake';
   const [step, setStep] = useState(1);
-  const totalSteps = 11;
+  const totalSteps = 4;
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState('');
 
@@ -107,12 +86,6 @@ function OnboardingForm() {
   const [displayName, setDisplayName] = useState(userProfile?.displayName || '');
   const [interests, setInterests] = useState<string[]>([]);
   const [frequency, setFrequency] = useState('');
-  const [discovery, setDiscovery] = useState('');
-  const [preferredLength, setPreferredLength] = useState('');
-  const [dreamConversation, setDreamConversation] = useState('');
-  const [solveOneProblem, setSolveOneProblem] = useState('');
-  const [fearedOrRespected, setFearedOrRespected] = useState('');
-  const [contentRole, setContentRole] = useState('');
   const [selectedAvatar, setSelectedAvatar] = useState(userProfile?.avatarId || 'av-01');
 
   // Sync profile data when loaded
@@ -152,15 +125,7 @@ function OnboardingForm() {
         email: userProfile?.email || user?.email || '',
         interests,
         frequency,
-        discoverySource: discovery,
-        preferredLength,
-        contentRole,
         avatarId: selectedAvatar,
-        openResponses: {
-          dreamConversation,
-          solveOneProblem,
-          fearedOrRespected,
-        },
         onboardingComplete: true,
       });
       router.push('/');
@@ -269,35 +234,8 @@ function OnboardingForm() {
             </div>
           )}
 
-          {/* Step 2: What draws you to podcasts */}
+          {/* Step 2: Which domains fascinate you most */}
           {step === 2 && (
-            <div>
-              <h2 className="text-2xl md:text-3xl font-black uppercase tracking-tight mb-3">
-                What draws you to podcasts?
-              </h2>
-              <p className="font-medium opacity-60 mb-8 text-sm">Select all that apply.</p>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {['Learning new frameworks', 'Entertainment & storytelling', 'Inspiration from builders', 'Background enrichment', 'Deep philosophical thinking'].map(
-                  (opt) => (
-                    <button
-                      key={opt}
-                      onClick={() => toggleInterest(opt)}
-                      className={`zine-border p-4 font-bold uppercase text-sm tracking-widest text-left transition-all hover:-translate-y-0.5 cursor-pointer ${
-                        interests.includes(opt)
-                          ? 'bg-wtf-orange text-wtf-black shadow-[4px_4px_0px_#000]'
-                          : 'bg-wtf-white shadow-[2px_2px_0px_#000] hover:shadow-[4px_4px_0px_#000]'
-                      }`}
-                    >
-                      {opt}
-                    </button>
-                  )
-                )}
-              </div>
-            </div>
-          )}
-
-          {/* Step 3: Which domains fascinate you most */}
-          {step === 3 && (
             <div>
               <h2 className="text-2xl md:text-3xl font-black uppercase tracking-tight mb-3">
                 Which domains fascinate you most?
@@ -321,8 +259,8 @@ function OnboardingForm() {
             </div>
           )}
 
-          {/* Step 4: Podcast frequency */}
-          {step === 4 && (
+          {/* Step 3: Podcast frequency */}
+          {step === 3 && (
             <div>
               <h2 className="text-2xl md:text-3xl font-black uppercase tracking-tight mb-3">
                 How often do you listen to podcasts?
@@ -346,140 +284,8 @@ function OnboardingForm() {
             </div>
           )}
 
-          {/* Step 5: How did you discover Echoes */}
-          {step === 5 && (
-            <div>
-              <h2 className="text-2xl md:text-3xl font-black uppercase tracking-tight mb-3">
-                How did you discover Echoes?
-              </h2>
-              <p className="font-medium opacity-60 mb-8 text-sm">We&apos;re curious. No wrong answers.</p>
-              <div className="flex flex-col gap-3">
-                {DISCOVERY_OPTIONS.map((opt) => (
-                  <button
-                    key={opt}
-                    onClick={() => setDiscovery(opt)}
-                    className={`zine-border p-4 font-bold text-sm tracking-wide text-left transition-all hover:-translate-y-0.5 cursor-pointer ${
-                      discovery === opt
-                        ? 'bg-wtf-orange text-wtf-black shadow-[4px_4px_0px_#000]'
-                        : 'bg-wtf-white shadow-[2px_2px_0px_#000] hover:shadow-[4px_4px_0px_#000]'
-                    }`}
-                  >
-                    {opt}
-                  </button>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {/* Step 6: Preferred episode length */}
-          {step === 6 && (
-            <div>
-              <h2 className="text-2xl md:text-3xl font-black uppercase tracking-tight mb-3">
-                What&apos;s your preferred episode length?
-              </h2>
-              <p className="font-medium opacity-60 mb-8 text-sm">We&apos;ll prioritize episodes that match your attention style.</p>
-              <div className="flex flex-col gap-3">
-                {LENGTH_OPTIONS.map((opt) => (
-                  <button
-                    key={opt}
-                    onClick={() => setPreferredLength(opt)}
-                    className={`zine-border p-4 font-bold text-sm tracking-wide text-left transition-all hover:-translate-y-0.5 cursor-pointer ${
-                      preferredLength === opt
-                        ? 'bg-wtf-orange text-wtf-black shadow-[4px_4px_0px_#000]'
-                        : 'bg-wtf-white shadow-[2px_2px_0px_#000] hover:shadow-[4px_4px_0px_#000]'
-                    }`}
-                  >
-                    {opt}
-                  </button>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {/* Step 7: Philosophical — Dream conversation */}
-          {step === 7 && (
-            <div>
-              <h2 className="text-2xl md:text-3xl font-black uppercase tracking-tight mb-3">
-                The Dream Conversation
-              </h2>
-              <p className="font-medium opacity-60 mb-2 text-sm italic">A philosophical question.</p>
-              <p className="font-bold text-lg mb-8">
-                &ldquo;If you could sit across from one person, living or dead, for an hour — who would it be and why?&rdquo;
-              </p>
-              <textarea
-                value={dreamConversation}
-                onChange={(e) => setDreamConversation(e.target.value)}
-                placeholder="Your answer... (optional)"
-                className="w-full zine-border bg-wtf-white p-6 font-medium text-base resize-none h-40 focus:outline-none focus:shadow-[4px_4px_0px_#FF6B00] transition-shadow placeholder:opacity-40"
-              />
-            </div>
-          )}
-
-          {/* Step 8: Situational — Solve one problem */}
-          {step === 8 && (
-            <div>
-              <h2 className="text-2xl md:text-3xl font-black uppercase tracking-tight mb-3">
-                The ₹1 Crore Question
-              </h2>
-              <p className="font-medium opacity-60 mb-2 text-sm italic">A situational question.</p>
-              <p className="font-bold text-lg mb-8">
-                &ldquo;You&apos;re given ₹1 crore but must use it to solve one problem in India. What do you tackle?&rdquo;
-              </p>
-              <textarea
-                value={solveOneProblem}
-                onChange={(e) => setSolveOneProblem(e.target.value)}
-                placeholder="Your answer... (optional)"
-                className="w-full zine-border bg-wtf-white p-6 font-medium text-base resize-none h-40 focus:outline-none focus:shadow-[4px_4px_0px_#FF6B00] transition-shadow placeholder:opacity-40"
-              />
-            </div>
-          )}
-
-          {/* Step 9: Rhetorical — Feared or Respected */}
-          {step === 9 && (
-            <div>
-              <h2 className="text-2xl md:text-3xl font-black uppercase tracking-tight mb-3">
-                Fear vs. Respect
-              </h2>
-              <p className="font-medium opacity-60 mb-2 text-sm italic">A rhetorical question.</p>
-              <p className="font-bold text-lg mb-8">
-                &ldquo;Is it better to be feared or respected? Why?&rdquo;
-              </p>
-              <textarea
-                value={fearedOrRespected}
-                onChange={(e) => setFearedOrRespected(e.target.value)}
-                placeholder="Your answer... (optional)"
-                className="w-full zine-border bg-wtf-white p-6 font-medium text-base resize-none h-40 focus:outline-none focus:shadow-[4px_4px_0px_#FF6B00] transition-shadow placeholder:opacity-40"
-              />
-            </div>
-          )}
-
-          {/* Step 10: Content role */}
-          {step === 10 && (
-            <div>
-              <h2 className="text-2xl md:text-3xl font-black uppercase tracking-tight mb-3">
-                What role does long-form content play in your life?
-              </h2>
-              <p className="font-medium opacity-60 mb-8 text-sm">Be honest — there are no wrong answers.</p>
-              <div className="flex flex-col gap-3">
-                {CONTENT_ROLE_OPTIONS.map((opt) => (
-                  <button
-                    key={opt}
-                    onClick={() => setContentRole(opt)}
-                    className={`zine-border p-4 font-bold text-sm tracking-wide text-left transition-all hover:-translate-y-0.5 cursor-pointer ${
-                      contentRole === opt
-                        ? 'bg-wtf-orange text-wtf-black shadow-[4px_4px_0px_#000]'
-                        : 'bg-wtf-white shadow-[2px_2px_0px_#000] hover:shadow-[4px_4px_0px_#000]'
-                    }`}
-                  >
-                    {opt}
-                  </button>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {/* Step 11: Avatar selection */}
-          {step === 11 && (
+          {/* Step 4: Avatar selection */}
+          {step === 4 && (
             <div>
               <h2 className="text-2xl md:text-3xl font-black uppercase tracking-tight mb-3">
                 Choose Your Identity

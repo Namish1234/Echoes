@@ -42,6 +42,44 @@ async function callGroq(prompt: string): Promise<string> {
   return data.choices?.[0]?.message?.content || '';
 }
 
+/* ── helper: Custom resilient fetcher to bypass Vercel IP blocks ── */
+async function fetchTranscriptDirect(videoId: string): Promise<{ text: string }[]> {
+  try {
+    const htmlRes = await fetch(`https://www.youtube.com/watch?v=${videoId}&gl=US&hl=en`, {
+      headers: {
+        'User-Agent': 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)',
+        'Accept-Language': 'en-US,en;q=0.9',
+        'Cookie': 'CONSENT=YES+cb', // Bypass EU cookie consent walls that block Vercel IPs
+      }
+    });
+    
+    const html = await htmlRes.text();
+    // Regex to find caption tracks JSON in the script tags
+    const captionJsonMatch = html.match(/"captionTracks":(\[.*?\])/);
+    if (!captionJsonMatch) throw new Error('No caption tracks found in HTML');
+    
+    const tracks = JSON.parse(captionJsonMatch[1]);
+    // Prefer English, then fallback to anything available
+    const track = tracks.find((t: any) => t.languageCode.includes('en')) || tracks[0];
+    if (!track || !track.baseUrl) throw new Error('No valid transcript URL found');
+
+    const xmlRes = await fetch(track.baseUrl);
+    const xml = await xmlRes.text();
+    
+    // Simple regex to extract text between <text> tags
+    const textNodes = xml.match(/<text.*?>(.*?)<\/text>/gs);
+    if (!textNodes) throw new Error('Could not parse XML text nodes');
+
+    return textNodes.map(node => {
+      const match = node.match(/>(.*)</);
+      const rawText = match ? match[1] : '';
+      return { text: rawText.replace(/&amp;/g, '&').replace(/&#39;/g, "'").replace(/&quot;/g, '"') };
+    });
+  } catch (err) {
+    throw err;
+  }
+}
+
 /* ── POST handler ── */
 export async function POST(req: NextRequest) {
   try {
@@ -57,26 +95,35 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Invalid YouTube URL' }, { status: 400 });
     }
 
-    // 1. Fetch transcript with robust language fallbacks
+    // 1. Fetch transcript with robust language fallbacks and Vercel IP evasion
     let transcriptChunks: { text: string }[] = [];
     let fetchError: unknown = null;
     let success = false;
     
-    // First line of defense: youtube-captions-scraper (often more reliable for edge cases)
-    const scraperFallbackLangs = ['en', 'en-IN', 'en-US', 'en-GB'];
-    for (const lang of scraperFallbackLangs) {
-      if (success) break;
-      try {
-        const captions = await getSubtitles({ videoID: videoId, lang });
-        // The scraper returns an array of { text, start, dur }. Normalize it.
-        transcriptChunks = captions.map((c: any) => ({ text: c.text }));
-        if (transcriptChunks.length > 0) success = true;
-      } catch (e) {
-        fetchError = e;
+    // First line of defense: Custom strict fetcher bypassing bot detection
+    try {
+      transcriptChunks = await fetchTranscriptDirect(videoId);
+      if (transcriptChunks.length > 0) success = true;
+    } catch (e) {
+      fetchError = e;
+    }
+
+    // Second line of defense: youtube-captions-scraper
+    if (!success) {
+      const scraperFallbackLangs = ['en', 'en-IN', 'en-US', 'en-GB'];
+      for (const lang of scraperFallbackLangs) {
+        if (success) break;
+        try {
+          const captions = await getSubtitles({ videoID: videoId, lang });
+          transcriptChunks = captions.map((c: any) => ({ text: c.text }));
+          if (transcriptChunks.length > 0) success = true;
+        } catch (e) {
+          fetchError = e;
+        }
       }
     }
 
-    // Second line of defense: youtube-transcript standard library
+    // Third line of defense: youtube-transcript standard library
     if (!success) {
       const ytFallbacks = ['en', 'en-US', 'en-GB', 'en-IN', 'en-CA', 'en-AU', 'a.en'];
       for (const lang of ytFallbacks) {

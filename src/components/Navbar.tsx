@@ -56,6 +56,7 @@ export default function Navbar() {
   const navLinks = [
     { href: '/', label: 'Home' },
     { href: '/podcasts', label: 'Podcasts' },
+    { href: '/rankings', label: 'Rankings' },
     { href: '/archives', label: 'Archives' },
     { href: '/about', label: 'About' },
   ];

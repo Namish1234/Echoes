@@ -22,6 +22,7 @@ export default function Footer() {
               <li><Link className="hover:text-wtf-orange" href="/creator-capital">Creator Capital</Link></li>
               <li><Link className="hover:text-[#00E5FF]" href="/the-opponents">The Opponents</Link></li>
               <li><Link className="hover:text-wtf-orange" href="/archives">Archives</Link></li>
+              <li><Link className="hover:text-wtf-orange" href="/rankings">Rankings</Link></li>
               <li><Link className="hover:text-wtf-orange" href="/lexicon">The Lexicon</Link></li>
             </ul>
           </div>

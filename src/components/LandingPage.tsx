@@ -222,6 +222,129 @@ export default function LandingPage() {
 
         </div>
       </section>
+
+      {/* ═══════════════════════════════════════════════════════ */}
+      {/* RANKINGS PREVIEW SECTION                               */}
+      {/* ═══════════════════════════════════════════════════════ */}
+      <section className="w-full border-b-4 border-wtf-black bg-wtf-black text-wtf-white relative overflow-hidden">
+        {/* Subtle grid */}
+        <div
+          className="absolute inset-0 opacity-10"
+          style={{
+            backgroundImage:
+              'linear-gradient(to right, var(--grid-line-inv) 1px, transparent 1px), linear-gradient(to bottom, var(--grid-line-inv) 1px, transparent 1px)',
+            backgroundSize: '40px 40px',
+          }}
+        />
+
+        <div className="max-w-7xl mx-auto px-6 py-20 relative z-10">
+          <div className="flex justify-between items-end border-b-4 border-wtf-white/20 pb-4 mb-12">
+            <div>
+              <div className="inline-block border-2 border-wtf-white/30 text-wtf-white px-3 py-0.5 text-[10px] font-bold mb-3 tracking-widest uppercase">
+                📊 Live
+              </div>
+              <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter">
+                Top Rank<span className="text-wtf-orange">ings</span>
+              </h2>
+            </div>
+            <Link
+              href="/rankings"
+              className="zine-border bg-wtf-orange text-wtf-black px-6 py-2 font-bold uppercase tracking-widest text-sm shadow-[4px_4px_0px_#fff] hover:-translate-y-0.5 hover:shadow-[6px_6px_0px_#fff] transition-all hidden md:block"
+            >
+              View All →
+            </Link>
+          </div>
+
+          {/* Top 5 preview cards */}
+          <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
+            {/* #1 */}
+            <Link href="/episodes/ep-01" className="group md:col-span-2 md:row-span-2 block">
+              <div className="zine-border bg-wtf-white/5 backdrop-blur-sm h-full p-6 hover:bg-wtf-white/10 transition-all relative overflow-hidden">
+                <div className="absolute top-0 left-0 w-full h-1 bg-[#FFD700]" />
+                <span className="text-[80px] md:text-[120px] font-black leading-none text-[#FFD700] opacity-30 absolute -right-2 -bottom-4">1</span>
+                <div className="relative z-10">
+                  <span className="text-[10px] font-black uppercase tracking-widest px-2 py-0.5 bg-wtf-orange text-wtf-black inline-block mb-3">
+                    🔥 #1 Trending
+                  </span>
+                  <h3 className="text-xl md:text-2xl font-black uppercase tracking-tight leading-tight group-hover:text-wtf-orange transition-colors">
+                    First Principles, Mars & The Future of Humanity
+                  </h3>
+                  <p className="text-sm font-bold opacity-60 mt-2">ft. Elon Musk</p>
+                  <p className="text-xs font-bold opacity-40 mt-1">People by WTF · 2 hr 10 min</p>
+                </div>
+              </div>
+            </Link>
+
+            {/* #2 */}
+            <Link href="/episodes/ep-21" className="group block">
+              <div className="zine-border bg-wtf-white/5 p-5 hover:bg-wtf-white/10 transition-all relative overflow-hidden h-full">
+                <div className="absolute top-0 left-0 w-full h-1 bg-[#C0C0C0]" />
+                <span className="text-[60px] font-black leading-none text-[#C0C0C0] opacity-20 absolute -right-1 -bottom-2">2</span>
+                <div className="relative z-10">
+                  <span className="text-[10px] font-black uppercase tracking-widest px-2 py-0.5 bg-[#C0C0C0] text-black inline-block mb-2">#2</span>
+                  <h3 className="text-sm font-black uppercase tracking-tight leading-tight group-hover:text-wtf-orange transition-colors">
+                    WTF is Really A.I.?
+                  </h3>
+                  <p className="text-xs font-bold opacity-60 mt-1">ft. Yann LeCun</p>
+                </div>
+              </div>
+            </Link>
+
+            {/* #3 */}
+            <Link href="/episodes/ep-13" className="group block">
+              <div className="zine-border bg-wtf-white/5 p-5 hover:bg-wtf-white/10 transition-all relative overflow-hidden h-full">
+                <div className="absolute top-0 left-0 w-full h-1 bg-[#CD7F32]" />
+                <span className="text-[60px] font-black leading-none text-[#CD7F32] opacity-20 absolute -right-1 -bottom-2">3</span>
+                <div className="relative z-10">
+                  <span className="text-[10px] font-black uppercase tracking-widest px-2 py-0.5 bg-[#CD7F32] text-white inline-block mb-2">#3</span>
+                  <h3 className="text-sm font-black uppercase tracking-tight leading-tight group-hover:text-wtf-orange transition-colors">
+                    How to Win When AI Changes Everything
+                  </h3>
+                  <p className="text-xs font-bold opacity-60 mt-1">ft. Sam Altman</p>
+                </div>
+              </div>
+            </Link>
+
+            {/* #4 */}
+            <Link href="/episodes/ep-17" className="group block">
+              <div className="zine-border bg-wtf-white/5 p-5 hover:bg-wtf-white/10 transition-all relative overflow-hidden h-full">
+                <span className="text-[60px] font-black leading-none text-wtf-white opacity-10 absolute -right-1 -bottom-2">4</span>
+                <div className="relative z-10">
+                  <span className="text-[10px] font-black uppercase tracking-widest opacity-40 mb-2 block">#4</span>
+                  <h3 className="text-sm font-black uppercase tracking-tight leading-tight group-hover:text-wtf-orange transition-colors">
+                    The AI Tsunami is Here
+                  </h3>
+                  <p className="text-xs font-bold opacity-60 mt-1">ft. Dario Amodei</p>
+                </div>
+              </div>
+            </Link>
+
+            {/* #5 */}
+            <Link href="/episodes/ep-15" className="group block">
+              <div className="zine-border bg-wtf-white/5 p-5 hover:bg-wtf-white/10 transition-all relative overflow-hidden h-full">
+                <span className="text-[60px] font-black leading-none text-wtf-white opacity-10 absolute -right-1 -bottom-2">5</span>
+                <div className="relative z-10">
+                  <span className="text-[10px] font-black uppercase tracking-widest opacity-40 mb-2 block">#5</span>
+                  <h3 className="text-sm font-black uppercase tracking-tight leading-tight group-hover:text-wtf-orange transition-colors">
+                    WTF Is Wealth? Ray Dalio Breaks It Down
+                  </h3>
+                  <p className="text-xs font-bold opacity-60 mt-1">ft. Ray Dalio</p>
+                </div>
+              </div>
+            </Link>
+          </div>
+
+          {/* Mobile CTA */}
+          <div className="mt-8 md:hidden text-center">
+            <Link
+              href="/rankings"
+              className="zine-border inline-block bg-wtf-orange text-wtf-black px-8 py-3 font-bold uppercase tracking-widest text-sm shadow-[4px_4px_0px_#fff]"
+            >
+              View All Rankings →
+            </Link>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }

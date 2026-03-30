@@ -50,11 +50,16 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
   };
 
   const handleGoogle = async () => {
+    setLoading(true);
+    setError('');
     try {
       await signInWithGoogle();
+      // If using redirect flow, the page navigates away — no need to close.
+      // If popup fallback succeeded, close the modal.
       onClose();
     } catch {
-      setError('Google sign in failed');
+      setError('Google sign in failed. Please try again.');
+      setLoading(false);
     }
   };
 

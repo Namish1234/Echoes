@@ -304,34 +304,7 @@ export default function ProfilePage() {
           )}
         </div>
 
-        {/* Questionnaire Responses */}
-        {userProfile.openResponses && (
-          <div className="mb-16">
-            <h2 className="text-2xl font-black uppercase tracking-tighter mb-6 border-b-4 border-wtf-black pb-3">
-              Your Reflections
-            </h2>
-            <div className="space-y-6">
-              {userProfile.openResponses.dreamConversation && (
-                <div className="zine-border bg-wtf-white p-6 shadow-[2px_2px_0px_#000]">
-                  <p className="font-bold text-sm uppercase tracking-widest text-wtf-orange mb-3">Dream Conversation</p>
-                  <p className="font-medium leading-relaxed">{userProfile.openResponses.dreamConversation}</p>
-                </div>
-              )}
-              {userProfile.openResponses.solveOneProblem && (
-                <div className="zine-border bg-wtf-white p-6 shadow-[2px_2px_0px_#000]">
-                  <p className="font-bold text-sm uppercase tracking-widest text-wtf-orange mb-3">The ₹1 Crore Question</p>
-                  <p className="font-medium leading-relaxed">{userProfile.openResponses.solveOneProblem}</p>
-                </div>
-              )}
-              {userProfile.openResponses.fearedOrRespected && (
-                <div className="zine-border bg-wtf-white p-6 shadow-[2px_2px_0px_#000]">
-                  <p className="font-bold text-sm uppercase tracking-widest text-wtf-orange mb-3">Fear vs. Respect</p>
-                  <p className="font-medium leading-relaxed">{userProfile.openResponses.fearedOrRespected}</p>
-                </div>
-              )}
-            </div>
-          </div>
-        )}
+
 
         {/* Account Actions */}
         <div className="border-t-4 border-wtf-black pt-8">

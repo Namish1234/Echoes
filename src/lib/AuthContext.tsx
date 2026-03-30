@@ -39,14 +39,6 @@ export interface UserProfile {
   avatarId: string; // Preset avatar ID
   interests: string[]; // Tags selected during onboarding
   frequency: string;
-  discoverySource: string;
-  preferredLength: string;
-  contentRole: string;
-  openResponses: {
-    dreamConversation: string;
-    solveOneProblem: string;
-    fearedOrRespected: string;
-  };
   savedEpisodes: string[]; // Episode IDs
   viewedEpisodes: string[]; // Episode IDs
   onboardingComplete: boolean;
@@ -118,14 +110,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
               avatarId: 'av-01',
               interests: [],
               frequency: '',
-              discoverySource: '',
-              preferredLength: '',
-              contentRole: '',
-              openResponses: {
-                dreamConversation: '',
-                solveOneProblem: '',
-                fearedOrRespected: '',
-              },
               savedEpisodes: [],
               viewedEpisodes: [],
               onboardingComplete: false,
@@ -147,14 +131,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
             avatarId: 'av-01',
             interests: [],
             frequency: '',
-            discoverySource: '',
-            preferredLength: '',
-            contentRole: '',
-            openResponses: {
-              dreamConversation: '',
-              solveOneProblem: '',
-              fearedOrRespected: '',
-            },
             savedEpisodes: [],
             viewedEpisodes: [],
             onboardingComplete: false,
@@ -193,23 +169,18 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const signInWithGoogle = async () => {
     try {
-      console.log('[Auth] Initiating Google Sign-In with popup...');
+      console.log('[Auth] Initiating Google Sign-In via popup...');
       const result = await signInWithPopup(auth, googleProvider);
-      console.log('[Auth] Google Sign-In successful:', result.user.email);
+      console.log('[Auth] Google sign-in popup success:', result.user?.email);
     } catch (error: any) {
-      console.error('[Auth] Google sign-in error:', error.code, error.message);
-      
-      // Fallback to redirect if popup is blocked or fails
-      if (error.code === 'auth/popup-blocked' || error.code === 'auth/cancelled-popup-request') {
-        console.warn('[Auth] Popup blocked/closed, falling back to redirect flow...');
-        try {
-          await signInWithRedirect(auth, googleProvider);
-        } catch (redirectError: any) {
-          console.error('[Auth] Redirect fallback failed:', redirectError.code, redirectError.message);
-          throw redirectError;
-        }
-      } else {
-        throw error;
+      console.error('[Auth] Google sign-in popup error:', error.code, error.message);
+      // Fallback: try redirect (e.g. if popup is blocked by highly restrictive browsers)
+      try {
+        console.warn('[Auth] Popup failed, trying redirect fallback...');
+        await signInWithRedirect(auth, googleProvider);
+      } catch (redirectError: any) {
+        console.error('[Auth] Redirect fallback also failed:', redirectError.code, redirectError.message);
+        throw redirectError;
       }
     }
   };
